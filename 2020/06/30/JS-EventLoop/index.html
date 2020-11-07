@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+ <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Papyrus:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fdd’Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="JavaScript 事件循环进程与线程单线程的非阻塞脚本语言同步任务和异步任务 参考：一次弄懂 Event Loop（彻底解决此类面试问题）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS-EventLoop">
+<meta property="og:url" content="https://dorisfeng.github.io/2020/06/30/JS-EventLoop/index.html">
+<meta property="og:site_name" content="fdd’Blog">
+<meta property="og:description" content="JavaScript 事件循环进程与线程单线程的非阻塞脚本语言同步任务和异步任务 参考：一次弄懂 Event Loop（彻底解决此类面试问题）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/06/30/JS-EventLoop/img1.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/06/30/JS-EventLoop/img2.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/06/30/JS-EventLoop/img3.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/06/30/JS-EventLoop/img3.png">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/06/30/JS-EventLoop/img4.png">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/06/30/JS-EventLoop/img5.gif">
+<meta property="og:updated_time" content="2020-08-19T08:49:19.175Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS-EventLoop">
+<meta name="twitter:description" content="JavaScript 事件循环进程与线程单线程的非阻塞脚本语言同步任务和异步任务 参考：一次弄懂 Event Loop（彻底解决此类面试问题）">
+<meta name="twitter:image" content="https://dorisfeng.github.io/2020/06/30/JS-EventLoop/img1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dorisfeng.github.io/2020/06/30/JS-EventLoop/">
+
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "2d87b4e2"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>JS-EventLoop | fdd’Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+   <a href="https://github.com/Dorisfeng"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fdd’Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dorisfeng.github.io/2020/06/30/JS-EventLoop/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="封多多">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fdd’Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS-EventLoop</h1>
+        
+
+        <div class="post-meta">
+                  
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-30T09:32:49+08:00">
+                2020-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/30/JS-EventLoop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/30/JS-EventLoop/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.1k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12分
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JavaScript 事件循环<br>进程与线程<br>单线程的非阻塞脚本语言<br>同步任务和异步任务</p>
+<p><strong>参考：</strong><br><a href="https://juejin.im/post/5c3d8956e51d4511dc72c200" target="_blank" rel="noopener">一次弄懂 Event Loop（彻底解决此类面试问题）</a></p>
+<a id="more"></a>
+<h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><p>进程是程序在执行过程中分配和管理资源的基本单位，<br>线程是 CPU 调度和分配的基本单位，它可与同属于一个进程的其他线程共享进程所拥有的全部资源。<br>进程和线程都是一个时间段的描述，是 CPU 工作时间段的描述，不过是颗粒大小不同。<br>一个进程可以包含多个线程。<br>单个 CPU 总是运行一个进程，其他进程处于非运行状态。<br>一个 CPU 的一个时间点上运行的可能是一个进程上的不同线程。<br>可以简单的比喻：线程=车厢，进程=火车。</p>
+<h2 id="JavaScript-是单线程的非阻塞脚本语言"><a href="#JavaScript-是单线程的非阻塞脚本语言" class="headerlink" title="JavaScript 是单线程的非阻塞脚本语言"></a>JavaScript 是单线程的非阻塞脚本语言</h2><h3 id="什么是单线程"><a href="#什么是单线程" class="headerlink" title="什么是单线程"></a>什么是单线程</h3><p>主程序只有一个线程，即同一时间片段内主程序只能执行单个任务。</p>
+<h3 id="为什么-JavaScript-是单线程"><a href="#为什么-JavaScript-是单线程" class="headerlink" title="为什么 JavaScript 是单线程"></a>为什么 JavaScript 是单线程</h3><p>因为 JavaScript 的执行环境是浏览器。主要用途是与用户互动，以及操作 DOM。<br>例如，操作 Dom 的时候，如果是多线程的操作一个 Dom，一个向其添加事件，而另一个删除了这个 dom，这时无法处理。</p>
+<h3 id="单线程意味着什么"><a href="#单线程意味着什么" class="headerlink" title="单线程意味着什么"></a>单线程意味着什么</h3><p>单线程意味着，JavaScript 代码在执行的任何时候，都只有一个主线程来处理所有的任务。</p>
+<h3 id="如何解决单线程带来的性能问题"><a href="#如何解决单线程带来的性能问题" class="headerlink" title="如何解决单线程带来的性能问题"></a>如何解决单线程带来的性能问题</h3><p><strong>异步</strong>。所以 JavaScript 是非阻塞，意味着当代码需要进行一项异步任务（无法立刻返回结果，需要花一定时间才能返回的任务，如 I/O 事件）的时候，主线程会挂起（pending）这个任务，然后异步任务返回结果的时候再根据一定规则去执行相应的回调。<br>所有任务可以分成两种，一种是同步任务（synchronous），另一种是异步任务（asynchronous）。</p>
+<h2 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h2><ul>
+<li>宏任务（MacroTask/Task）<ul>
+<li>script 全部代码、</li>
+<li>setTimeout、</li>
+<li>setInterval、setImmediate（浏览器暂时不支持，只有 IE10 支持，具体可见 MDN）</li>
+<li>I/O、</li>
+<li>postMessage、</li>
+<li>UI Rendering。</li>
+</ul>
+</li>
+<li>微任务（MicroTask/jobs）<ul>
+<li>Process.nextTick（Node 独有）、</li>
+<li>Promise()、</li>
+<li>await、</li>
+<li>MutationObserver(html5 新特性)</li>
+<li>Object.observe(废弃)、<br><strong>setTimeout/Promise 等我们称之为任务源。而进入任务队列的是他们指定的具体执行任务。</strong> 所以 setTimeout 和 Promise 是立即执行的，setTimeout 的第一个参数-回调函数，和 Promise 的 then 方法才会放到任务队列中。</li>
+</ul>
+</li>
+</ul>
+<h2 id="浏览器中的-Event-Loop"><a href="#浏览器中的-Event-Loop" class="headerlink" title="浏览器中的 Event Loop"></a>浏览器中的 Event Loop</h2><h3 id="执行栈-函数调用栈（call-stack）"><a href="#执行栈-函数调用栈（call-stack）" class="headerlink" title="执行栈/函数调用栈（call stack）"></a>执行栈/函数调用栈（call stack）</h3><p>同步代码的执行，按照顺序添加到执行栈中<br><img src="/2020/06/30/JS-EventLoop/img1.gif" alt="执行栈"><br><img src="/2020/06/30/JS-EventLoop/img2.gif" alt="执行栈1"></p>
+<h3 id="任务队列-事件队列"><a href="#任务队列-事件队列" class="headerlink" title="任务队列/事件队列"></a>任务队列/事件队列</h3><p>异步代码的执行。遇到异步事件，主线程不会等待，而是将事件挂起，继续执行栈中的其他任务。<code>当异步任务返回结果，将他放到事件队列中</code>，被放入事件队列不会立刻执行起回调，而是等待当前执行栈中所有任务都执行完毕，主线程空闲状态，主线程会去查找事件队列中是否有任务，如果有，则取出排在第一位的事件，并把这个事件对应的回调放到执行栈中，然后执行其中的同步代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;start&apos;)</span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">  console.log(&apos;1000s-setTimeout&apos;)</span><br><span class="line">&#125;, 1000)</span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">  console.log(&apos;500s-setTimeout&apos;)</span><br><span class="line">&#125;, 500)</span><br><span class="line"></span><br><span class="line">console.log(&apos;end&apos;);</span><br><span class="line">//start</span><br><span class="line">//end</span><br><span class="line">//500s-setTimeout</span><br><span class="line">//1000s-setTimeout</span><br></pre></td></tr></table></figure>
+<h3 id="同步任务和异步任务"><a href="#同步任务和异步任务" class="headerlink" title="同步任务和异步任务"></a>同步任务和异步任务</h3><p>同步任务：在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务<br>异步任务： 异步任务是指不进入主线程，而进入任务队列的任务，只有任务队列通知主线程，某个异步任务可以执行了，该任务才会进入主线程。</p>
+<h3 id="事件循环顺序"><a href="#事件循环顺序" class="headerlink" title="事件循环顺序"></a>事件循环顺序</h3><ol>
+<li>script(整体代码)开始第一次循环,之后全局上下文进入函数调用栈。</li>
+<li>如果遇到微任务，先将异步任务交给对应的线程，当异步任务满足条件需要执行时，异步代码压入微任务队列中，同理宏任务进入宏任务队列；</li>
+<li>调用栈清空(只剩全局)，然后从微任务队列的队头依次取出微任务并执行，如果遇到其他宏任务和微任务，按照上一步执行，直到清空微任务队列</li>
+<li>取出队头的宏任务执行，执行步骤同 2-3，一直循环下去。</li>
+</ol>
+<ul>
+<li>例子 1</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;start&apos;)</span><br><span class="line"></span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">  console.log(&apos;setTimeout&apos;)</span><br><span class="line">&#125;, 0)</span><br><span class="line"></span><br><span class="line">Promise.resolve().then(function() &#123;</span><br><span class="line">  console.log(&apos;promise1&apos;)</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">  console.log(&apos;promise2&apos;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">console.log(&apos;end&apos;)</span><br></pre></td></tr></table></figure>
+<p>步骤（盗图，懂了，就不想画了）<br><img src="/2020/06/30/JS-EventLoop/img3.gif" alt="执行栈"><br><strong>重点</strong>，因为例子中的 setTimeout 的延迟是 0，所以是立刻入队（宏任务队列）的，如果是<code>1000</code>就是 1s 后入队，如果宏任务队列内没有其他任务，并且主程序空闲（没有其他宏任务，微任务清空），就会执行，这样就是延迟 1s 执行。否则主程序还在执行其他任务，即使 1s 后入队，延迟时间会大于 1s。</p>
+<ul>
+<li><p>例子 2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;script start&apos;)</span><br><span class="line"></span><br><span class="line">async function async1() &#123;</span><br><span class="line">    await async2()</span><br><span class="line">    console.log(&apos;async1 end&apos;)</span><br><span class="line">&#125;</span><br><span class="line">async function async2() &#123;</span><br><span class="line">    console.log(&apos;async2 end&apos;)</span><br><span class="line">&#125;</span><br><span class="line">async1()</span><br><span class="line"></span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">    console.log(&apos;setTimeout&apos;)</span><br><span class="line">&#125;, 0)</span><br><span class="line"></span><br><span class="line">new Promise(resolve =&gt; &#123;</span><br><span class="line">  console.log(&apos;Promise&apos;)</span><br><span class="line">  resolve()</span><br><span class="line">&#125;)</span><br><span class="line">.then(function() &#123;</span><br><span class="line">  console.log(&apos;promise1&apos;)</span><br><span class="line">&#125;)</span><br><span class="line">.then(function() &#123;</span><br><span class="line">  console.log(&apos;promise2&apos;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">console.log(&apos;script end&apos;)</span><br><span class="line">//新 script start - async2 end - Promise - script end - async1 end - promise1 - promise2</span><br><span class="line"> //旧 script start - async2 end - Promise - script end - promise1 - promise2 - async1 end</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>首先 async/await 在底层转换成了 promise 和 then 回调函数，是 promise 的语法糖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">async function async1() &#123;</span><br><span class="line">    await async2()</span><br><span class="line">    console.log(&apos;async1 end&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>简化理解：<br><strong>老版浏览器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function f()&#123;</span><br><span class="line">    return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">         async2();</span><br><span class="line">        // Promise.resolve() 将代码插入微任务队列尾部</span><br><span class="line">        // resolve 再次插入微任务队列尾部</span><br><span class="line">        resolve(Promise.resolve())</span><br><span class="line">    &#125;).then(() =&gt; &#123;</span><br><span class="line">        console.log(&apos;async1 end&apos;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样<code>await</code>后面返回还是<code>Promise</code>的话，<code>Promise.resolve()</code>先进入微任务队列，这样函数<code>async1</code>就会挂起，代码接着执行下面的<code>Promise</code>，<code>promise1</code>和<code>promise2</code>进入微任务队列。最后这一轮微任务队列清空输出<code>promise1</code>和<code>promise2</code>，<code>resolve(Promise.resolve())</code>执行， <code>console.log(&#39;async1 end&#39;)</code>才进入微任务队列。<br><strong>新版浏览器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function f()&#123;</span><br><span class="line">    return Promise.resolve(async2())</span><br><span class="line">    .then(()=&gt;&#123;</span><br><span class="line">        console.log(&apos;async1 end&apos;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>比老版减少了一次 Promise</p>
+<h2 id="Node-中的-Event-Loop"><a href="#Node-中的-Event-Loop" class="headerlink" title="Node 中的 Event Loop"></a>Node 中的 Event Loop</h2><p><img src="/2020/06/30/JS-EventLoop/img3.png" alt="node"></p>
+<h3 id="分为-6-个阶段"><a href="#分为-6-个阶段" class="headerlink" title="分为 6 个阶段"></a>分为 6 个阶段</h3><ul>
+<li><ol>
+<li><p><code>定时器检测阶段(timers)</code><br>执行<code>setTimeout</code>和<code>setInterval</code>中到期的<code>callback</code>，并且是由 poll 阶段控制的。同样，在 Node 中定时器指定的时间也不是准确时间，只能是尽快执行。</p>
+<p><strong>例子</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">function someAsyncOperation(callback) &#123;</span><br><span class="line">// Assume this takes 95ms to complete</span><br><span class="line">fs.readFile(&apos;/a.js&apos;, callback);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const timeoutScheduled = Date.now();</span><br><span class="line"></span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">const delay = Date.now() - timeoutScheduled;</span><br><span class="line"></span><br><span class="line">console.log(`$&#123;delay&#125;ms have passed since I was scheduled`);</span><br><span class="line">&#125;, 100);</span><br><span class="line"></span><br><span class="line">// do someAsyncOperation which takes 95 ms to complete</span><br><span class="line">someAsyncOperation(() =&gt; &#123;</span><br><span class="line">const startCallback = Date.now();</span><br><span class="line"></span><br><span class="line">// do something that will take 10ms...</span><br><span class="line">while (Date.now() - startCallback &lt; 10) &#123;</span><br><span class="line">    // do nothing</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>理论上<code>setTimeout</code>的回调函数是<code>100ms</code>后执行,但是，当进入事件循环时，它有一个空队列（fs.readFile()尚未完成），因此定时器将等待剩余毫秒数，当到达 95ms 时，fs.readFile()完成读取文件并且其需要 10 毫秒完成回调添加到轮询队列并执行。<br>当回调结束时，队列中不再有回调，因此事件循环将看到已达到最快定时器的阈值，然后回到 timers 阶段以执行定时器的回调。<br>在此示例中，您将看到正在调度的计时器与正在执行的回调之间的总延迟将为 105 毫秒左右。<br><img src="/2020/06/30/JS-EventLoop/img4.png" alt="node"></p>
+</li>
+<li><ol start="2">
+<li><code>I/O事件回调阶段(I/O callbacks)</code>/<code>pending callback</code><br>上一轮循环中少数的<code>callback</code>会放在这一阶段执行</li>
+</ol>
+</li>
+<li><ol start="3">
+<li><code>闲置阶段(idle, prepare)</code>：仅在内部使用</li>
+</ol>
+</li>
+<li><ol start="4">
+<li><code>轮询阶段(poll)</code>：<br>用于等待还未返回的 I/O 事件，比如服务器的回应、用户移动鼠标等等。<br>这个阶段的时间会比较长。如果没有其他异步任务要处理（比如到期的定时器），会一直停留在这个阶段，等待 I/O 请求返回结果。</li>
+</ol>
+<ul>
+<li>回到<code>timer</code>阶段执行回调</li>
+<li><p>执行 <code>I/O</code> 回调</p>
+<p>并且在进入该阶段时如果没有设定了 <code>timer</code> 的话，会发生以下两件事情</p>
+</li>
+<li><p>如果 <code>poll</code> 队列不为空，会遍历回调队列并同步执行，直到队列为空或者达到系统限制</p>
+</li>
+<li>如果 <code>poll</code> 队列为空，则会发生以下两种情况之一：<ul>
+<li>如果有<code>setImmediate()</code>回调需要执行，则会立即停止执行<code>poll</code>阶段并进入执行 <code>check</code> 阶段以执行回调。</li>
+<li>如果没有<code>setImmediate()</code>回到需要执行，<code>poll</code> 阶段将等待 <code>callback</code> 被添加到队列中，然后立即执行。<br>当然设定了 timer 的话且 poll 队列为空，则会判断是否有 timer 超时，如果有的话会回到 timer 阶段执行回调。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol start="5">
+<li><p><code>检查阶段(check)</code><br>此阶段允许人员在 poll 阶段完成后立即执行回调。<br>如果 poll 阶段闲置并且 script 已排队 setImmediate()，则事件循环到达 check 阶段执行而不是继续等待。</p>
+<p><code>setImmediate()</code>实际上是一个特殊的计时器，它在事件循环的一个单独阶段运行。它使用 <code>libuv API</code> 来调度在 poll 阶段完成后执行的回调。</p>
+<p>通常，当代码被执行时，事件循环最终将达到 poll 阶段，它将等待传入连接，请求等。<br>但是，如果已经调度了回调 setImmediate()，并且轮询阶段变为空闲，则它将结束并且到达 check 阶段，而不是等待 poll 事件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;start&apos;)</span><br><span class="line"></span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line"> console.log(&apos;timer1&apos;)</span><br><span class="line"> Promise.resolve().then(function() &#123;</span><br><span class="line">   console.log(&apos;promise1&apos;)</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;, 0)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">  console.log(&apos;timer2&apos;)</span><br><span class="line">  Promise.resolve().then(function() &#123;</span><br><span class="line">    console.log(&apos;promise2&apos;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;, 0)</span><br><span class="line">Promise.resolve().then(function() &#123;</span><br><span class="line">  console.log(&apos;promise3&apos;)</span><br><span class="line">&#125;)</span><br><span class="line">console.log(&apos;end&apos;)</span><br></pre></td></tr></table></figure>
+<p>如果 node 版本为 v11.x， 其结果与浏览器一致。执行一个宏任务之后都去清空微任务队列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">start</span><br><span class="line">end</span><br><span class="line">promise3</span><br><span class="line">timer1</span><br><span class="line">promise1</span><br><span class="line">timer2</span><br><span class="line">promise2</span><br></pre></td></tr></table></figure>
+<p>如果 v10 版本上述结果存在两种情况：</p>
+<ul>
+<li><p>如果 time2 定时器已经在执行队列中了,先清空完 timer 队列再清空执行微任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">start</span><br><span class="line">end</span><br><span class="line">promise3</span><br><span class="line">timer1</span><br><span class="line">timer2</span><br><span class="line">promise1</span><br><span class="line">promise2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="/2020/06/30/JS-EventLoop/img5.gif" alt="timer"> - 如果 time2 定时器没有在执行对列中，执行结果为（没看到这种情况，我的理解是 timer1 执行的很快，timer2 还没进入队列），执行结果跟 v11.1 效果一样</p>
+</li>
+<li><ol start="6">
+<li><code>关闭事件回调阶段(close callbacks)</code><br>执行 close 事件</li>
+</ol>
+</li>
+</ul>
+<h3 id="setImmediate-的-setTimeout-的区别"><a href="#setImmediate-的-setTimeout-的区别" class="headerlink" title="setImmediate() 的 setTimeout()的区别"></a>setImmediate() 的 setTimeout()的区别</h3><ul>
+<li>setImmediate()设计用于在当前 poll 阶段完成后 check 阶段执行脚本 。</li>
+<li><p>setTimeout() 安排在经过最小（ms）后运行的脚本，在 timers 阶段执行。<br><strong>例子</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">console.log(&apos;timeout&apos;);</span><br><span class="line"></span><br><span class="line">&#125;, 0);</span><br><span class="line"></span><br><span class="line">setImmediate(() =&gt; &#123;</span><br><span class="line">console.log(&apos;immediate&apos;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>执行定时器的顺序将根据调用它们的上下文而有所不同。 如果从主模块中调用两者，那么时间将受到进程性能的限制。<br>如果在 <code>I/O</code>周期内移动两个调用，则始终首先执行立即回调：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">fs.readFile(__filename, () =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">        console.log(&apos;timeout&apos;);</span><br><span class="line">    &#125;, 0);</span><br><span class="line">    setImmediate(() =&gt; &#123;</span><br><span class="line">        console.log(&apos;immediate&apos;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其结果可以确定一定是<code>immediate =&gt; timeout</code>。<br>主要原因是在 <code>I/O</code> 阶段读取文件后，事件循环会先进入 <code>poll</code> 阶段，发现有 <code>setImmediate</code> 需要执行，会立即进入 <code>check</code> 阶段执行 <code>setImmediate</code> 的回调。<br>然后再进入<code>timers</code>阶段，执行<code>setTimeout</code>，打印<code>timeout</code>。</p>
+<h3 id="Process-nextTick"><a href="#Process-nextTick" class="headerlink" title="Process.nextTick()"></a>Process.nextTick()</h3><p><code>process.nextTick()</code>虽然它是异步 API 的一部分，但未在图中显示。这是因为从技术上讲，它不是事件循环的一部分。它有一个自己的队列，当每个阶段完成后，如果存在 <code>nextTick</code> 队列，就会清空队列中的所有回调函数，并且优先于其他 <code>microTask</code> 执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">let bar;</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">  console.log(&apos;setTimeout&apos;);</span><br><span class="line">&#125;, 0)</span><br><span class="line"></span><br><span class="line">setImmediate(() =&gt; &#123;</span><br><span class="line">  console.log(&apos;setImmediate&apos;);</span><br><span class="line">&#125;)</span><br><span class="line">function someAsyncApiCall(callback) &#123;</span><br><span class="line">  process.nextTick(callback);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">someAsyncApiCall(() =&gt; &#123;</span><br><span class="line">  console.log(&apos;bar&apos;, bar); // 1</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">bar = 1;</span><br></pre></td></tr></table></figure>
+<p>对于以上代码，大家可以发现无论如何，永远都是先把 nextTick 全部打印出来。</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------</div>
+    
+</div>
+
+
+
+      
+    </div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/26/JS-this指向/" rel="next" title="JS-this指向">
+                <i class="fa fa-chevron-left"></i> JS-this指向
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/30/数据结构/" rel="prev" title="数据结构">
+                数据结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="封多多">
+            
+              <p class="site-author-name" itemprop="name">封多多</p>
+              <p class="site-description motion-element" itemprop="description">前端</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="ttps://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fengduoduo@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/8acefb731467" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程与线程"><span class="nav-number">1.</span> <span class="nav-text">进程与线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-是单线程的非阻塞脚本语言"><span class="nav-number">2.</span> <span class="nav-text">JavaScript 是单线程的非阻塞脚本语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是单线程"><span class="nav-number">2.1.</span> <span class="nav-text">什么是单线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么-JavaScript-是单线程"><span class="nav-number">2.2.</span> <span class="nav-text">为什么 JavaScript 是单线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单线程意味着什么"><span class="nav-number">2.3.</span> <span class="nav-text">单线程意味着什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何解决单线程带来的性能问题"><span class="nav-number">2.4.</span> <span class="nav-text">如何解决单线程带来的性能问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#宏任务和微任务"><span class="nav-number">3.</span> <span class="nav-text">宏任务和微任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器中的-Event-Loop"><span class="nav-number">4.</span> <span class="nav-text">浏览器中的 Event Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#执行栈-函数调用栈（call-stack）"><span class="nav-number">4.1.</span> <span class="nav-text">执行栈/函数调用栈（call stack）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务队列-事件队列"><span class="nav-number">4.2.</span> <span class="nav-text">任务队列/事件队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步任务和异步任务"><span class="nav-number">4.3.</span> <span class="nav-text">同步任务和异步任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件循环顺序"><span class="nav-number">4.4.</span> <span class="nav-text">事件循环顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-中的-Event-Loop"><span class="nav-number">5.</span> <span class="nav-text">Node 中的 Event Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分为-6-个阶段"><span class="nav-number">5.1.</span> <span class="nav-text">分为 6 个阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setImmediate-的-setTimeout-的区别"><span class="nav-number">5.2.</span> <span class="nav-text">setImmediate() 的 setTimeout()的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Process-nextTick"><span class="nav-number">5.3.</span> <span class="nav-text">Process.nextTick()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">封多多</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">155.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'BTxpKE3VdbvNYiEqX2SeV2tr-gzGzoHsz',
+        appKey: '4J07ASMlcBVdeBV766IuHEf9',
+        placeholder: '留下你的宝贵意见',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":60,"height":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+

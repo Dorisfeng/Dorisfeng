@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+ <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Papyrus:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fdd’Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="react-native 的点击事件或手势监听">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-native之Touchable介绍与使用">
+<meta property="og:url" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/index.html">
+<meta property="og:site_name" content="fdd’Blog">
+<meta property="og:description" content="react-native 的点击事件或手势监听">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif1.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif3.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif2.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif4.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif7.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif5.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/img1.jpg">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif6.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif8.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif9.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif10.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif11.gif">
+<meta property="og:updated_time" content="2020-06-12T03:26:17.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react-native之Touchable介绍与使用">
+<meta name="twitter:description" content="react-native 的点击事件或手势监听">
+<meta name="twitter:image" content="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/gif1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/">
+
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "2d87b4e2"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>react-native之Touchable介绍与使用 | fdd’Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+   <a href="https://github.com/Dorisfeng"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fdd’Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dorisfeng.github.io/2018/12/20/react-native之Touchable介绍与使用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="封多多">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fdd’Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react-native之Touchable介绍与使用</h1>
+        
+
+        <div class="post-meta">
+                  
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T16:32:49+08:00">
+                2018-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/react-native/" itemprop="url" rel="index">
+                    <span itemprop="name">react native</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/20/react-native之Touchable介绍与使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/react-native之Touchable介绍与使用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10分
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>react-native 的点击事件或手势监听</p>
+<a id="more"></a>
+<p>使用事件响应事件做手势监听， 但是在不同标签上有的属性是不能做出相应的响应的，比如下面的例子,同样的属性，在 View 上不可使用，在 Text 上就可以<br>_效果_</p>
+<p><img src="/2018/12/20/react-native之Touchable介绍与使用/gif1.gif" alt="onPress"></p>
+<p>示例组件</p>
+<h3 id="TouchableOpacity"><a href="#TouchableOpacity" class="headerlink" title="TouchableOpacity"></a>TouchableOpacity</h3><p>用于封装视图，使其正确响应触摸操作，当按下的时候，封装视图的透明度会提高。<br>通过将子元素封装在一个 Animated.View 中实现，这个动画视图会被添加到视图层级中，少数情况下有可能影响到布局<br>与 TouchableHighlight 的区别在于没有而外的颜色变化，更适于一般场景</p>
+<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123; TouchableOpacity&#125; from &apos;react-native&apos;;</span><br></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;TouchableOpacity Touchable属性&gt;</span><br><span class="line">    &lt;需要包装的标签&gt;&lt;/需要包装的标签&gt;</span><br><span class="line">&lt;/TouchableOpacity&gt;</span><br></pre></td></tr></table></figure>
+<p>使用 TouchableOpacity 包装一下上面的两个组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> &lt;TouchableOpacity</span><br><span class="line">    onPress=&#123;()=&gt;alert(&apos;点击了View&apos;)&#125;</span><br><span class="line">&gt;</span><br><span class="line">    &lt;View style=&#123;styles.view&#125;&gt;&lt;/View&gt;</span><br><span class="line">&lt;/TouchableOpacity&gt;</span><br><span class="line">&lt;TouchableOpacity</span><br><span class="line">    onPress=&#123;()=&gt;alert(&apos;点击了Text&apos;)&#125;</span><br><span class="line">&gt;</span><br><span class="line">    &lt;Text style=&#123;styles.text&#125;&gt;Text组件&lt;/Text&gt;</span><br><span class="line">&lt;/TouchableOpacity&gt;</span><br></pre></td></tr></table></figure>
+<p>_效果_<br><img src="/2018/12/20/react-native之Touchable介绍与使用/gif3.gif" alt="IOS"><br>在 Android 里面  貌似没有透明度变化的效果<br><img src="/2018/12/20/react-native之Touchable介绍与使用/gif2.gif" alt="Android"></p>
+<h3 id="Touchable-常用属性"><a href="#Touchable-常用属性" class="headerlink" title="Touchable 常用属性"></a>Touchable 常用属性</h3><p>Touchable 中包含四类：</p>
+<ul>
+<li>TouchableWithoutFeedback：不带任何反馈的可触摸组件</li>
+<li>TouchableHighlight：高亮触摸</li>
+<li>TouchableOpacity：不透明触摸</li>
+<li><p>TouchableNativeFeedback(仅支持 Android，水波纹效果)</p>
+<p><strong>详细</strong></p>
+</li>
+</ul>
+<ol>
+<li><p>TouchableWithoutFeedback<br> 触发后没有效果，一般不建议使用。<br>只支持一个子节点(必须有一个)，如果想要  包含多个子节点可以使用 View 包装起来。<br><strong>译注</strong>常见的使用场景比如想实现点击空白处触发某个操作，那么就可以把空白部分用 TouchableWithoutFeedback 包起来，或者绝对定位覆盖住。</p>
+<p>_属性_ - disable：bool，如果为 true，禁止此组件的一切交互 - accessible：bool，设置该组件是否可以  访问 - accessibilityTraits： 设置访问特性 - accessibilityComponentType：设置可访问的组件类型 - delayLongPress：从 onPressIn 开始到 onLongPress 被调用的延迟， 单位：毫秒 - delayPressIn：从触摸操作开始到 onPressIn 被调用的延迟， 单位：毫秒 - delayPressOut：从触摸操作结束  为开始到 OnPressOut 被调用的延迟， 单位：毫秒 - hitSlop： 定义触摸对象的偏移范围，会使 pressRetentionOffset 变得更大，但是不会超出父视图的边界，且保留原先的触摸优先级。<br>值：object:{top:number,left:number,bottom:number,right:number} - pressRetentionOffset：当前视图不能滚动的前提下  指定这个属性，可以决定当手指移开多远距离之后，不会激活按钮，但是如果手指再次  移回范围内，按钮会再次激活。<br>值：object:{top:number,left:number,bottom:number,right:number}<br>_方法_ - onFocus：组件获取焦点 - onBlur：组件失去焦点</p>
+<pre><code>- onLongPress：长按
+- onPress：触摸操作结束时调用，但如果被取消则不调用（例如响应被一个滚动操作取代）
+- onPressIn：按下，在onPress之前调用
+- onPressOut：触摸释放之后就调用，在onPress之前
+- onLayout：当加载或布局改变的时候被调用，获取当前组件宽高即位置或用于检测设备竖横屏
+参数为{nativeEvent:{layout:{x,y,width,height}}}，
+</code></pre><p><strong>例子 onPressIn 和 onPressOut</strong></p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//布局</span><br><span class="line"> &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;TouchableWithoutFeedback</span><br><span class="line">        onPressIn=&#123;()=&gt;alert(&apos;PressIn&apos;)&#125;</span><br><span class="line">        onPressOut=&#123;()=&gt;alert(&apos;PressOut&apos;)&#125;</span><br><span class="line">    &gt;</span><br><span class="line">        &lt;View style=&#123;styles.view&#125;&gt;</span><br><span class="line">             &lt;Text style=&#123;styles.text&#125;&gt; TEST&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    &lt;/TouchableWithoutFeedback&gt;</span><br><span class="line">&lt;/View&gt;</span><br><span class="line"></span><br><span class="line">//style</span><br><span class="line">container: &#123;</span><br><span class="line">    width:width,</span><br><span class="line">    backgroundColor: &apos;#F5FCFF&apos;,</span><br><span class="line">&#125;,</span><br><span class="line">view:&#123;</span><br><span class="line">    marginTop:50,</span><br><span class="line">    width:width,</span><br><span class="line">    height:80,</span><br><span class="line">    backgroundColor:&apos;#ddd&apos;,</span><br><span class="line">    justifyContent:&apos;center&apos;,</span><br><span class="line">    alignItems:&apos;center&apos;,</span><br><span class="line">&#125;,</span><br><span class="line">text:&#123;</span><br><span class="line">    color:&apos;red&apos;,</span><br><span class="line">    fontSize:16,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>_效果_<br><img src="/2018/12/20/react-native之Touchable介绍与使用/gif4.gif" alt="onPressIn、onPressOut"></p>
+<p>添加两个属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">delayPressIn=&#123;1000&#125;</span><br><span class="line">delayPressOut=&#123;3000&#125;</span><br></pre></td></tr></table></figure>
+<p>_效果_<br><img src="/2018/12/20/react-native之Touchable介绍与使用/gif7.gif" alt="delayPressIn、delayPressOut"></p>
+<font color="#FF0000"> 试了  几遍，delayPressIn 貌似没有效果。点击了立马跳出来 </font>
+
+<p><strong>例子 onPress 和 onLongPress</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;TouchableWithoutFeedback</span><br><span class="line">        onPress=&#123;()=&gt;alert(&apos;Press&apos;)&#125;</span><br><span class="line">        onLongPressOut=&#123;()=&gt;alert(&apos;LongPress&apos;)&#125;</span><br><span class="line"></span><br><span class="line">    &gt;</span><br><span class="line">        &lt;View style=&#123;styles.view&#125;&gt;</span><br><span class="line">                &lt;Text style=&#123;styles.text&#125;&gt; TEST&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    &lt;/TouchableWithoutFeedback&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p>_效果_<br><img src="/2018/12/20/react-native之Touchable介绍与使用/gif5.gif" alt="Press、LongPress"></p>
+<p><strong>例子 onLayout</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;TouchableWithoutFeedback</span><br><span class="line">        onLayout=&#123;(props)=&gt;&#123;console.log(props.nativeEvent)&#125;&#125;</span><br><span class="line">    &gt;</span><br><span class="line">        &lt;View style=&#123;styles.view&#125;&gt;</span><br><span class="line">            &lt;Text style=&#123;styles.text&#125;&gt; TEST&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    &lt;/TouchableWithoutFeedback&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p>加载的时候 console.log 打印出<br><img src="/2018/12/20/react-native之Touchable介绍与使用/img1.jpg" alt="onLayout"><br><strong>例子 hitSlop</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">//布局</span><br><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;TouchableWithoutFeedback</span><br><span class="line">        onPress=&#123;()=&gt;alert(&apos;Press&apos;)&#125;</span><br><span class="line">        hitSlop=&#123;&#123;top:100,bottom:100,left:50,right:50&#125;&#125;</span><br><span class="line">    &gt;</span><br><span class="line">        &lt;View style=&#123;styles.view&#125;&gt;</span><br><span class="line">                &lt;Text style=&#123;styles.text&#125;&gt; TEST&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    &lt;/TouchableWithoutFeedback&gt;</span><br><span class="line">&lt;/View&gt;</span><br><span class="line"></span><br><span class="line">//样式</span><br><span class="line">container: &#123;</span><br><span class="line">    flex:1,</span><br><span class="line">    backgroundColor: &apos;red&apos;,</span><br><span class="line">    justifyContent:&apos;center&apos;,</span><br><span class="line">    alignItems:&apos;center&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">  view:&#123;</span><br><span class="line">    backgroundColor:&apos;#999&apos;,</span><br><span class="line">    borderColor:&apos;#333&apos;,</span><br><span class="line">    borderWidth:10,</span><br><span class="line">    height:300,</span><br><span class="line">    width:200,</span><br><span class="line">    justifyContent:&apos;center&apos;,</span><br><span class="line">    alignItems:&apos;center&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">  text:&#123;</span><br><span class="line">    color:&apos;red&apos;,</span><br><span class="line">    fontSize:26,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>_效果_<br><img src="/2018/12/20/react-native之Touchable介绍与使用/gif6.gif" alt="Press、LongPress"><br><strong>例子 pressRetentionOffset</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;TouchableWithoutFeedback</span><br><span class="line">        onPress=&#123;()=&gt;&#123;alert(&apos;响应&apos;)&#125;&#125;</span><br><span class="line">        pressRetentionOffset=&#123;&#123;top:100,bottom:100,left:50,right:50&#125;&#125;</span><br><span class="line">    &gt;</span><br><span class="line">        &lt;View style=&#123;styles.view&#125;&gt;</span><br><span class="line">                &lt;Text style=&#123;styles.text&#125;&gt; TEST&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    &lt;/TouchableWithoutFeedback&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<font color="#FF0000"> 试了半天，没有  想象中的效果 </font>
+
+<ol>
+<li><p>TouchableHighlight<br>用于封  装视图，使其可以正确响应触摸操作。当按下时，封装视图的不透明度会降低，同时底层颜色会显示， 使视图变亮或变暗。<br>实现方法是，创建一个  新的视图到视图层级，如果使用方法不正确，会导致出现一些不希望出现的视觉  效果。例如没有给视图的 backgroundColor 显示声明一个不透明的颜色。<br>只支持一个子节点(必须有一个)，如果想要  包含多个子节点可以使用 View 包装起来。</p>
+<p><em>属性和方法</em></p>
+<ul>
+<li>继承 TouchableWithoutFeedback 所有属性和方法</li>
+<li>activeOpacity： 指定封装的视图在触摸操作激活时以多少不透明度显示（0-1，默认 0.25）</li>
+<li>style：设置控件的风格演示，参考 View 组件的 style</li>
+<li><p>underlayColor：有触摸操作时显示的底层颜色</p>
+</li>
+<li><p>onHideUnderlay：底层颜色被隐藏的时候掉用</p>
+</li>
+<li>onShowUnderlay： 底层颜色被显示的时候调用</li>
+</ul>
+</li>
+</ol>
+<p><strong>例子 activeOpacity</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;TouchableHighlight</span><br><span class="line">        activeOpacity=&#123;0.5&#125;</span><br><span class="line">        onPress=&#123;()=&gt;&#123;&#125;&#125;</span><br><span class="line">    &gt;</span><br><span class="line">        &lt;View style=&#123;styles.view&#125;&gt;</span><br><span class="line">            &lt;Text style=&#123;styles.text&#125;&gt; TEST&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    &lt;/TouchableHighlight&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p>_效果_<br><img src="/2018/12/20/react-native之Touchable介绍与使用/gif8.gif" alt="underlayColor"><br><strong>例子 underlayColor</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;TouchableHighlight</span><br><span class="line">        underlayColor=&apos;red&apos;</span><br><span class="line">        onPress=&#123;()=&gt;&#123;&#125;&#125;</span><br><span class="line">    &gt;</span><br><span class="line">        &lt;View style=&#123;styles.view&#125;&gt;</span><br><span class="line">                &lt;Text style=&#123;styles.text&#125;&gt; TEST&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    &lt;/TouchableHighlight&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p>_效果_</p>
+<p><img src="/2018/12/20/react-native之Touchable介绍与使用/gif9.gif" alt="underlayColor"><br><strong>例子 onHideUnderlay 和 onShowUnderlay</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;TouchableHighlight</span><br><span class="line">        activeOpacity=&#123;0.5&#125;</span><br><span class="line">        underlayColor=&apos;red&apos;</span><br><span class="line">        onPress=&#123;()=&gt;&#123;&#125;&#125;</span><br><span class="line">        onHideUnderlay=&#123;()=&gt;alert(&apos;HideUnderlay&apos;)&#125;</span><br><span class="line">        onShowUnderlay=&#123;()=&gt;alert(&apos;ShowUnderlay&apos;)&#125;</span><br><span class="line">    &gt;</span><br><span class="line">        &lt;View style=&#123;styles.view&#125;&gt;</span><br><span class="line">            &lt;Text style=&#123;styles.text&#125;&gt; TEST&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    &lt;/TouchableHighlight&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p>_效果_</p>
+<p><img src="/2018/12/20/react-native之Touchable介绍与使用/gif10.gif" alt="underlayColor"></p>
+<ol>
+<li><p>TouchableOpacity<br>本组件用于封装视图，使其可以正确响应触摸操作。当按下的时候，封装的视图的不透明度会降低。<br>不透明度的变化是通过把子元素封装在一个 Animated.View 中实现的，这个动画会被添加到视图层， 可能影响到布局</p>
+<pre><code>*属性和方法*
+- 继承TouchableWithoutFeedback所有属性和方法
+- activeOpacity：指定封装的视图在触摸操作激活时以多少不透明度显示（0-1，默认0.2）,用法同TouchableHighlight
+- style：设置控件的风格演示，参考View组件的style
+- setOpacityTo：将本组件的不透明设为指定值（动画） setOpacityTo((value:number),(duration:number))
+</code></pre><p><strong>例子 setOpacityTo</strong></p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;TouchableOpacity</span><br><span class="line">        ref=&apos;opacity&apos;</span><br><span class="line">    &gt;</span><br><span class="line">        &lt;View style=&#123;[styles.touchable,styles.viewBox]&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.test&#125;&gt;TEST&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    &lt;/TouchableOpacity&gt;</span><br><span class="line">    &lt;Button</span><br><span class="line">        style=&#123;&#123;marginTop:20&#125;&#125;</span><br><span class="line">        title=&apos;测试opacity&apos;</span><br><span class="line">        //组件方法调用</span><br><span class="line">        onPress=&#123;()=&gt;&#123;this.refs.opacity.setOpacityTo(0.1,1)&#125;&#125;</span><br><span class="line">    /&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p>_效果_</p>
+<p><img src="/2018/12/20/react-native之Touchable介绍与使用/gif11.gif" alt="setOpacityTo"></p>
+<ol>
+<li><p>TouchableNativeFeedback<br> 在 Android 设备上，利用元素状态来渲染触摸效果。<br> 目前只支持一个单独的 View 实例作为子节点。在底层实现上，实际会创建一个新的 RCTView 节点替换当前的子 View，并附带一些额外的属性。<br>原生触摸操作反馈的背景可以使用 backgroun 属性来定义</p>
+<p><em>属性和方法</em></p>
+<ul>
+<li>继承 TouchableWithoutFeedback 所有属性和方法</li>
+<li>background：在触摸反馈的时候  显示的背景。值是 type 属性或是一些基于 type 熟悉的额外数据对象。推荐使用本组件的静态方法创建这个对 象。</li>
+<li>SelectableBackground()：静态方法，会创建一个对象，表示安卓主题默认的对于被选中对象的背景</li>
+<li>SelectableBackgroundBorderless():会创建一个对象，表示安卓主题默认的对于被选中的无边框对象的背景(android:attr/selectableItemBackgroundBorderless)。只适用于 Android API level 21+</li>
+<li>Ripple()：静态方法， 会创建一个对象，当按钮被按下时  产生  水波纹背景，可以通过 color 指定颜色。参数：color 和 borderless，如果 borderless 为 true，涟漪还会渲染到视图范围外。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------</div>
+    
+</div>
+
+
+
+      
+    </div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/15/react-native从入门到放弃/" rel="next" title="react-native从入门到放弃">
+                <i class="fa fa-chevron-left"></i> react-native从入门到放弃
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/21/window对象/" rel="prev" title="window对象">
+                window对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="封多多">
+            
+              <p class="site-author-name" itemprop="name">封多多</p>
+              <p class="site-description motion-element" itemprop="description">前端</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="ttps://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fengduoduo@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/8acefb731467" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TouchableOpacity"><span class="nav-number">1.</span> <span class="nav-text">TouchableOpacity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引入"><span class="nav-number">1.1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">1.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Touchable-常用属性"><span class="nav-number">2.</span> <span class="nav-text">Touchable 常用属性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">封多多</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">155.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'BTxpKE3VdbvNYiEqX2SeV2tr-gzGzoHsz',
+        appKey: '4J07ASMlcBVdeBV766IuHEf9',
+        placeholder: '留下你的宝贵意见',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":60,"height":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+

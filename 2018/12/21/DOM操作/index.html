@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+ <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Papyrus:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fdd’Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="DOM Element 对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM操作">
+<meta property="og:url" content="https://dorisfeng.github.io/2018/12/21/DOM操作/index.html">
+<meta property="og:site_name" content="fdd’Blog">
+<meta property="og:description" content="DOM Element 对象">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-25T06:05:41.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DOM操作">
+<meta name="twitter:description" content="DOM Element 对象">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dorisfeng.github.io/2018/12/21/DOM操作/">
+
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "2d87b4e2"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>DOM操作 | fdd’Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+   <a href="https://github.com/Dorisfeng"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fdd’Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dorisfeng.github.io/2018/12/21/DOM操作/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="封多多">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fdd’Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DOM操作</h1>
+        
+
+        <div class="post-meta">
+                  
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T15:50:44+08:00">
+                2018-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/21/DOM操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/21/DOM操作/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12分
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>DOM Element 对象</p>
+<a id="more"></a>
+<h1 id="Document-节点"><a href="#Document-节点" class="headerlink" title="Document 节点"></a>Document 节点</h1><h2 id="Document-节点属性"><a href="#Document-节点属性" class="headerlink" title="Document 节点属性"></a>Document 节点属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">document.doctype //返回当前文档的文档类型</span><br><span class="line">document.documentElement //返回当前文档的根节点</span><br><span class="line">document.defaultView //返回document对象所在的window对象</span><br><span class="line">document.body   //返回当前文档的&lt;body&gt;节点</span><br><span class="line">document.head   //返回当前文档的&lt;head&gt;节点</span><br><span class="line">document.activeElement //返回当前文档中获得焦点的元素</span><br><span class="line"></span><br><span class="line">//节点集合属性</span><br><span class="line">document.links // 返回当前文档的所有a元素</span><br><span class="line">document.forms //返回页面所有表单元素</span><br><span class="line">document.images //返回页面中所有图片元素</span><br><span class="line">document.embeds //返回网页中所有嵌入对象</span><br><span class="line">document.scripts //返回当前文档的所有脚本</span><br><span class="line">document.styleSheets //返回当前网页的所有样式表</span><br><span class="line"></span><br><span class="line">//文档信息属性</span><br><span class="line">document.documentURI //表示当前文档的网址</span><br><span class="line">document.URL //返回当前文档的网址</span><br><span class="line">document.domain //返回当前文档的域名</span><br><span class="line">document.lastModified  //返回当前文档最后修改的时间戳</span><br><span class="line">document.location  //返回location对象，提供当前文档的URL信息</span><br><span class="line">document.referrer  //返回当前文档的访问来源</span><br><span class="line">document.title    //返回当前文档的标题</span><br><span class="line">document.characterSet //属性返回渲染当前文档的字符集，比如UTF-8、ISO-8859-1。</span><br><span class="line">document.readyState  //返回当前文档的状态</span><br><span class="line">document.designMode  //控制当前文档是否可编辑，可读写</span><br><span class="line">document.cookie   //用来操作Cookie</span><br></pre></td></tr></table></figure>
+<h2 id="Document-节点方法"><a href="#Document-节点方法" class="headerlink" title="Document 节点方法"></a>Document 节点方法</h2><h2 id="读写方法"><a href="#读写方法" class="headerlink" title="读写方法"></a>读写方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">document.open()   //用于新建并打开一个文档</span><br><span class="line">document.close()   //不安比open方法所新建的文档</span><br><span class="line">document.write()   //用于向当前文档写入内容</span><br><span class="line">document.writeIn()  //用于向当前文档写入内容，尾部添加换行符</span><br></pre></td></tr></table></figure>
+<h2 id="节点查找-API"><a href="#节点查找-API" class="headerlink" title="节点查找 API"></a>节点查找 API</h2><ul>
+<li><code>document.getElementById(&#39;id&#39;)</code><br>返回指定 ID 的元素</li>
+<li><code>document.getElementsByTagName(&#39;tagName&#39;)</code><br>返回拥有指定标签名的所有子元素的集合。如果是*，表示查询所有标签</li>
+<li><code>document.getElementsByClassName(&#39;class&#39;)</code><br>返回指定 class 的对象集合</li>
+<li><code>document.getElementsByName(&#39;name&#39;)</code><br>根据元素的 name 属性查找，返回一个 NodeList 。</li>
+<li><code>document.querySelector(&#39;#id&gt;.class&#39;)</code><br>返回第一符合条件的节点</li>
+<li><code>document.querySelectorAll(&#39;#id&gt;.class&#39;)</code><br>返回所有符合条件的节点集合</li>
+</ul>
+<h2 id="节点创建-API"><a href="#节点创建-API" class="headerlink" title="节点创建 API"></a>节点创建 API</h2><ul>
+<li><p><code>document.createElement(&#39;div&#39;)</code> 创建元素</p>
+</li>
+<li><p><code>document.createTextNode(&#39;文本内容&#39;)</code> 创建文本节点</p>
+</li>
+<li><p><code>cloneNode(true/false)</code> 克隆节点，参数表示是否克隆子节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const form=document.getElementById(&apos;test&apos;);</span><br><span class="line">let clone=form.cloneNode(true)</span><br><span class="line">clone.id=&apos;test2&apos;;</span><br><span class="line">document.body.appendChild(clone)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>document.createAttribute(name)</code> 生成一个新的属性对象节点，并返回它</p>
+</li>
+<li><code>document.createDocumentFragment()</code> 生成一个 DocumentFragment 对象</li>
+</ul>
+<h2 id="事件方法"><a href="#事件方法" class="headerlink" title="事件方法"></a>事件方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">document.createEvent(type)   //生成一个事件对象，该对象能被element.dispatchEvent()方法使用</span><br><span class="line">document.addEventListener(type,listener,capture)  //注册事件</span><br><span class="line">document.removeEventListener(type,listener,capture)  //注销事件</span><br><span class="line">document.dispatchEvent(event)  //触发事件</span><br></pre></td></tr></table></figure>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.hasFocus()   //返回一个布尔值，表示当前文档之中是否有元素被激活或获得焦点。</span><br><span class="line">document.adoptNode(externalNode)  //将某个节点，从其原来所在的文档移除，插入当前文档，并返回插入后的新节点。</span><br><span class="line">document.importNode(externalNode, deep)   //从外部文档拷贝指定节点，插入当前文档。</span><br></pre></td></tr></table></figure>
+<h1 id="Element-节点"><a href="#Element-节点" class="headerlink" title="Element 节点"></a>Element 节点</h1><h2 id="与元素本身特征相关的属性"><a href="#与元素本身特征相关的属性" class="headerlink" title="与元素本身特征相关的属性"></a>与元素本身特征相关的属性</h2><ol>
+<li><code>element.attributes</code> 返回指定节点的属性集合（类数组对象）</li>
+<li><code>element.id</code> 返回指定元素的 id 属性，可读写</li>
+<li><code>element.tagName</code> 返回指定元素的大写标签名</li>
+<li><p><code>element.innerHTML</code> 设置或返回元素的内容<br>如果设置该属性为空，就是删除它包含的所有节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.innerHTML=&apos;&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>element.tagName</code> 返回指定元素的大写标签名</p>
+</li>
+<li><code>element.outerHTML</code> 返回指定元素节点的所有 HTML 代码，包括它自身和包含的的所有子元素，可读写</li>
+<li><code>Element.className</code> //返回当前元素的 class 属性，可读写</li>
+<li><code>Element.classList</code> //返回当前元素节点的所有 class 集合</li>
+<li><code>Element.dataset</code> 返回节点 data-开头的属性</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;user&quot; data-id=&quot;1234567890&quot; data-user=&quot;johndoe&quot; data-date-of-birth&gt;John Doe&lt;/div&gt;</span><br><span class="line">ele.dataset.id === &apos;1234567890&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="查找节点方法"><a href="#查找节点方法" class="headerlink" title="查找节点方法"></a>查找节点方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Element.querySelector()</span><br><span class="line">Element.querySelectorAll()</span><br><span class="line">Element.getElementsByTagName()</span><br><span class="line">Element.getElementsByClassName()</span><br></pre></td></tr></table></figure>
+<h2 id="插入节点-API"><a href="#插入节点-API" class="headerlink" title="插入节点 API"></a>插入节点 API</h2><ul>
+<li><p><code>appendChild</code> 向父节点的最后一个子节点后追加新节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent.appendChild(child)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>insertBefore</code> 向父节点的某个特定子节点之前插入新节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent.insertBefore(newChild,existingChild)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="修改节点-API"><a href="#修改节点-API" class="headerlink" title="修改节点 API"></a>修改节点 API</h2><ul>
+<li><p><code>replaceChild</code> 用新节点替换父节点中已有的子节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent.replaceChild(newChild,existingChild)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="删除节点-API"><a href="#删除节点-API" class="headerlink" title="删除节点 API"></a>删除节点 API</h2><ul>
+<li><p><code>removeChild</code> 删除已有节点，返回值为删除节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent.removeChild(existingChild)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="节点判断"><a href="#节点判断" class="headerlink" title="节点判断"></a>节点判断</h2><ul>
+<li><code>parent.contains(node)</code> 返回 Boolean,表示参数节点是否为当前节点的后代节点</li>
+<li><code>Node.isEqualNode(node)</code> 返回 Boolean,用于检查两个节点是否相等，指的是两个节点的类型相同、属性相同、子节点相同</li>
+<li><code>Node.normalize()</code> 用于清理当前节点内部的所有 Text 节点。它会去除空的文本节点，并且将毗邻的文本节点合并成一个。</li>
+</ul>
+<h2 id="节点属性-API"><a href="#节点属性-API" class="headerlink" title="节点属性 API"></a>节点属性 API</h2><ul>
+<li><p>获取属性</p>
+<ul>
+<li><code>Node.nodeName</code>，返回节点名称，只读</li>
+<li><code>Node.nodeType</code>，返回节点类型的常数值，只读</li>
+<li><code>Node.nodeValue</code>，返回 Text 或 Comment 节点的文本值，只读</li>
+<li><code>Node.textContent</code>，返回当前节点和它的所有后代节点的文本内容，可读写</li>
+<li><code>Node.baseURI</code>，返回当前网页的绝对路径</li>
+<li><code>Node.ownerDocument</code>，返回当前节点所在的顶层文档对象，即 document</li>
+</ul>
+</li>
+<li><p><code>element.className</code> 设置或返回元素的 class 属性</p>
+</li>
+<li><p><code>getAttribute</code> 获取节点属性值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ele.getAttribute(&apos;src&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>setAttribute</code> 修改节点属性,如果属性已存在，则仅设置/更改值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ele.setAttribute(attributeName,attributeValue)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>removeAttribute</code> 删除具有指定属性名称的属性，无返回值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ele.removeAttribute(&apos;属性名&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>hasAttribute()</code> 元素是否有指定属性，返回 Boolean</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ele.hasAttribute(&apos;onclick&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="节点关系-API"><a href="#节点关系-API" class="headerlink" title="节点关系 API"></a>节点关系 API</h2><ol>
+<li><p>父关系</p>
+<ul>
+<li><p><code>parentNode</code> 返回父节点，父节点可能是 Element，Document 或 DocumentFragment；如果没有返回 null</p>
+</li>
+<li><p><code>parentElement</code> 返回元素的父元素节点，其父节点必须是一个 Element 元素，如果不是，则返回 null；</p>
+</li>
+</ul>
+</li>
+<li><p>子节点</p>
+<ul>
+<li><code>children</code> 返回 HTMLCollection，子节点都是 Element，IE9 以下浏览器不支持；</li>
+<li><code>childNodes</code> 返回 NodeList，子节点可能包含文本节点、注释节点等</li>
+<li><code>firstChild</code> 第一个字节点，不存在返回 null</li>
+<li><code>lastChild</code> 最后一个字节点，不存在返回 null</li>
+<li><code>Node.firstElementChild</code> //返回当前节点的第一个 Element 子节点</li>
+<li><code>Node.lastElementChild</code> //返回当前节点的最后一个 Element 子节点</li>
+<li><code>Node.childElementCount</code> //返回当前节点所有 Element 子节点的数目。</li>
+</ul>
+</li>
+<li><p>兄弟关系</p>
+<ul>
+<li><p><code>previousSibling</code> 前一个节点，可能包含文本节点、注释节点等</p>
+</li>
+<li><p><code>nextSibling</code> 后一个节点，可能包含文本节点、注释节点等</p>
+</li>
+<li><p><code>previousElementSibling</code> 返回前一个元素节点，前一个节点必须是 Element，注意 IE9 以下浏览器不支持。</p>
+</li>
+<li><code>nextElementSibling</code> 返回后一个元素节点，后一个节点必须是 Element，注意 IE9 以下浏览器不支持。</li>
+</ul>
+</li>
+</ol>
+<h2 id="Element-节点的方法"><a href="#Element-节点的方法" class="headerlink" title="Element 节点的方法"></a>Element 节点的方法</h2><ul>
+<li><code>Element.getBoundingClientRect()</code><br>位置，返回一个对象，包含 top,left,right,bottom,width,height<ul>
+<li>top 元素上外边界距窗口最上面的距离</li>
+<li>right 元素右外边界距窗口最上面的距离</li>
+<li>bottom 元素下外边界距窗口最上面的距离</li>
+<li>left 元素左外边界距窗口最上面的距离</li>
+<li>width 元素自身宽(包含 border,padding)</li>
+<li>height 元素自身高(包含 border,padding)</li>
+</ul>
+</li>
+<li><code>Element.getClientRects()</code><br>返回一个指向客户端中每一个盒子的边界矩形的矩形集合。</li>
+</ul>
+<p><strong>元素在页面上的偏移量</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var rect = el.getBoundingClientRect()</span><br><span class="line">return &#123;</span><br><span class="line">  top: rect.top + document.body.scrollTop,</span><br><span class="line">  left: rect.left + document.body.scrollLeft</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Element-对象盒状模型属性"><a href="#Element-对象盒状模型属性" class="headerlink" title="Element 对象盒状模型属性"></a>Element 对象盒状模型属性</h2><ol>
+<li><p><code>element.clientHeight,element.clientWidth</code><br><code>element.clientHeight</code>：返回元素的可见高度<br><code>element.clientWidth</code>：返回元素的可见宽度<br><code>Element.clientLeft</code>：返回元素节点左边框的宽度<br><code>Element.clientTop</code>：返回元素节点顶部边框的宽度<br>包含 padding+CSS 高度<br>不包括溢出（overflow）、滚动条、边框、和 margin</p>
+<p>对于整个网页来说，当前可见高度（即视口高度）要从 document.documentElement 对象（即<html>节点）上获取，<br>等同于 window.innerHeight-水平滚动条的高度，window.innerWidth-垂直滚动条宽度。<br>没有滚动条时两值相等，有滚动条前者小于后者</html></p>
+<p>视口的高度和宽度（包括滚动条），有两种方法可以获得。<br>对于整个网页，基本都不会设置 border，所以只考虑 padding 和滚动条的影响</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 视口高度</span><br><span class="line">window.innerHeight // 包括滚动条</span><br><span class="line">document.documentElement.clientHeight // 不包括滚动条</span><br><span class="line"></span><br><span class="line">// 视口宽度</span><br><span class="line">window.innerWidth // 包括滚动条</span><br><span class="line">document.documentElement.clientWidth // 不包括滚动条</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>element.offsetHeight,element.offsetWidth</code><br><code>element.offsetHeight</code>：返回元素的高度<br><code>element.offsetWidth</code>：返回元素的宽度<br>包含 Padding+Border+滚动条<br>如果不存在内容溢出，element.offsetHeight 比 element.clientHeight 多了边框的高度</p>
+<p>整张网页的高度，可以在 document.documentElement 和 document.body 上读取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//网页总高度</span><br><span class="line">document.documentElement.offsetHeight</span><br><span class="line">document.body.offsetHeight</span><br><span class="line">//网页总宽度</span><br><span class="line">document.documentElement.offsetWidth</span><br><span class="line">document.body.offsetWidth</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>element.offsetLeft,element.offsetTop</code>（可读 像素）<br><code>element.offsetLeft</code>：返回元素左上角相对于 Element.offsetParent 节点的水平偏移位置<br><code>element.offsetTop</code>：返回元素的垂直偏移位置，通常，这两个值指相对于父节点的位移</p>
+</li>
+<li><p><code>element.scrollHeight,element.scrollWidth</code>（只读）（像素）<br><code>element.scrollHeight</code>：返回元素的整体高度<br><code>element.scrollWidth</code>：返回元素的整体宽度</p>
+<p>它们返回的是整个元素的高度或宽度，包括由于存在滚动条和不可见的部分。默认情况下，它们包括 Padding，但不包括 Border 和 Margin。</p>
+<p>整张网页的总高度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.documentElement.scrollHeight</span><br><span class="line">document.body.scrollHeight</span><br></pre></td></tr></table></figure>
+<p>如果内容没有溢出，element.scrollHeight=element.clientHeight<br>存在溢出时当滚动条到内容底部时，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.scrollHeight-element.scrollTop===element.clientHeight //true</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>element.scrollTop,element.scrollLeft</code>（可读 像素）<br><code>element.scrollTop</code>：返回元素的水平滚动条向右侧滚动的距离<br><code>element.scrollLeft</code>：返回元素水平滚动条向下滚动的距离<br>对于那些没有滚动条的网页元素，这两个属性总是等于 0。</p>
+<p>整张网页的水平或垂直滚动距离</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.documentElement.scrollLeft</span><br><span class="line">document.documentElement.scrollTop</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Element.style</code> 返回元素节点的行内样式</p>
+</li>
+</ol>
+<h2 id="事件方法-1"><a href="#事件方法-1" class="headerlink" title="事件方法"></a>事件方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Element.addEventListener()：添加事件的回调函数</span><br><span class="line">Element.removeEventListener()：移除事件监听函数</span><br><span class="line">Element.dispatchEvent()：触发事件</span><br><span class="line"></span><br><span class="line">//ie8</span><br><span class="line">Element.attachEvent(oneventName,listener)</span><br><span class="line">Element.detachEvent(oneventName,listener)</span><br><span class="line"></span><br><span class="line">// event对象</span><br><span class="line">var event = window.event||event;</span><br><span class="line"></span><br><span class="line">// 事件的目标节点</span><br><span class="line">var target = event.target || event.srcElement;</span><br><span class="line"></span><br><span class="line">// 事件代理</span><br><span class="line">ul.addEventListener(&apos;click&apos;, function(event) &#123;</span><br><span class="line">  if (event.target.tagName.toLowerCase() === &apos;li&apos;) &#123;</span><br><span class="line">    console.log(event.target.innerHTML)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Element.scrollIntoView() //滚动当前元素，进入浏览器的可见区域</span><br><span class="line"></span><br><span class="line">//解析 HTML 字符串，然后将生成的节点插入 DOM 树的指定位置。</span><br><span class="line">Element.insertAdjacentHTML(where, htmlString);</span><br><span class="line">Element.insertAdjacentHTML(&apos;beforeBegin&apos;, htmlString); // 在该元素前插入</span><br><span class="line">Element.insertAdjacentHTML(&apos;afterBegin&apos;, htmlString); // 在该元素第一个子元素前插入</span><br><span class="line">Element.insertAdjacentHTML(&apos;beforeEnd&apos;, htmlString); // 在该元素最后一个子元素后面插入</span><br><span class="line">Element.insertAdjacentHTML(&apos;afterEnd&apos;, htmlString); // 在该元素后插入</span><br><span class="line"></span><br><span class="line">Element.remove() //用于将当前元素节点从 DOM 中移除</span><br><span class="line">Element.focus() //用于将当前页面的焦点，转移到指定元素上</span><br></pre></td></tr></table></figure>
+<h1 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h1><ol>
+<li><p>直接修改元素的样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ele.style.color=&apos;red&apos;;</span><br><span class="line">ele.setAttribute(&apos;style&apos;,&apos;&apos;)</span><br><span class="line"></span><br><span class="line">element.style.setProperty(propertyName,value)  //设置css属性</span><br><span class="line">element.style.getPropertyValue(property)  //获取css属性</span><br><span class="line">element.style.removeProperty(property)  //删除css属性</span><br><span class="line"></span><br><span class="line">操作非内联样式</span><br><span class="line">//ie8</span><br><span class="line">element.currentStyle[attrName]</span><br><span class="line">//ie9+</span><br><span class="line">window.getComputedStyle(el,null)[attrName]</span><br><span class="line">window.getComputedStyle(el,null).getPropertyValue(attrName)</span><br><span class="line">//伪类</span><br><span class="line">window.getComputedStyle(el,&apos;:after&apos;)[attrName]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>动态添加样式规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var style=document.createElement(&apos;style&apos;);</span><br><span class="line">style.innerHTML=&apos;body&#123;color:red&#125; #top:hover&#123;background-color: red;color: white;&#125;&apos;</span><br><span class="line">document.head.appendChild(style)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类名操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//ie8以下</span><br><span class="line">Element.className  //获取元素节点的类名</span><br><span class="line">Element.className += &apos; &apos; + newClassName  //新增一个类名</span><br><span class="line"></span><br><span class="line">//判断是否有某个类名</span><br><span class="line">function hasClass(element,className)&#123;</span><br><span class="line">  return new RegExp(className,&apos;gi&apos;).test(element.className);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//移除class</span><br><span class="line">function removeClass(element,className)&#123;</span><br><span class="line">  element.className = element.className.replace(new RegExp(&apos;(^|\\b)&apos; + className.split(&apos; &apos;).join(&apos;|&apos;) + &apos;(\\b|$)&apos;, &apos;gi&apos;),&apos;&apos;);</span><br><span class="line">&#125;</span><br><span class="line">//ie10</span><br><span class="line">ele.classList.remove(&apos;foo&apos;,&apos;bar&apos;);</span><br><span class="line">ele.classList.add(&apos;anotherClass&apos;,&apos;bar&apos;);</span><br><span class="line">ele.classList.toggle(&apos;visible&apos;);//存在就去掉，不存在就添加</span><br><span class="line">ele.classList.toggle(&apos;visible&apos;,i&lt;10)//根据条件增加、删除属性</span><br><span class="line">ele.classList.contains(&apos;foo&apos;);//是否包含属性</span><br><span class="line">ele.classList.replace(&apos;foo&apos;,&apos;bar&apos;);//替换属性</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------</div>
+    
+</div>
+
+
+
+      
+    </div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/21/window对象/" rel="next" title="window对象">
+                <i class="fa fa-chevron-left"></i> window对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/25/react-native之练习demo/" rel="prev" title="react-native之练习demo">
+                react-native之练习demo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="封多多">
+            
+              <p class="site-author-name" itemprop="name">封多多</p>
+              <p class="site-description motion-element" itemprop="description">前端</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="ttps://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fengduoduo@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/8acefb731467" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Document-节点"><span class="nav-number">1.</span> <span class="nav-text">Document 节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Document-节点属性"><span class="nav-number">1.1.</span> <span class="nav-text">Document 节点属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Document-节点方法"><span class="nav-number">1.2.</span> <span class="nav-text">Document 节点方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读写方法"><span class="nav-number">1.3.</span> <span class="nav-text">读写方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点查找-API"><span class="nav-number">1.4.</span> <span class="nav-text">节点查找 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点创建-API"><span class="nav-number">1.5.</span> <span class="nav-text">节点创建 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件方法"><span class="nav-number">1.6.</span> <span class="nav-text">事件方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.7.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Element-节点"><span class="nav-number">2.</span> <span class="nav-text">Element 节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与元素本身特征相关的属性"><span class="nav-number">2.1.</span> <span class="nav-text">与元素本身特征相关的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找节点方法"><span class="nav-number">2.2.</span> <span class="nav-text">查找节点方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入节点-API"><span class="nav-number">2.3.</span> <span class="nav-text">插入节点 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改节点-API"><span class="nav-number">2.4.</span> <span class="nav-text">修改节点 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除节点-API"><span class="nav-number">2.5.</span> <span class="nav-text">删除节点 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点判断"><span class="nav-number">2.6.</span> <span class="nav-text">节点判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点属性-API"><span class="nav-number">2.7.</span> <span class="nav-text">节点属性 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点关系-API"><span class="nav-number">2.8.</span> <span class="nav-text">节点关系 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Element-节点的方法"><span class="nav-number">2.9.</span> <span class="nav-text">Element 节点的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Element-对象盒状模型属性"><span class="nav-number">2.10.</span> <span class="nav-text">Element 对象盒状模型属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件方法-1"><span class="nav-number">2.11.</span> <span class="nav-text">事件方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他-1"><span class="nav-number">2.12.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样式"><span class="nav-number">3.</span> <span class="nav-text">样式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">封多多</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">155.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'BTxpKE3VdbvNYiEqX2SeV2tr-gzGzoHsz',
+        appKey: '4J07ASMlcBVdeBV766IuHEf9',
+        placeholder: '留下你的宝贵意见',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":60,"height":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+

@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+ <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Papyrus:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fdd’Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Babel7 概念和用法https://github.com/YvetteLau/Blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Babel">
+<meta property="og:url" content="https://dorisfeng.github.io/2019/12/06/Babel/index.html">
+<meta property="og:site_name" content="fdd’Blog">
+<meta property="og:description" content="Babel7 概念和用法https://github.com/YvetteLau/Blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-12T03:32:48.517Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Babel">
+<meta name="twitter:description" content="Babel7 概念和用法https://github.com/YvetteLau/Blog">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dorisfeng.github.io/2019/12/06/Babel/">
+
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "2d87b4e2"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>Babel | fdd’Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+   <a href="https://github.com/Dorisfeng"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fdd’Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dorisfeng.github.io/2019/12/06/Babel/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="封多多">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fdd’Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Babel</h1>
+        
+
+        <div class="post-meta">
+                  
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-06T09:07:35+08:00">
+                2019-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/06/Babel/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/06/Babel/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.1k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14分
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Babel7 概念和用法<br><a href="https://github.com/YvetteLau/Blog" target="_blank" rel="noopener">https://github.com/YvetteLau/Blog</a></p>
+<a id="more"></a>
+<p><strong>参考</strong><br><a href="https://mp.weixin.qq.com/s/xTfjMG2graIrfGGqhue_Jg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/xTfjMG2graIrfGGqhue_Jg</a></p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>Babel 是一个 JS 编译器。<br>主要将 ECMAScript2015+版本的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境。</p>
+<ul>
+<li>语法转换</li>
+<li>通过<code>Polyfill</code>方式在目标环境中添加缺失特性（<code>@babel/polyfill</code>模块）</li>
+<li>源码转换</li>
+</ul>
+<h1 id="核心库"><a href="#核心库" class="headerlink" title="核心库"></a>核心库</h1><p>@babel/core 使用 babel 必须安装</p>
+<h1 id="命令行工具"><a href="#命令行工具" class="headerlink" title="命令行工具"></a>命令行工具</h1><p>@babel/cli 适合安装在项目里<br>@babel/node 适合全局安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @babel/core @babel/cli</span><br></pre></td></tr></table></figure>
+<p>命令配置，package.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;compiler&quot;: &quot;babel src --out-dir lib --watch&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>执行<code>npm run compiler</code>就可以编译了<br>现在运行不会有编译任何文件，如果需要<code>Babel</code>做一些实际工作，就需要为其添加插件(<code>plugin</code>)</p>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><ul>
+<li><code>babel.config.js</code><br>以编程的方式配置文件或者希望编<code>node_modules</code>目录下的模块<br>根目录下创建<code>babel.config.js</code></li>
+</ul>
+<p>具体规则参考：<a href="https://babeljs.io/docs/en/config-files#root-babelconfigjs-babelconfigcjs-and-babelconfigjson-files" target="_blank" rel="noopener">文档</a></p>
+<ul>
+<li><p><code>.babelrc</code><br>简单的并且用于单个软件包的配置<br>根目录下创建<code>.babelrc</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [],</span><br><span class="line">  &quot;plugins&quot;: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>具体规则参考：<a href="https://babeljs.io/docs/en/config-files#root-babelconfigjs-babelconfigcjs-and-babelconfigjson-files" target="_blank" rel="noopener">文档</a></p>
+<ul>
+<li>package.json<br>可以将<code>.babelrc</code>中的配置信息作为<code>babel</code>key 添加到<code>package.json</code>文件中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;my-package&quot;,</span><br><span class="line">    &quot;babel&quot;: &#123;</span><br><span class="line">        &quot;presets&quot;: [],</span><br><span class="line">        &quot;plugins&quot;: []</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>.babelrc.js<br>配置与<code>.babelrc</code>相同，但是可以使用 js 编写</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//可以在其中调用 Node.js 的API</span><br><span class="line">const presets = [];</span><br><span class="line">const plugins = [];</span><br><span class="line"></span><br><span class="line">module.exports = &#123; presets, plugins &#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h1><ul>
+<li><p>语法插件<br>解析特定类型的语法</p>
+</li>
+<li><p>转换插件<br>转换插件会启用相应的语法插件，先解析，再转换</p>
+</li>
+</ul>
+<h2 id="插件的使用"><a href="#插件的使用" class="headerlink" title="插件的使用"></a>插件的使用</h2><p>根目录新建<code>.babelrc</code>文件，直接使用插件名字，<code>Babel</code>会自动检查  是否已安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//.babelrc</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [&quot;@babel/plugin-transform-arrow-functions&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行<code>npm run compiler</code>,<code>index.js</code> 编译后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = function () &#123;</span><br><span class="line">  console.log(&apos;test&apos;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>箭头函数转为正常函数了，如果想将其他新的 JS 特性转换成低版本，需要对应的<code>plugin</code>，如果一个一个配置太麻烦，可以使用预设</p>
+<h1 id="预设"><a href="#预设" class="headerlink" title="预设"></a>预设</h1><p>创建一个<code>preset</code>，可以使用一组插件</p>
+<ul>
+<li>@babel/preset-env</li>
+<li>@babel/preset-flow</li>
+<li>@babel/preset-react</li>
+<li>@babel/preset-typescript<br><strong>注意，babel7 开始，所有针对标准天阶段的功能所编写的预设（stage preset）已经被弃用，以及移除<code>@babel/preset-stage-x</code></strong></li>
+</ul>
+<h2 id="babel-preset-env"><a href="#babel-preset-env" class="headerlink" title="@babel/preset-env"></a>@babel/preset-env</h2><p>作用：对我们所使用的并且目标浏览器缺失的功能进行代码转换和加载<code>polyfill</code>。不进行任何配置时，<code>@babel/preset-env</code>所包含的插件将支持所有最新的 JS 特性（ES2015/es6,ES2016/es7 等，不包括 stage 阶段），将其转换成 ES5 代码。如果使用了 stage 阶段的语法，编译时会报错，需要安装对应的插件。<br><code>@babel/preset-env</code>会很具配置的目标环境，来生成插件列表来编译，对于基于浏览的项目，可以使用<code>.browserslistrc</code>文件来指定目标环境。也可以在 package.json 里面添加 key 为<code>browserslist</code>配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//create-react-app默认配置</span><br><span class="line">&quot;browserslist&quot;: &#123;</span><br><span class="line">    &quot;production&quot;: [</span><br><span class="line">      &quot;&gt;0.2%&quot;, //包括浏览器市场份额超过0.2％的用户所需的 polyfill 和代码转换</span><br><span class="line">      &quot;not dead&quot;,</span><br><span class="line">      &quot;not op_mini all&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;development&quot;: [</span><br><span class="line">      &quot;last 1 chrome version&quot;,</span><br><span class="line">      &quot;last 1 firefox version&quot;,</span><br><span class="line">      &quot;last 1 safari version&quot;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>新建<code>.browserslistrc</code>，配置如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">last 2 Chrome versions</span><br></pre></td></tr></table></figure>
+<p>index 编译后箭头函数还在，因为 chrome 最新的两个版本已经支持箭头函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">const a = () =&gt; &#123;</span><br><span class="line">  console.log(&apos;test&apos;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>如果不是要兼容所有的浏览器和环境，推荐你指定目标环境，编译代码能够保持最小。</em></p>
+<h2 id="内置函数、实例方法"><a href="#内置函数、实例方法" class="headerlink" title="内置函数、实例方法"></a>内置函数、实例方法</h2><p>修改<code>index.js</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const isHas = [1, 2, 3].includes(2);</span><br><span class="line">const p = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  resolve();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">const isHas = [1, 2, 3].includes(2);</span><br><span class="line">const p = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  resolve();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>语法转换只是将高版本的语法转换为低版本的，但是新的内置函数和实例方法无法转换。<br><code>polyfill</code>垫平不同浏览器或者不同环境下的差异，让新的内置函数、实例方法等在低版本浏览器中也可以使用。</p>
+<h1 id="babel-polyfill"><a href="#babel-polyfill" class="headerlink" title="@babel/polyfill"></a>@babel/polyfill</h1><p>包括<code>core-js</code>和一个自定义的<code>regenerator runtime</code>模块，可以模拟完整的 es2015+环境（不包括第 4 阶段前的提议）</p>
+<p>内置组件：<code>Promise</code>,<code>WeakMap</code>等<br>静态方法：<code>Array.from</code>,<code>Object.assign</code>等<br>实例方法：<code>Array.prototype.includes</code>等<br>生成器函数（还需要<code>@babel/plugin-transform-regenerator</code>插件）<br>为了实现以上功能，polyfill 将添加到全局范围和类似 String 的内置原型中（会造成全局污染）</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save @babel/polyfill</span><br></pre></td></tr></table></figure>
+<p><strong>注意：不使用 –save-dev，因为这是一个需要在源码之前运行的垫片。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &quot;@babel/polyfill&quot;;</span><br><span class="line">const isHas = [1, 2, 3].includes(2);</span><br><span class="line">const p = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  resolve();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">require(&quot;@babel/polyfill&quot;);</span><br><span class="line"></span><br><span class="line">const isHas = [1, 2, 3].includes(2);</span><br><span class="line">const p = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  resolve();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>@babel/polyfill</code>需要在其他代码之前引入，在<code>webpack</code>中可以进行配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">entry:&#123;</span><br><span class="line">    require.resolve(&apos;./polyfills&apos;),</span><br><span class="line">    path.resolve(&apos;./index&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>.polyfills.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//当然，还可能有一些其它的 polyfill，例如 stage 4之前的一些 polyfill</span><br><span class="line">import &apos;@babel/polyfill&apos;;</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">require(&quot;@babel/polyfill&quot;);</span><br><span class="line"></span><br><span class="line">var isHas = [1, 2, 3].includes(2);</span><br><span class="line">var p = new Promise(function (resolve, reject) &#123;</span><br><span class="line">  resolve();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>现在的代码在高版本或低版本或 node 环境都能运行了。但是会引入整个<code>@babel/polyfill</code>包，会导致打包的体积增大，我们期望按需加载。</p>
+<ul>
+<li>参数<code>useBuiltIns</code>参数，设置值为<code>usage</code>时，就只会包含代码需要的<code>polyfill</code></li>
+<li>必须同时设置<code>core.js</code>，默认’core.js’:2<br>注意：需要安装<code>@babel/polyfill</code>，默认安装 corejs@2<br>使用 core-js@3 的原因 core-js@2 分支已经不会添加新特性，新特性都会添加到 core-js@3。例如 Array.prototype.flat()<br>安装依赖</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save core-js@3</span><br></pre></td></tr></table></figure>
+<p>修改配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [</span><br><span class="line">    [</span><br><span class="line">      &quot;@babel/preset-env&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;useBuiltIns&quot;: &quot;usage&quot;,</span><br><span class="line">        &quot;corejs&quot;: 3</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">require(&quot;core-js/modules/es.array.includes&quot;);</span><br><span class="line"></span><br><span class="line">require(&quot;core-js/modules/es.object.to-string&quot;);</span><br><span class="line"></span><br><span class="line">require(&quot;core-js/modules/es.promise&quot;);</span><br><span class="line"></span><br><span class="line">var isHas = [1, 2, 3].includes(2);</span><br><span class="line">var p = new Promise(function (resolve, reject) &#123;</span><br><span class="line">  resolve();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在 useBuiltIns 参数值为 usage 时，仍然需要安装 @babel/polyfill，<br>如果使用到了 async/await，那么编译出来的代码需要 require(“regenerator-runtime/runtime”)，在 @babel/polyfill 的依赖中。也可以只安装 regenerator-runtime/runtime 取代安装 @babel/polyfill。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &quot;@babel/polyfill&quot;;</span><br><span class="line"></span><br><span class="line">async function a() &#123;</span><br><span class="line">  await console.log(1);</span><br><span class="line">  console.log(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">require(&quot;core-js/modules/es.object.to-string&quot;);</span><br><span class="line"></span><br><span class="line">require(&quot;core-js/modules/es.promise&quot;);</span><br><span class="line"></span><br><span class="line">require(&quot;regenerator-runtime/runtime&quot;);</span><br><span class="line"></span><br><span class="line">function a() &#123;</span><br><span class="line">  return regeneratorRuntime.async(function a$(_context) &#123;</span><br><span class="line">    while (1) &#123;</span><br><span class="line">      switch (_context.prev = _context.next) &#123;</span><br><span class="line">        case 0:</span><br><span class="line">          _context.next = 2;</span><br><span class="line">          return regeneratorRuntime.awrap(console.log(1));</span><br><span class="line"></span><br><span class="line">        case 2:</span><br><span class="line">          console.log(0);</span><br><span class="line"></span><br><span class="line">        case 3:</span><br><span class="line">        case &quot;end&quot;:</span><br><span class="line">          return _context.stop();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title="@"></a>@</h2><p>Babel 会使用很小的辅助函数来实现类似 _createClass 等公共方法。默认情况下，它将被添加(inject)到需要它的每个文件中。<br>修改 index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import &quot;@babel/polyfill&quot;;</span><br><span class="line"></span><br><span class="line">class Point &#123;</span><br><span class="line">  constructor(x, y) &#123;</span><br><span class="line">    this.x = x;</span><br><span class="line">    this.y = y;</span><br><span class="line">  &#125;</span><br><span class="line">  getX() &#123;</span><br><span class="line">    return this.x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let cp = new Point(25, 6);</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">require(&quot;core-js/modules/es.object.define-property&quot;);</span><br><span class="line"></span><br><span class="line">function _classCallCheck(instance, Constructor) &#123; if (!(instance instanceof Constructor)) &#123; throw new TypeError(&quot;Cannot call a class as a function&quot;); &#125; &#125;</span><br><span class="line"></span><br><span class="line">function _defineProperties(target, props) &#123; for (var i = 0; i &lt; props.length; i++) &#123; var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (&quot;value&quot; in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); &#125; &#125;</span><br><span class="line"></span><br><span class="line">function _createClass(Constructor, protoProps, staticProps) &#123; if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; &#125;</span><br><span class="line"></span><br><span class="line">var Point =</span><br><span class="line">/*#__PURE__*/</span><br><span class="line">function () &#123;</span><br><span class="line">  function Point(x, y) &#123;</span><br><span class="line">    _classCallCheck(this, Point);</span><br><span class="line"></span><br><span class="line">    this.x = x;</span><br><span class="line">    this.y = y;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _createClass(Point, [&#123;</span><br><span class="line">    key: &quot;getX&quot;,</span><br><span class="line">    value: function getX() &#123;</span><br><span class="line">      return this.x;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]);</span><br><span class="line"></span><br><span class="line">  return Point;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line">var cp = new Point(25, 6);</span><br></pre></td></tr></table></figure>
+<p>如果多个文件使用了 class，<code>_classCallCheck</code>,<code>_defineProperties</code>,<code>_createClass</code>，这些方法就会被多次<code>inject</code>，导致包变大。</p>
+<h1 id="babel-plugin-transform-runtime"><a href="#babel-plugin-transform-runtime" class="headerlink" title="@babel/plugin-transform-runtime"></a>@babel/plugin-transform-runtime</h1><p>一个可以重复使用<code>Babel</code>注入的帮助程序，以节省代码大小的插件。<br><code>@babel/plugin-transform-runtime</code>需要配合<code>@babel/runtime</code>使用。<br>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @babel/plugin-transform-runtime</span><br><span class="line">npm install --save @babel/runtime</span><br></pre></td></tr></table></figure>
+<p>除了减少编译后代码的体积外，<code>@babel/plugin-tranform-runtime</code>还会创建一个沙盒环境，如果使用<code>@babel/polyfill</code>及其提供的内置程序会污染全局，虽然这对于应用程序或命令行工具可能是可以的，但是如果你的代码是要发布供他人使用的库，或者无法完全控制代码运行的环境，则将成为一个问题。</p>
+<p><code>@babel/plugin-transform-runtime</code>会将这些内置别名为<code>core-js</code>的别名，因此可以无缝使用它们，无需<code>polyfill</code>。<br>修改配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [</span><br><span class="line">    [</span><br><span class="line">      &quot;@babel/preset-env&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;useBuiltIns&quot;: &quot;usage&quot;,</span><br><span class="line">        &quot;corejs&quot;: 3</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ],</span><br><span class="line">  &quot;plugins&quot;: [[&quot;@babel/plugin-transform-runtime&quot;]]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重新编译 index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">var _interopRequireDefault = require(&quot;@babel/runtime/helpers/interopRequireDefault&quot;);</span><br><span class="line"></span><br><span class="line">var _classCallCheck2 = _interopRequireDefault(require(&quot;@babel/runtime/helpers/classCallCheck&quot;));</span><br><span class="line"></span><br><span class="line">var _createClass2 = _interopRequireDefault(require(&quot;@babel/runtime/helpers/createClass&quot;));</span><br><span class="line"></span><br><span class="line">var Point =</span><br><span class="line">/*#__PURE__*/</span><br><span class="line">function () &#123;</span><br><span class="line">  function Point(x, y) &#123;</span><br><span class="line">    (0, _classCallCheck2.default)(this, Point);</span><br><span class="line">    this.x = x;</span><br><span class="line">    this.y = y;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  (0, _createClass2.default)(Point, [&#123;</span><br><span class="line">    key: &quot;getX&quot;,</span><br><span class="line">    value: function getX() &#123;</span><br><span class="line">      return this.x;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]);</span><br><span class="line">  return Point;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line">var cp = new Point(25, 6);</span><br></pre></td></tr></table></figure>
+<p>帮助函数不是被直接<code>inject</code>到代码中，而是从<code>@babel/runtime</code>中引入。</p>
+<h2 id="如何避免全局污染"><a href="#如何避免全局污染" class="headerlink" title="如何避免全局污染"></a>如何避免全局污染</h2><p>index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &quot;@babel/polyfill&quot;;</span><br><span class="line"></span><br><span class="line">const isHas = [1, 2, 3].includes(2);</span><br><span class="line">const p = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  resolve();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">require(&quot;core-js/modules/es.array.includes&quot;);</span><br><span class="line"></span><br><span class="line">require(&quot;core-js/modules/es.object.to-string&quot;);</span><br><span class="line"></span><br><span class="line">require(&quot;core-js/modules/es.promise&quot;);</span><br><span class="line"></span><br><span class="line">var isHas = [1, 2, 3].includes(2);</span><br><span class="line">var p = new Promise(function (resolve, reject) &#123;</span><br><span class="line">  resolve();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>现在的配置，Array.prototype 上新增了 includes 方法，并且新增了全局的 Promise 方法，污染了全局环境。<br>如果希望<code>@babel/plugin-transform-runtime</code>不仅处理帮助函数，同时也能加载<code>polyfill</code>，需要增加配置信息。<br>新增依赖<code>@babel/runtimr-corejs3</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @babel/runtime-corejs3 --save</span><br></pre></td></tr></table></figure>
+<p>需要改配置文件，移除@babe/preset-env 的 useBuitIns 的配置，不然就重复了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [</span><br><span class="line">    [</span><br><span class="line">      &quot;@babel/preset-env&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;useBuiltIns&quot;: &quot;usage&quot;,</span><br><span class="line">        &quot;corejs&quot;: 3</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ],</span><br><span class="line">  &quot;plugins&quot;: [[&quot;@babel/plugin-transform-runtime&quot;, &#123; &quot;corejs&quot;: 3 &#125;]]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const isHas = [1, 2, 3].includes(2);</span><br><span class="line">const p = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  resolve();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>编译为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">var _interopRequireDefault = require(&quot;@babel/runtime-corejs3/helpers/interopRequireDefault&quot;);</span><br><span class="line"></span><br><span class="line">var _promise = _interopRequireDefault(require(&quot;@babel/runtime-corejs3/core-js-stable/promise&quot;));</span><br><span class="line"></span><br><span class="line">var _includes = _interopRequireDefault(require(&quot;@babel/runtime-corejs3/core-js-stable/instance/includes&quot;));</span><br><span class="line"></span><br><span class="line">var _context;</span><br><span class="line"></span><br><span class="line">var isHas = (0, _includes.default)(_context = [1, 2, 3]).call(_context, 2);</span><br><span class="line">var p = new _promise.default(function (resolve, reject) &#123;</span><br><span class="line">  resolve();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>没有直接去修改 Array.prototype，或者是新增 Promise 方法，避免了全局污染。如果上面 @babel/plugin-transform-runtime 配置的 core-js 是 “2”，其中不包含实例的 polyfill 需要单独引入。</p>
+<h1 id="插件-预设补充知识"><a href="#插件-预设补充知识" class="headerlink" title="插件/预设补充知识"></a>插件/预设补充知识</h1><h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><ul>
+<li>插件在预设前运行</li>
+<li>插件从前往后调用</li>
+<li>预设从后往前调用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;presets&quot;: [&quot;@babel/preset-env&quot;, &quot;@babel/preset-react&quot;]</span><br><span class="line">    &quot;plugins&quot;: [&quot;@babel/plugin-proposal-class-properties&quot;, &quot;@babel/plugin-syntax-dynamic-import&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先执行 @babel/plugin-proposal-class-properties，后执行 @babel/plugin-syntax-dynamic-import<br>先执行 @babel/preset-react， 后执行 @babel/preset-env。</p>
+<h2 id="参数结构"><a href="#参数结构" class="headerlink" title="参数结构"></a>参数结构</h2><p>插件和预设都可以接受参数，参数由插件名和参数对象组成一个数组。</p>
+<h2 id="插件短名称"><a href="#插件短名称" class="headerlink" title="插件短名称"></a>插件短名称</h2><p>如果插件名称为 @babel/plugin-XXX，可以使用短名称@babel/XXX<br>如果插件名称为 babel-plugin-XXX，可以使用端名称 XXX，该规则同样适用于带有 scope 的插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;plugins&quot;: [</span><br><span class="line">        &quot;newPlugin&quot;, //同 &quot;babel-plugin-newPlugin&quot;</span><br><span class="line">        &quot;@scp/myPlugin&quot; //同 &quot;@scp/babel-plugin-myPlugin&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="stage1-2-3-阶段的编译插件"><a href="#stage1-2-3-阶段的编译插件" class="headerlink" title="stage1,2,3 阶段的编译插件"></a>stage1,2,3 阶段的编译插件</h1><p>解决方法：<a href="https://segmentfault.com/a/1190000020237923" target="_blank" rel="noopener">https://segmentfault.com/a/1190000020237923</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;plugins&quot;: [</span><br><span class="line">    // Stage 0</span><br><span class="line">    &quot;@babel/plugin-proposal-function-bind&quot;,</span><br><span class="line"></span><br><span class="line">    // Stage 1</span><br><span class="line">    &quot;@babel/plugin-proposal-export-default-from&quot;,</span><br><span class="line">    &quot;@babel/plugin-proposal-logical-assignment-operators&quot;,</span><br><span class="line">    [&quot;@babel/plugin-proposal-optional-chaining&quot;, &#123; &quot;loose&quot;: false &#125;],</span><br><span class="line">    [&quot;@babel/plugin-proposal-pipeline-operator&quot;, &#123; &quot;proposal&quot;: &quot;minimal&quot; &#125;],</span><br><span class="line">    [&quot;@babel/plugin-proposal-nullish-coalescing-operator&quot;, &#123; &quot;loose&quot;: false &#125;],</span><br><span class="line">    &quot;@babel/plugin-proposal-do-expressions&quot;,</span><br><span class="line"></span><br><span class="line">    // Stage 2</span><br><span class="line">    [&quot;@babel/plugin-proposal-decorators&quot;, &#123; &quot;legacy&quot;: true &#125;],</span><br><span class="line">    &quot;@babel/plugin-proposal-function-sent&quot;,</span><br><span class="line">    &quot;@babel/plugin-proposal-export-namespace-from&quot;,</span><br><span class="line">    &quot;@babel/plugin-proposal-numeric-separator&quot;,</span><br><span class="line">    &quot;@babel/plugin-proposal-throw-expressions&quot;,</span><br><span class="line"></span><br><span class="line">    // Stage 3</span><br><span class="line">    &quot;@babel/plugin-syntax-dynamic-import&quot;,</span><br><span class="line">    &quot;@babel/plugin-syntax-import-meta&quot;,</span><br><span class="line">    [&quot;@babel/plugin-proposal-class-properties&quot;, &#123; &quot;loose&quot;: false &#125;],</span><br><span class="line">    &quot;@babel/plugin-proposal-json-strings&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------</div>
+    
+</div>
+
+
+
+      
+    </div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/04/TypeScript-React/" rel="next" title="TypeScript+React">
+                <i class="fa fa-chevron-left"></i> TypeScript+React
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/09/react-性能优化1/" rel="prev" title="react-性能优化2">
+                react-性能优化2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="封多多">
+            
+              <p class="site-author-name" itemprop="name">封多多</p>
+              <p class="site-description motion-element" itemprop="description">前端</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="ttps://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fengduoduo@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/8acefb731467" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#核心库"><span class="nav-number">2.</span> <span class="nav-text">核心库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令行工具"><span class="nav-number">3.</span> <span class="nav-text">命令行工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置文件"><span class="nav-number">4.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插件"><span class="nav-number">5.</span> <span class="nav-text">插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件的使用"><span class="nav-number">5.1.</span> <span class="nav-text">插件的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预设"><span class="nav-number">6.</span> <span class="nav-text">预设</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#babel-preset-env"><span class="nav-number">6.1.</span> <span class="nav-text">@babel/preset-env</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置函数、实例方法"><span class="nav-number">6.2.</span> <span class="nav-text">内置函数、实例方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#babel-polyfill"><span class="nav-number">7.</span> <span class="nav-text">@babel/polyfill</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">7.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">7.2.</span> <span class="nav-text">@</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#babel-plugin-transform-runtime"><span class="nav-number">8.</span> <span class="nav-text">@babel/plugin-transform-runtime</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何避免全局污染"><span class="nav-number">8.1.</span> <span class="nav-text">如何避免全局污染</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插件-预设补充知识"><span class="nav-number">9.</span> <span class="nav-text">插件/预设补充知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行顺序"><span class="nav-number">9.1.</span> <span class="nav-text">执行顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数结构"><span class="nav-number">9.2.</span> <span class="nav-text">参数结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件短名称"><span class="nav-number">9.3.</span> <span class="nav-text">插件短名称</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stage1-2-3-阶段的编译插件"><span class="nav-number">10.</span> <span class="nav-text">stage1,2,3 阶段的编译插件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">封多多</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">155.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'BTxpKE3VdbvNYiEqX2SeV2tr-gzGzoHsz',
+        appKey: '4J07ASMlcBVdeBV766IuHEf9',
+        placeholder: '留下你的宝贵意见',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":60,"height":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+

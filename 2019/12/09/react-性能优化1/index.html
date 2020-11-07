@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+ <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Papyrus:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fdd’Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="收集几种 react 性能优化方案，应用到自己的代码中，减少不必要的开销，提高代码运行效率。参考：https://mp.weixin.qq.com/s/kEExKE-Chr40z-mCc6AZ7Qhttps://www.infoq.cn/article/KVE8xtRs-uPphptq5LUz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-性能优化2">
+<meta property="og:url" content="https://dorisfeng.github.io/2019/12/09/react-性能优化1/index.html">
+<meta property="og:site_name" content="fdd’Blog">
+<meta property="og:description" content="收集几种 react 性能优化方案，应用到自己的代码中，减少不必要的开销，提高代码运行效率。参考：https://mp.weixin.qq.com/s/kEExKE-Chr40z-mCc6AZ7Qhttps://www.infoq.cn/article/KVE8xtRs-uPphptq5LUz">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-07T07:45:03.895Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react-性能优化2">
+<meta name="twitter:description" content="收集几种 react 性能优化方案，应用到自己的代码中，减少不必要的开销，提高代码运行效率。参考：https://mp.weixin.qq.com/s/kEExKE-Chr40z-mCc6AZ7Qhttps://www.infoq.cn/article/KVE8xtRs-uPphptq5LUz">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dorisfeng.github.io/2019/12/09/react-性能优化1/">
+
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "2d87b4e2"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>react-性能优化2 | fdd’Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+   <a href="https://github.com/Dorisfeng"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fdd’Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dorisfeng.github.io/2019/12/09/react-性能优化1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="封多多">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fdd’Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react-性能优化2</h1>
+        
+
+        <div class="post-meta">
+                  
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-09T09:16:46+08:00">
+                2019-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/性能/" itemprop="url" rel="index">
+                    <span itemprop="name">性能</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/09/react-性能优化1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/09/react-性能优化1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.4k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18分
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>收集几种 react 性能优化方案，应用到自己的代码中，减少不必要的开销，提高代码运行效率。<br>参考：<br><a href="https://mp.weixin.qq.com/s/kEExKE-Chr40z-mCc6AZ7Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/kEExKE-Chr40z-mCc6AZ7Q</a><br><a href="https://www.infoq.cn/article/KVE8xtRs-uPphptq5LUz" target="_blank" rel="noopener">https://www.infoq.cn/article/KVE8xtRs-uPphptq5LUz</a></p>
+<a id="more"></a>
+<h1 id="函数式组件"><a href="#函数式组件" class="headerlink" title="函数式组件"></a>函数式组件</h1><h2 id="1-减少重新-render-的次数"><a href="#1-减少重新-render-的次数" class="headerlink" title="1. 减少重新 render 的次数"></a>1. 减少重新 render 的次数</h2><p>花时间最长的就是重新渲染</p>
+<ul>
+<li><code>React.memo</code>组件记忆<br>使用 React.memo，在给定相同的 props 情况下渲染相同的结果，并通过记忆组件渲染结果的方式提高组件的性能表现<br>使用方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function Component(props) &#123;&#125;</span><br><span class="line"></span><br><span class="line">const MyComponent = React.memo(Component);</span><br></pre></td></tr></table></figure>
+<p>就是使用<code>React.memo</code>包裹一下组件。<br>通过<code>React.memo</code>包裹的组件在 props 不变的情况下不会重新渲染，这跟类组件中的<code>pureComponent</code>效果相似。</p>
+<p><strong><code>React.memo高级用法</code></strong><br>默认情况下只会对 props 的复杂对象做浅层对比，只对比前后两次 props 对象的引用地址是否相同，不会比较对象里面的内容是否相同。如果你需要控制对比过程，需要将自定义的比较函数通过第二个参数传入来实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Component(props) &#123;&#125;</span><br><span class="line">function areEqual(prevProps, nextProps) &#123;</span><br><span class="line">  /*</span><br><span class="line">  如果把 nextProps 传入 render 方法的返回结果与</span><br><span class="line">  将 prevProps 传入 render 方法的返回结果一致则返回 true，</span><br><span class="line">  否则返回 false</span><br><span class="line">  */</span><br><span class="line">&#125;</span><br><span class="line">const MyComponent = React.memo(Component,areEqual);</span><br></pre></td></tr></table></figure>
+<p>与<code>shouldComponentUpdate</code>用法类似，不过返回值正好相反。</p>
+<ul>
+<li><p><code>useCallback</code><br>子组件调用用父组件的函数，导致子组件重新渲染<br>点击子组件的修改副标题，子组件再次打印 name<br>//子组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useState &#125; from &quot;react&quot;;</span><br><span class="line">import &#123; Child &#125; from &quot;../../components/child&quot;;</span><br><span class="line">import &quot;./index.less&quot;;</span><br><span class="line">interface IProps &#123;</span><br><span class="line">  titleInitial?: string;</span><br><span class="line">  countInitial?: number;</span><br><span class="line">  subTitleInitial?: string;</span><br><span class="line">&#125;</span><br><span class="line">export const App: React.FC&lt;IProps&gt; = (&#123;</span><br><span class="line">  titleInitial = &quot;title&quot;,</span><br><span class="line">  countInitial = 0,</span><br><span class="line">  subTitleInitial = &quot;subTitle&quot;</span><br><span class="line">  &#125;) =&gt; &#123;</span><br><span class="line">  const [title, setTitle] = useState(titleInitial);</span><br><span class="line">  let [count, setCount] = useState(countInitial);</span><br><span class="line">  let [subTitle, setSubTitle] = useState(subTitleInitial);</span><br><span class="line">  const callback = () =&gt; setSubTitle(&quot;new subTitle&quot;);</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;App&quot;&gt;</span><br><span class="line">      &lt;h1&gt;title：&#123;title&#125;&lt;/h1&gt;</span><br><span class="line">      &lt;h1&gt;count：&#123;count&#125;&lt;/h1&gt;</span><br><span class="line">      &lt;h1&gt;subTitle：&#123;subTitle&#125;&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setTitle(&quot;title111&quot;)&#125;&gt;改名字&lt;/button&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;改count&lt;/button&gt;</span><br><span class="line">      &lt;Child name=&quot;taotao&quot; count=&#123;count&#125; callback=&#123;callback&#125;&gt;&lt;/Child&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>typescript</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; FunctionComponent &#125; from &quot;react&quot;;</span><br><span class="line">interface IProps &#123;</span><br><span class="line">name: string;</span><br><span class="line">count: number;</span><br><span class="line">callback: () =&gt; any;</span><br><span class="line">&#125;</span><br><span class="line">const Index: FunctionComponent&lt;IProps&gt; = (&#123; name, count, callback &#125;): any =&gt; &#123;</span><br><span class="line">console.log(name);</span><br><span class="line">return (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;&#123;name&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;h1&gt;&#123;count&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;button onClick=&#123;() =&gt; callback()&#125;&gt;修改符标题&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">);</span><br><span class="line">&#125;;</span><br><span class="line">const areEqual = (prevProps: IProps, nextProps: IProps) =&gt; &#123;</span><br><span class="line">if (prevProps.count === nextProps.count) &#123;</span><br><span class="line">  return true;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  return false;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">export const Child = React.memo(Index);</span><br></pre></td></tr></table></figure>
+<p>一个组件重新重新渲染，一般三种情况：</p>
+<ul>
+<li>组件自己的状态改变</li>
+<li>父组件重新渲染，props 没有改变，子组件重新渲染</li>
+<li><p>父组件重新渲染，props 改变，子组件重新渲染</p>
+<p>结合当前情况，子组件没变，第一条不符合，用了<code>React.memo</code>，props 不改变，子组件不会重新渲染，第二条也不对，所以只能是第三条。<br>props 传递<code>name</code>,<code>count</code>,<code>callback</code>，前两个是常量不会改变，那只能是 callback 变了，函数式组件每次重新渲染，都会从头开始执行，那么两次创建的 callback 内存地址肯定发生变化，所以子组件重新渲染。<br><strong>解决方法：</strong><br>在函数没有改变的时候，重新渲染的时候保持两个函数的引用一致。</p>
+</li>
+</ul>
+<p>使用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const callback=(a,b)=&gt;&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">const memoizedCallback = useCallback(callback, [a, b])</span><br></pre></td></tr></table></figure>
+<p>将父组件修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useState, useCallback &#125; from &quot;react&quot;;</span><br><span class="line">import &#123; Child &#125; from &quot;../../components/child&quot;;</span><br><span class="line">import &quot;./index.less&quot;;</span><br><span class="line">interface IProps &#123;</span><br><span class="line">  titleInitial?: string;</span><br><span class="line">  countInitial?: number;</span><br><span class="line">  subTitleInitial?: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const App: React.FC&lt;IProps&gt; = (&#123;</span><br><span class="line">  titleInitial = &quot;title&quot;,</span><br><span class="line">  countInitial = 0,</span><br><span class="line">  subTitleInitial = &quot;subTitle&quot;</span><br><span class="line">&#125;) =&gt; &#123;</span><br><span class="line">  const [title, setTitle] = useState(titleInitial);</span><br><span class="line">  let [count, setCount] = useState(countInitial);</span><br><span class="line">  let [subTitle, setSubTitle] = useState(subTitleInitial);</span><br><span class="line">  const callback = () =&gt; setSubTitle(&quot;new subTitle&quot;);</span><br><span class="line">  const memoizedCallback = useCallback(callback, []);</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;App&quot;&gt;</span><br><span class="line">      &lt;h1&gt;title：&#123;title&#125;&lt;/h1&gt;</span><br><span class="line">      &lt;h1&gt;count：&#123;count&#125;&lt;/h1&gt;</span><br><span class="line">      &lt;h1&gt;subTitle：&#123;subTitle&#125;&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setTitle(&quot;title111&quot;)&#125;&gt;改名字&lt;/button&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;改count&lt;/button&gt;</span><br><span class="line">      &lt;Child name=&quot;taotao&quot; count=&#123;count&#125; callback=&#123;memoizedCallback&#125;&gt;&lt;/Child&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure>
+<p>如果<code>callback</code>传递了参数，当参数变化的时候需要它重新添加一个缓存，可以将参数放在 useCallbac 第二个参数数组里面。</p>
+<h2 id="2-减少计算量"><a href="#2-减少计算量" class="headerlink" title="2. 减少计算量"></a>2. 减少计算量</h2><p>主要是减少重复计算，对于函数组件来说，每次 render 都会重新开始在执行函数调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">interface IProps &#123;</span><br><span class="line">  numInitial: number;</span><br><span class="line">&#125;</span><br><span class="line">const App: React.FC&lt;IProps&gt; = (&#123; numInitial = 0 &#125;) =&gt; &#123;</span><br><span class="line">  const [num, setNum] = useState(numInitial);</span><br><span class="line">  function expensiveFn(): number &#123;</span><br><span class="line">    let result: number = 0;</span><br><span class="line">    for (let i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">      result += 1;</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(result);</span><br><span class="line">    return result;</span><br><span class="line">  &#125;</span><br><span class="line">  const base = expensiveFn();</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;App&quot;&gt;</span><br><span class="line">      &lt;h1&gt;count：&#123;num&#125;&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setNum(num + base)&#125;&gt;+1&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure>
+<p>每次点击+1 都会重新渲染组件，执行 expensiveFn 函数，并输出<code>49995000</code>，想办法把计算出来的值缓存起来，每次调用函数返回缓存值就可以了。</p>
+<ul>
+<li>useMemo</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function computeExpensiveValue() &#123;</span><br><span class="line">  // 计算量很大的代码</span><br><span class="line">  return xxx</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const memoizedValue = useMemo(computeExpensiveValue, [a, b]);</span><br></pre></td></tr></table></figure>
+<p>useMemo 的第一个参数就是一个函数，这个函数返回的值会被缓存起来，同时这个值会作为 useMemo 的返回值，第二个参数是一个数组依赖，如果数组里面的值有变化，那么就会重新去执行第一个参数里面的函数，并将函数返回的值缓存起来并作为 useMemo 的返回值。<br>优化后代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">interface IProps &#123;</span><br><span class="line">  numInitial: number;</span><br><span class="line">&#125;</span><br><span class="line">const App: React.FC&lt;IProps&gt; = (&#123; numInitial = 0 &#125;) =&gt; &#123;</span><br><span class="line">  const [num, setNum] = useState(numInitial);</span><br><span class="line">  function expensiveFn(): number &#123;</span><br><span class="line">    let result: number = 0;</span><br><span class="line">    for (let i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">      result += 1;</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(result);</span><br><span class="line">    return result;</span><br><span class="line">  &#125;</span><br><span class="line">  const memoizedValue = useMemo(expensiveFn, []);</span><br><span class="line">  const base = memoizedValue;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;App&quot;&gt;</span><br><span class="line">      &lt;h1&gt;count：&#123;num&#125;&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setNum(num + base)&#125;&gt;+1&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure>
+<p>useMemo 主要用来缓存计算量比较大的函数结果，避免不必要的重复计算。<br><strong>注意</strong></p>
+<ul>
+<li>如果没有提供第二个数组参数，<code>useMemo</code> 每次渲染都会计算新的值。</li>
+<li>计算量如果很小的计算函数，不建议使用<code>useMemo</code>，因为这点优化并不会作为性能瓶颈的要点，反而可能使用错误还会引起一些性能问题。</li>
+</ul>
+<h1 id="类组优化方法"><a href="#类组优化方法" class="headerlink" title="类组优化方法"></a>类组优化方法</h1><h2 id="使用PureComponent基类"><a href="#使用PureComponent基类" class="headerlink" title="使用PureComponent基类"></a>使用<code>PureComponent</code>基类</h2><p>PureComponent 的 shouldComponentUpdate 对它的状态和 props 进行浅层比较。<br>浅层比较：值类型是否相等（比如 1=1），对象引用地址是否相同。<br>浅层比较的开销比组件视图更新要低。<br><strong>使用方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123;PureComponent&#125; from &apos;react&apos;;</span><br><span class="line">class PureChildComponent extends PureComponent &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用-shouldComponentUpdate-生命周期事件"><a href="#使用-shouldComponentUpdate-生命周期事件" class="headerlink" title="使用 shouldComponentUpdate 生命周期事件"></a>使用 shouldComponentUpdate 生命周期事件</h2><p>自定义渲染逻辑<br>返回<code>true</code>更新，<code>false</code>不更新</p>
+<h2 id="避免-componentWillMount-中的异步请求"><a href="#避免-componentWillMount-中的异步请求" class="headerlink" title="避免 componentWillMount()中的异步请求"></a>避免 componentWillMount()中的异步请求</h2><p>由于 API 调用时异步的，因此组件在调用 render 函数之前不会等待 API 返回数据，于是在初始渲染组件时，没有任何数据。<br><strong>注意：React 16.3 不推荐使用 componentWillMount。如果你使用的是最新版本的 React，请避免使用这个生命周期事件。</strong></p>
+<h2 id="在-constructor-的早期绑定函数"><a href="#在-constructor-的早期绑定函数" class="headerlink" title="在 constructor 的早期绑定函数"></a>在 constructor 的早期绑定函数</h2><p>使用<code>bind</code>关键字将函数绑定到当前上下文。绑定可以在构造函数中完成，也可以在 DOM 元素上完成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;Click&quot; onClick=&#123;this.handleButtonClick.bind(this)&#125; /&gt;</span><br></pre></td></tr></table></figure>
+<p>每次调用 render 函数时都会创建并使用绑定到当前上下文的新函数，但在每次渲染时使用已存在的函数效率更高。优化方案如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">constructor() &#123;</span><br><span class="line">   this.state = &#123;&#125;</span><br><span class="line">   this.handleButtonClick = this.handleButtonClick.bind(this)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="箭头函数绑定"><a href="#箭头函数绑定" class="headerlink" title="箭头函数绑定"></a>箭头函数绑定</h2><p>添加箭头函数，该函数被添加到对象实例，而不是类的原型属性如果多次复用组件，那么在组件外创建的每个对象都会有这些函数的多个实例。<br>因此箭头函数确实有其缺点。在类组件中实现这些函数的最佳方法是在构造函数中绑定函数。</p>
+<h2 id="优化-render-中的条件渲染"><a href="#优化-render-中的条件渲染" class="headerlink" title="优化 render 中的条件渲染"></a>优化 render 中的条件渲染</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  render() &#123;</span><br><span class="line">    if(this.state.name == &quot;Mayank&quot;) &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;AdminHeaderComponent&gt;&lt;/AdminHeaderComponent&gt;</span><br><span class="line">          &lt;HeaderComponent&gt;&lt;/HeaderComponent&gt;</span><br><span class="line">          &lt;ContentComponent&gt;&lt;/ContentComponent&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;HeaderComponent&gt;&lt;/HeaderComponent&gt;</span><br><span class="line">          &lt;ContentComponent&gt;&lt;/ContentComponent&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每次 render,都会执行 if else 语句，diffing 算法会运行一个检查，比较每个位置的元素类型。这样写会看到 AdminHeaderComponent 不可用，并且需要渲染第一个组件 HeaderComponent。React 将观察元素的位置，它看到位置 1 位置 2 的组件已经更改并将卸载组件。组件 HeaderComponent 和 ContentComponent 将在位置 1 和位置 2 卸载并重新安装。<br>优化方案如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123; this.state.name == &quot;Mayank&quot; &amp;&amp; &lt;AdminHeaderComponent&gt;&lt;/AdminHeaderComponent&gt; &#125;</span><br><span class="line">        &lt;HeaderComponent&gt;&lt;/HeaderComponent&gt;</span><br><span class="line">        &lt;ContentComponent&gt;&lt;/ContentComponent&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>这样写，开始 DOM diffing 时，位置 1 的元素从 AdminHeaderComponent 变为 null，但是位置 2 和位置 3 的组件保持不变。这样组件就不会卸载，减少不必要的操作。</p>
+<h2 id="不要在-render-方法导出数据"><a href="#不要在-render-方法导出数据" class="headerlink" title="不要在 render 方法导出数据"></a>不要在 render 方法导出数据</h2><p>render 函数应该作为纯函数。不能调用 setState 和执行任何 DOM 操作。</p>
+<h2 id="为组件创建错误边界"><a href="#为组件创建错误边界" class="headerlink" title="为组件创建错误边界"></a>为组件创建错误边界</h2><p>错误边界是一个 React 组件，可以捕获子组件的 JS 错误，包含错误记录，并为 UI 组件故障提供回退机制。<br>错误边界基于高阶组件的概念<br>包含以下方法：</p>
+<ul>
+<li>static getDerivedStateFromError()<br>指定回退机制，并从收到的错误中获取组件的新状态</li>
+<li>componentDidCatch()<br>用来将错误信息记录到应用中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class ErrorBoundary extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      error: null,</span><br><span class="line">      errorInfo: null</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidCatch(error, errorInfo) &#123;</span><br><span class="line">    // Catch errors in any child components and re-renders with an error message</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      error: error,</span><br><span class="line">      errorInfo: errorInfo</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    if (this.state.error) &#123;</span><br><span class="line">      // Fallback UI if an error occurs</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;h2&gt;&#123;&quot;Oh-no! Something went wrong&quot;&#125;&lt;/h2&gt;</span><br><span class="line">          &lt;p className=&quot;red&quot;&gt;</span><br><span class="line">            &#123;this.state.error &amp;&amp; this.state.error.toString()&#125;</span><br><span class="line">          &lt;/p&gt;</span><br><span class="line">          &lt;div&gt;&#123;&quot;Component Stack Error Details: &quot;&#125;&lt;/div&gt;</span><br><span class="line">          &lt;p className=&quot;red&quot;&gt;&#123;this.state.errorInfo.componentStack&#125;&lt;/p&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">    // component normally just renders children</span><br><span class="line">    return this.props.children;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;ErrorBoundary&gt;</span><br><span class="line">&lt;MyWidget /&gt;</span><br><span class="line">&lt;/ErrorBoundary&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="函数式组件和类组件共有方法"><a href="#函数式组件和类组件共有方法" class="headerlink" title="函数式组件和类组件共有方法"></a>函数式组件和类组件共有方法</h1><h2 id="使用-React-Fragment-避免额外标记"><a href="#使用-React-Fragment-避免额外标记" class="headerlink" title="使用 React Fragment 避免额外标记"></a>使用 React Fragment 避免额外标记</h2><p>每个字组件只能由单个父标签，所以顶部要有一个公共标签，除了充当组件的父标签之外，这个额外的 div 没有其他用途。这是可以使用<code>Fragment</code>代替 div。该代码片段不会像组件引入任何额外标记</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const Index: FunctionComponent&lt;IProps&gt; = (&#123; name, count, callback &#125;): any =&gt; &#123;</span><br><span class="line">  console.log(name);</span><br><span class="line">  return (</span><br><span class="line">    &lt;Fragment&gt;</span><br><span class="line">      &lt;h1&gt;&#123;name&#125;&lt;/h1&gt;</span><br><span class="line">      &lt;h1&gt;&#123;count&#125;&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; callback()&#125;&gt;修改符标题&lt;/button&gt;</span><br><span class="line">    &lt;/Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="懒加载组件"><a href="#懒加载组件" class="headerlink" title="懒加载组件"></a>懒加载组件</h2><p>使用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component, lazy, Suspense &#125; from &quot;react&quot;;</span><br><span class="line">interface IProps &#123;</span><br><span class="line">  username: string;</span><br><span class="line">&#125;</span><br><span class="line">interface IState &#123;&#125;</span><br><span class="line">class CallingLazyComponents extends Component&lt;IProps, IState&gt; &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    if (this.props.username !== &quot;&quot;) &#123;</span><br><span class="line">      const WelcomeComponent = lazy(() =&gt; import(&quot;./welcomeComponent&quot;));</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Suspense fallback=&#123;&lt;div&gt;Loading...&lt;/div&gt;&#125;&gt;</span><br><span class="line">            &lt;WelcomeComponent /&gt;</span><br><span class="line">          &lt;/Suspense&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      const GuestComponent = lazy(() =&gt; import(&quot;./guestComponent&quot;));</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Suspense fallback=&#123;&lt;div&gt;Loading...&lt;/div&gt;&#125;&gt;</span><br><span class="line">            &lt;GuestComponent /&gt;</span><br><span class="line">          &lt;/Suspense&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Lazy extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;CallingLazyComponents username=&quot;&quot; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default Lazy;</span><br></pre></td></tr></table></figure>
+<p>上面的代码没有预加载 WelcomeComponent 和 GuestComponent,而是进行条件检查，根据用户名判断加载哪个组件。<br><strong>优点</strong></p>
+<ul>
+<li>主包体积变小，消耗网络传输时间少，</li>
+<li>动态单独加载的包比较小，可迅速加载完成</li>
+</ul>
+<h2 id="不要使用内联函数定义"><a href="#不要使用内联函数定义" class="headerlink" title="不要使用内联函数定义"></a>不要使用内联函数定义</h2><p>使用内联函数，每次<code>render</code>函数执行都会创建一个新的函数实例，增加了 React 应用的工作量。</p>
+<h2 id="避免使用内联样式属性"><a href="#避免使用内联样式属性" class="headerlink" title="避免使用内联样式属性"></a>避免使用内联样式属性</h2><p>使用内联样式属性需要花费更多时间来处理脚本和渲染，因为它必须映射传递给实际 CSS 属性的所有样式规则</p>
+<h2 id="列表中使用唯一键"><a href="#列表中使用唯一键" class="headerlink" title="列表中使用唯一键"></a>列表中使用唯一键</h2><p>键可以用来标识已更改，添加或删除项目，键为元素提供稳定的标识，一个键对应列表中的唯一一个元素。<br>index 作为键不会出现标识不一致的情况。<br>以下情况可以使用 index 作为键:</p>
+<ul>
+<li>列表是静态的，项目不随时间变化</li>
+<li>数据结构中没有提供 ID</li>
+<li>list 永不重新排序或过滤</li>
+<li>不会从顶部或中间添加或删除项目</li>
+</ul>
+<p>使用 index 作为键，如果在列表中添加项目，会加大错误率并降低应用的性能。因为在表头添加新项目后面所有的列表项的键值都会+1，导致性能下降。<br>总结：</p>
+<ul>
+<li>Key 不仅影响性能，更重要的作用是标识，随机分配和更改的值不能算作标识</li>
+<li>根据建模方式提供合适的键值，如果没有 ID，建议使用 hash 函数生成 ID</li>
+<li>数组已经有了内部键，但是插入新元素时，这些键就会变化<br>可以使用全局定义一个<code>var localCounter = 1;</code>来添加稳定且唯一的 key 值。</li>
+</ul>
+<h2 id="事件节流和防抖"><a href="#事件节流和防抖" class="headerlink" title="事件节流和防抖"></a>事件节流和防抖</h2><p>用来限制指定时间内调用事件处理程序的数量。</p>
+<ul>
+<li>节流：延迟函数的执行<br>比如页面滚动，不会频繁的触发滚动事件，而是将事件延迟一段时间以便将多个事件堆叠在一起执行。<br>确保函数在特定时间段内至少调用一次。<br>在处理无限滚动并且当用户接近页面底部必须获取数据的时候可以使用节流，否则滚动到底部触发多个事件，触发多次网络调用，从而导致性能问题。</li>
+<li>防抖：在调用停止一段时间之前忽略时间处理程序的调用<br>比如用户停止输入 3 秒钟之后触发查询事件</li>
+</ul>
+<h2 id="使用-CDN"><a href="#使用-CDN" class="headerlink" title="使用 CDN"></a>使用 CDN</h2><p>这些 CDN 是可以在你的应用中使用的外部资源，也可以创建私有 CDN 并托管我们的文件和资源。</p>
+<ul>
+<li>不同的域名，浏览器限制了单个域名的并发连接数量，资源在不同域名下面，提高并发能力。</li>
+<li>文件可以已被缓存。很多网站使用这些 CDN，可能你需要的资源已经被缓存在浏览器中了</li>
+<li>高容量基础设施。大公司托管，遍布全球，可以向最近的数据中心请求服务，从而减小延迟</li>
+</ul>
+<h2 id="使用-css-动画代替-JS-动画"><a href="#使用-css-动画代替-JS-动画" class="headerlink" title="使用 css 动画代替 JS 动画"></a>使用 css 动画代替 JS 动画</h2><ul>
+<li>如果 CSS 可以实现某些 JS 功能，那就用 CSS。</li>
+<li>如果 HTML 可以实现某些 JS 功能，那就用 HTML。<br>原因如下：</li>
+<li>破损的 CSS 规则和样式不会导致网页损坏，但是 JS 会</li>
+<li>解析 CSS 非常便宜，它是声明性的，我们可以为样式并行创建内存中的表达，可以推迟样式属性的计算，直到元素绘制完成。</li>
+<li>动画加载 JavaScript 库的成本相对较高，消耗更多网络带宽和计算时间。</li>
+<li>虽然 JavaScript 可以提供比 CSS 更多的优化，但优化过的 JavaScript 代码也可能卡住 UI 并导致 Web 浏览器崩溃。</li>
+</ul>
+<h2 id="在-web-服务器上启用-gzip-压缩"><a href="#在-web-服务器上启用-gzip-压缩" class="headerlink" title="在 web 服务器上启用 gzip 压缩"></a>在 web 服务器上启用 gzip 压缩</h2><p>压缩是节省网络带宽和加速应用的最简单方法。<br>Gzip 是一种能够快速压缩和解压文件的数据压缩算法。<br>可以压缩几乎所有类型的文件，例如图像、文本、JavaScript 文件、样式文件等。<br>当 Web 服务器收到请求，会提取文件数据并查找 Accept-Encoding 标头以确定如何压缩应用。<br>如果服务器支持 gzip 压缩，资源会被压缩后通过网络发送。每份资源的压缩副本（添加了 Content-Encoding 标头）指定使用 gzip 解压。<br>压缩和解压缩文件属于 CPU 密集型任务，但我们还是建议对网页使用 gzip 压缩。</p>
+<h2 id="使用-Web-Workers-处理-CPU-密集任务（还待研究）"><a href="#使用-Web-Workers-处理-CPU-密集任务（还待研究）" class="headerlink" title="使用 Web Workers 处理 CPU 密集任务（还待研究）"></a>使用 Web Workers 处理 CPU 密集任务（还待研究）</h2><p>JS 是单线程应用，但是在渲染网页时需要执行多个任务。处理 UI 交互、处理响应数据、操纵 DOM 元素、启用动画等。<br>Worker 在后台运行，可以在不中断主线程的情况下执行多个脚本和 JS 任务。</p>
+<h2 id="React-组件的服务端渲染（还待研究）"><a href="#React-组件的服务端渲染（还待研究）" class="headerlink" title="React 组件的服务端渲染（还待研究）"></a>React 组件的服务端渲染（还待研究）</h2><p>服务端渲染可以减少初始页面加载延迟。<br>服务端渲染是指第一个组件显示的内容是从服务器本身发送的，而不是浏览器级别操作。<br>优点：</p>
+<ul>
+<li>性能：初始页面内容和数据是从服务器本身加载，不需要添加加载器和下拉列表，而是等待初始页面加载完毕后再加载初始组件。</li>
+<li>SEO（搜索引擎优化）：爬虫在应用初始加载时查找页面内容。在客户端渲染时初始 Web 页面不包含所需的组件，这些组件需要等 React 脚本等文件加载完毕后才渲染出来。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------</div>
+    
+</div>
+
+
+
+      
+    </div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/06/Babel/" rel="next" title="Babel">
+                <i class="fa fa-chevron-left"></i> Babel
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/13/angular学习记录/" rel="prev" title="angular学习记录">
+                angular学习记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="封多多">
+            
+              <p class="site-author-name" itemprop="name">封多多</p>
+              <p class="site-description motion-element" itemprop="description">前端</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="ttps://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fengduoduo@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/8acefb731467" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数式组件"><span class="nav-number">1.</span> <span class="nav-text">函数式组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-减少重新-render-的次数"><span class="nav-number">1.1.</span> <span class="nav-text">1. 减少重新 render 的次数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-减少计算量"><span class="nav-number">1.2.</span> <span class="nav-text">2. 减少计算量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类组优化方法"><span class="nav-number">2.</span> <span class="nav-text">类组优化方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用PureComponent基类"><span class="nav-number">2.1.</span> <span class="nav-text">使用PureComponent基类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-shouldComponentUpdate-生命周期事件"><span class="nav-number">2.2.</span> <span class="nav-text">使用 shouldComponentUpdate 生命周期事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免-componentWillMount-中的异步请求"><span class="nav-number">2.3.</span> <span class="nav-text">避免 componentWillMount()中的异步请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-constructor-的早期绑定函数"><span class="nav-number">2.4.</span> <span class="nav-text">在 constructor 的早期绑定函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数绑定"><span class="nav-number">2.5.</span> <span class="nav-text">箭头函数绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化-render-中的条件渲染"><span class="nav-number">2.6.</span> <span class="nav-text">优化 render 中的条件渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不要在-render-方法导出数据"><span class="nav-number">2.7.</span> <span class="nav-text">不要在 render 方法导出数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为组件创建错误边界"><span class="nav-number">2.8.</span> <span class="nav-text">为组件创建错误边界</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数式组件和类组件共有方法"><span class="nav-number">3.</span> <span class="nav-text">函数式组件和类组件共有方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-React-Fragment-避免额外标记"><span class="nav-number">3.1.</span> <span class="nav-text">使用 React Fragment 避免额外标记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懒加载组件"><span class="nav-number">3.2.</span> <span class="nav-text">懒加载组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不要使用内联函数定义"><span class="nav-number">3.3.</span> <span class="nav-text">不要使用内联函数定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免使用内联样式属性"><span class="nav-number">3.4.</span> <span class="nav-text">避免使用内联样式属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表中使用唯一键"><span class="nav-number">3.5.</span> <span class="nav-text">列表中使用唯一键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件节流和防抖"><span class="nav-number">3.6.</span> <span class="nav-text">事件节流和防抖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-CDN"><span class="nav-number">3.7.</span> <span class="nav-text">使用 CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-css-动画代替-JS-动画"><span class="nav-number">3.8.</span> <span class="nav-text">使用 css 动画代替 JS 动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-web-服务器上启用-gzip-压缩"><span class="nav-number">3.9.</span> <span class="nav-text">在 web 服务器上启用 gzip 压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Web-Workers-处理-CPU-密集任务（还待研究）"><span class="nav-number">3.10.</span> <span class="nav-text">使用 Web Workers 处理 CPU 密集任务（还待研究）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-组件的服务端渲染（还待研究）"><span class="nav-number">3.11.</span> <span class="nav-text">React 组件的服务端渲染（还待研究）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">封多多</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">155.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'BTxpKE3VdbvNYiEqX2SeV2tr-gzGzoHsz',
+        appKey: '4J07ASMlcBVdeBV766IuHEf9',
+        placeholder: '留下你的宝贵意见',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":60,"height":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+

@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+ <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Papyrus:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fdd’Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="进阶参考：https://ts.xcatliu.com/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript进阶">
+<meta property="og:url" content="https://dorisfeng.github.io/2019/11/29/TypeScript进阶/index.html">
+<meta property="og:site_name" content="fdd’Blog">
+<meta property="og:description" content="进阶参考：https://ts.xcatliu.com/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-08-25T06:35:15.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TypeScript进阶">
+<meta name="twitter:description" content="进阶参考：https://ts.xcatliu.com/">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dorisfeng.github.io/2019/11/29/TypeScript进阶/">
+
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "2d87b4e2"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>TypeScript进阶 | fdd’Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+   <a href="https://github.com/Dorisfeng"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fdd’Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dorisfeng.github.io/2019/11/29/TypeScript进阶/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="封多多">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fdd’Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TypeScript进阶</h1>
+        
+
+        <div class="post-meta">
+                  
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-29T17:03:59+08:00">
+                2019-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/TS/" itemprop="url" rel="index">
+                    <span itemprop="name">TS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/29/TypeScript进阶/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/29/TypeScript进阶/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7.2k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  35分
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>进阶<br>参考：<a href="https://ts.xcatliu.com/" target="_blank" rel="noopener">https://ts.xcatliu.com/</a></p>
+<a id="more"></a>
+<h1 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h1><p>给一个类型起一个新名字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">type Name = string;</span><br><span class="line">type NameResolver = () =&gt; string;</span><br><span class="line">type NameOrResolver = Name | NameResolver;</span><br><span class="line">function getName(n: NameOrResolver): Name &#123;</span><br><span class="line">  if (typeof n === &quot;string&quot;) &#123;</span><br><span class="line">    return n;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return n();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 type 创建类型别名<br>类型别名常用于联合类型</p>
+<h2 id="交叉类型"><a href="#交叉类型" class="headerlink" title="交叉类型"></a>交叉类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type TouchEvent=React.TouchEvent&amp;React.MouseEvent</span><br></pre></td></tr></table></figure>
+<p>将多种类型合并为一种类型，新的类型能访问到多个类型的<code>所有属性</code>。</p>
+<h2 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type Source=10|20|30;</span><br><span class="line">let a:Source=10;</span><br></pre></td></tr></table></figure>
+<p>a 的值只能是 10，20，30</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const attr:number|string=20;</span><br><span class="line">if(typeof attr === &apos;number&apos;)&#123;</span><br><span class="line">    //attr可以使用number的所有方法</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    //attr可以使用string的所有方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将多种类型合并为一种类型，新的类型能访问到多个类型的<code>共有属性</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">interface Bird&#123;</span><br><span class="line">  fly()</span><br><span class="line">  layEggs()</span><br><span class="line">&#125;</span><br><span class="line">interface Fish&#123;</span><br><span class="line">  swim()</span><br><span class="line">  layEggs()</span><br><span class="line">&#125;</span><br><span class="line">function getSmallPet():Fish|Bird&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">let pet=getSmallPet()</span><br><span class="line">pet.layEggs();</span><br><span class="line">pet.fly();//报错</span><br></pre></td></tr></table></figure>
+<p>联合类型的类型保护<br>自定义类型保护</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let pet=getSmallPet()</span><br><span class="line">pet.layEggs();</span><br><span class="line">if(isFish(pet))&#123;</span><br><span class="line">  pet.swim()</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  pet.fly()</span><br><span class="line">&#125;</span><br><span class="line">function isFish(pet:Fish|Bird):pet is Fish&#123;</span><br><span class="line">  return (pet as Fish).swim!==undefined</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>typeof 类型保护</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isNumber(x: any): x is number &#123;</span><br><span class="line">  return typeof x === &quot;string&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>instanceof 类型保护</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isFish(pet:Fish|Bird):pet is Fish&#123;</span><br><span class="line">  return pet instanceof Fish</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不为 null 的类型断言<code>!</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name!.indexOf(&apos;a&apos;)</span><br></pre></td></tr></table></figure>
+<p>自定义属性类型保护</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">interface Square &#123;</span><br><span class="line">  kind: &quot;square&quot;;</span><br><span class="line">  size: number;</span><br><span class="line">&#125;</span><br><span class="line">interface Rectangle &#123;</span><br><span class="line">  kind: &quot;rectangle&quot;;</span><br><span class="line">  width: number;</span><br><span class="line">  height: number;</span><br><span class="line">&#125;</span><br><span class="line">interface Circle &#123;</span><br><span class="line">  kind: &quot;circle&quot;;</span><br><span class="line">  r: number;</span><br><span class="line">&#125;</span><br><span class="line">type Shape = Square | Rectangle | Circle;</span><br><span class="line">function area(s: Shape) &#123;</span><br><span class="line">  switch (s.kind) &#123;</span><br><span class="line">    case &quot;square&quot;:</span><br><span class="line">      return s.size * s.size;</span><br><span class="line">    case &quot;rectangle&quot;:</span><br><span class="line">      return s.width * s.height;</span><br><span class="line">    case &quot;circle&quot;:</span><br><span class="line">      return Math.PI * s.r ** 2;</span><br><span class="line">    default:</span><br><span class="line">      return ((e: never) =&gt; &#123;</span><br><span class="line">        throw new Error(e);</span><br><span class="line">      &#125;)(s); //判断s是否为never类型，如果是，说明s不存在Shape中，否则说明上面的case有遗漏</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(area(&#123; kind: &quot;circle&quot;, r: 10 &#125;));</span><br></pre></td></tr></table></figure>
+<h2 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h2><p><code>keyof T</code>，返回 T 中所有属性的联合类型<br><code>T[k]</code>，返回 T 中 K 元素的类型<br><code>T extends U</code>,T 继承至 U</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: &apos;2&apos;,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getValues&lt;T, K extends keyof T&gt;(obj: T, keys: K[]):T[K][] &#123;</span><br><span class="line">    return keys.map(key=&gt;obj[key])</span><br><span class="line">&#125;</span><br><span class="line">console.log(getValues(obj, [&apos;a&apos;, &apos;b&apos;]))</span><br></pre></td></tr></table></figure>
+<h2 id="映射类型"><a href="#映射类型" class="headerlink" title="映射类型"></a>映射类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">interface Obj&#123;</span><br><span class="line">    a: string,</span><br><span class="line">    b: string,</span><br><span class="line">    c: number</span><br><span class="line">&#125;</span><br><span class="line">type ReadonlyObj = Readonly&lt;Obj&gt;//只读</span><br><span class="line">type PartialObj = Partial&lt;Obj&gt;//可选</span><br><span class="line">type PickObj=Pick&lt;Obj,&apos;a&apos;|&apos;c&apos;&gt;//抽取部分属性</span><br><span class="line">type RecordObj = Record&lt;&apos;x&apos; | &apos;y&apos;, Obj&gt;//创建新类型，参数类型为Obj</span><br></pre></td></tr></table></figure>
+<h2 id="条件类型"><a href="#条件类型" class="headerlink" title="条件类型"></a>条件类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">type TypeName &lt; T &gt;=</span><br><span class="line">    T extends string ? &apos;string&apos; :</span><br><span class="line">    T extends number ? &apos;number&apos; :</span><br><span class="line">    T extends boolean ? &apos;boolean&apos; :</span><br><span class="line">    T extends undefined ? &apos;undefined&apos; :</span><br><span class="line">    T extends Function ? &apos;function&apos; :</span><br><span class="line">    &quot;object&quot;</span><br><span class="line"></span><br><span class="line">type T1 = TypeName&lt;string&gt;</span><br><span class="line">type T2 = TypeName&lt;string[]&gt;</span><br><span class="line">//(A|B) extends U?x:y</span><br><span class="line">//A extends U ? x : y | B extends U ? x : y</span><br><span class="line">type T3 = TypeName&lt;string | string[]&gt;</span><br><span class="line"></span><br><span class="line">type Diff&lt;T, U&gt; = T extends U ? never : T</span><br><span class="line">type T4 =  Diff&lt;&apos;a&apos; | &apos;b&apos; | &apos;c&apos;, &apos;a&apos; | &apos;e&apos;&gt;</span><br><span class="line">//Diff&lt;&apos;a&apos;,&apos;a&apos;|&apos;e&apos;&gt; | Diff&lt;&apos;b&apos;,&apos;a&apos;|&apos;e&apos;&gt;| Diff&lt;&apos;c&apos;,&apos;a&apos;|&apos;e&apos;&gt;</span><br><span class="line">// &apos;never&apos;|&apos;b&apos;|&apos;c&apos;</span><br><span class="line">//&apos;b&apos;|&apos;c&apos;</span><br><span class="line"></span><br><span class="line">type NotNull&lt;T&gt; = Diff&lt;T, undefined | null&gt;</span><br><span class="line">type TS = NotNull&lt;string | number | undefined | null&gt;</span><br></pre></td></tr></table></figure>
+<p>内置条件类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Exclude&lt;T,U&gt;//同上diff</span><br><span class="line">NotNullable&lt;T&gt;//同上NotNull</span><br><span class="line">Extract&lt;T,U&gt;//与Exclude相反，返回T中继承至U的类型</span><br><span class="line">ReturnType&lt;fun&gt;//返回函数返回值类型</span><br></pre></td></tr></table></figure>
+<h1 id="字符串字面量类型"><a href="#字符串字面量类型" class="headerlink" title="字符串字面量类型"></a>字符串字面量类型</h1><p>用来约束取值只能是某几个字符串中的一个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type EventNames = &quot;click&quot; | &quot;scroll&quot; | &quot;mousemove&quot;;</span><br><span class="line">function handleEvent(ele: Element, event: EventNames) &#123;&#125;</span><br><span class="line">handleEvent(document.getElementById(&quot;hello&quot;), &quot;scroll&quot;);</span><br><span class="line">handleEvent(document.getElementById(&quot;world&quot;), &quot;dbclick&quot;);</span><br></pre></td></tr></table></figure>
+<p><strong>注意，类型别名与字符串字面量类型都是使用<code>type</code>进行定义</strong></p>
+<h1 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h1><p>数组合并了相同类型的对象，元组（Tuple）合并了不同类型的对象。</p>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let jerry: [string, number] = [&quot;jerry&quot;, 25];</span><br></pre></td></tr></table></figure>
+<h2 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let jerry: [string, number];</span><br><span class="line">jerry=[&apos;jerry&apos;,22]</span><br></pre></td></tr></table></figure>
+<p>直接对元组赋值，需要提供所有元组类型中指定的项。</p>
+<h2 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jerry[0].slice(1);</span><br><span class="line">jerry[1].slice(2);//报错</span><br></pre></td></tr></table></figure>
+<h2 id="越界元素"><a href="#越界元素" class="headerlink" title="越界元素"></a>越界元素</h2><p>当添加越界的元素时，它的类型被限制为元组中每个类型的联合类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let jerry: [string, number];</span><br><span class="line">jerry = [&quot;jerry&quot;, 22];</span><br><span class="line">jerry.push(&quot;female&quot;);//成功</span><br><span class="line">jerry.push(true);// error TS2345: Argument of type &apos;true&apos; is not assignable to parameter of type &apos;string | number&apos;.</span><br></pre></td></tr></table></figure>
+<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><p>Enum<br>定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">enum Days &#123;</span><br><span class="line">  sun,</span><br><span class="line">  Mon,</span><br><span class="line">  Tue,</span><br><span class="line">  Web,</span><br><span class="line">  Thu,</span><br><span class="line">  Fri,</span><br><span class="line">  Sat</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>枚举成员会被赋值为从 0 开始递增的数字，同时也会对枚举值到枚举名进行反向映射。<br>编译结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var Days;</span><br><span class="line">(function (Days) &#123;</span><br><span class="line">    Days[Days[&quot;Sun&quot;] = 0] = &quot;Sun&quot;;</span><br><span class="line">    Days[Days[&quot;Mon&quot;] = 1] = &quot;Mon&quot;;</span><br><span class="line">    Days[Days[&quot;Tue&quot;] = 2] = &quot;Tue&quot;;</span><br><span class="line">    Days[Days[&quot;Web&quot;] = 3] = &quot;Web&quot;;</span><br><span class="line">    Days[Days[&quot;Thu&quot;] = 4] = &quot;Thu&quot;;</span><br><span class="line">    Days[Days[&quot;Fri&quot;] = 5] = &quot;Fri&quot;;</span><br><span class="line">    Days[Days[&quot;Sat&quot;] = 6] = &quot;Sat&quot;;</span><br><span class="line">&#125;)(Days || (Days = &#123;&#125;));</span><br></pre></td></tr></table></figure>
+<h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">console.log(Days[&quot;Sun&quot;] === 0); //true</span><br><span class="line">console.log(Days[&quot;Mon&quot;] === 1); //true</span><br><span class="line">console.log(Days[&quot;Tue&quot;] === 2); //true</span><br><span class="line">console.log(Days[&quot;Web&quot;] === 3); //true</span><br><span class="line"></span><br><span class="line">console.log(Days[4] === &quot;Thu&quot;); //true</span><br><span class="line">console.log(Days[5] === &quot;Fri&quot;); //false</span><br><span class="line">console.log(Days[6] === &quot;Sat&quot;); //true</span><br></pre></td></tr></table></figure>
+<p>手动赋值枚举项，可以不是数字，但是需要使用让 tsc 无视类型检查，但是后面的枚举项也需要手动赋值，否则无法获取初始值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">enum Days &#123;</span><br><span class="line">  Sun = 7,</span><br><span class="line">  Mon,</span><br><span class="line">  Tue,</span><br><span class="line">  Web,</span><br><span class="line">  Thu,</span><br><span class="line">  Fri,</span><br><span class="line">  Sat = &lt;any&gt;&quot;s&quot;</span><br><span class="line">&#125;</span><br><span class="line">console.log(Days[&quot;Sun&quot;] === 7); //true</span><br><span class="line">console.log(Days[&quot;Mon&quot;] === 8); //true</span><br><span class="line"></span><br><span class="line">console.log(Days[11] === &quot;Thu&quot;); //true</span><br><span class="line">console.log(Days[12] === &quot;Fri&quot;); //true</span><br><span class="line">console.log(Days[&quot;s&quot;] === &quot;Sat&quot;); //true</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var Days;</span><br><span class="line">(function (Days) &#123;</span><br><span class="line">    Days[Days[&quot;Sun&quot;] = 7] = &quot;Sun&quot;;</span><br><span class="line">    Days[Days[&quot;Mon&quot;] = 8] = &quot;Mon&quot;;</span><br><span class="line">    Days[Days[&quot;Tue&quot;] = 9] = &quot;Tue&quot;;</span><br><span class="line">    Days[Days[&quot;Web&quot;] = 10] = &quot;Web&quot;;</span><br><span class="line">    Days[Days[&quot;Thu&quot;] = 11] = &quot;Thu&quot;;</span><br><span class="line">    Days[Days[&quot;Fri&quot;] = 12] = &quot;Fri&quot;;</span><br><span class="line">    Days[Days[&quot;Sat&quot;] = &quot;s&quot;] = &quot;Sat&quot;;</span><br><span class="line">&#125;)(Days || (Days = &#123;&#125;));</span><br></pre></td></tr></table></figure>
+<p>手动赋值的枚举项也可以是小数或负数，后面项的递增步长是 1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">enum Days &#123;</span><br><span class="line">  Sun = 7,</span><br><span class="line">  Mon = 1.5,</span><br><span class="line">  Tue,</span><br><span class="line">  Web,</span><br><span class="line">  Thu,</span><br><span class="line">  Fri,</span><br><span class="line">  Sat = &lt;any&gt;&quot;s&quot;</span><br><span class="line">&#125;</span><br><span class="line">console.log(Days[&quot;Sun&quot;] === 7); //true</span><br><span class="line">console.log(Days[&quot;Mon&quot;] === 1.5); //true</span><br><span class="line">console.log(Days[&quot;Tue&quot;] === 2.5); //true</span><br><span class="line">console.log(Days[&quot;Web&quot;] === 3.5); //true</span><br></pre></td></tr></table></figure>
+<h2 id="常数项和计算所得项"><a href="#常数项和计算所得项" class="headerlink" title="常数项和计算所得项"></a>常数项和计算所得项</h2><p>前面的例子都是常数项<br>计算所得项例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">  Red,</span><br><span class="line">  Green,</span><br><span class="line">  Blue = &quot;blue&quot;.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的例子不会报错，但是如果后面还有未手动赋值的项，就会因无法获得初始值而报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">  Red = &quot;red&quot;.length,</span><br><span class="line">  Green,</span><br><span class="line">  Blue</span><br><span class="line">&#125;</span><br><span class="line">//error TS1061: Enum member must have initializer.</span><br><span class="line"></span><br><span class="line">//236   Green,</span><br><span class="line">//error TS1061: Enum member must have initializer.</span><br><span class="line"></span><br><span class="line">//237   Blue</span><br></pre></td></tr></table></figure>
+<p>当满足以下条件时，枚举成员被当作常数：</p>
+<ul>
+<li>不具有初始化函数并且之前的枚举成员是常数，后面的枚举成员就是前面的值+1，第一个枚举成员默认初始值为 0；</li>
+<li>枚举成员使用常数枚举表达式初始化。常数枚举表达式是 TypeScript 表达式的子集，可以在编译阶段求值，当一个表达式满足下面条件之一时，就是一个常数枚举表达式：<ul>
+<li>数字字面量</li>
+<li>引用之前定义的常数枚举成员</li>
+<li>带括号的常数枚举表达式，如果这个成员是在同一个枚举类型中定义的，可以使用非限定名来引用</li>
+<li><code>+</code>，<code>-</code>，<code>~</code>一元运算符应用于常数枚举表达式</li>
+<li><code>+</code>，<code>-</code>，<code>*</code>，<code>/</code>，<code>%</code>，<code>&lt;&lt;</code>，<code>&gt;&gt;</code>，<code>&gt;&gt;&gt;</code>，<code>&amp;</code>，<code>|</code>，<code>^</code>二元运算符，常数枚举表达式作为其一个操作对象。若常数枚举表达式求值后为<code>NaN</code>或<code>Infinity</code>，则会在编译阶段报错。</li>
+</ul>
+</li>
+</ul>
+<p>所有其它情况的枚举成员被当作是需要计算得出的值。</p>
+<h2 id="常数枚举"><a href="#常数枚举" class="headerlink" title="常数枚举"></a>常数枚举</h2><p><code>const enum</code>定义的枚举类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const enum Directions &#123;</span><br><span class="line">  Up,</span><br><span class="line">  Down,</span><br><span class="line">  Left,</span><br><span class="line">  Right</span><br><span class="line">&#125;</span><br><span class="line">let directions = [</span><br><span class="line">  Directions.Up,</span><br><span class="line">  Directions.Down,</span><br><span class="line">  Directions.Left,</span><br><span class="line">  Directions.Right</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>编译为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var directions = [</span><br><span class="line">    0,</span><br><span class="line">    1,</span><br><span class="line">    2,</span><br><span class="line">    3</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>常数枚举与普通枚举的区别在编译阶段被删除，并且不能包含计算成员<br>假如包含了计算成员，则会在编译阶段报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const enum Colors &#123;</span><br><span class="line">  Red,</span><br><span class="line">  Green,</span><br><span class="line">  Blue = &quot;blue&quot;.length</span><br><span class="line">&#125;</span><br><span class="line">//error TS2474: const enum member initializers can only contain literal values and other computed enum values.</span><br></pre></td></tr></table></figure>
+<h2 id="外部枚举"><a href="#外部枚举" class="headerlink" title="外部枚举"></a>外部枚举</h2><p>使用<code>declare</code>声明枚举类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">declare enum Directions &#123;</span><br><span class="line">  Up,</span><br><span class="line">  Down,</span><br><span class="line">  Left,</span><br><span class="line">  Right</span><br><span class="line">&#125;</span><br><span class="line">let directions = [</span><br><span class="line">  Directions.Up,</span><br><span class="line">  Directions.Down,</span><br><span class="line">  Directions.Left,</span><br><span class="line">  Directions.Right</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var directions = [</span><br><span class="line">    Directions.Up,</span><br><span class="line">    Directions.Down,</span><br><span class="line">    Directions.Left,</span><br><span class="line">    Directions.Right</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>外部枚举与声明语句一样，常出现在声明文件中。<br>同时使用<code>declare</code>和<code>const</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">declare const enum Directions &#123;</span><br><span class="line">  Up,</span><br><span class="line">  Down,</span><br><span class="line">  Left,</span><br><span class="line">  Right</span><br><span class="line">&#125;</span><br><span class="line">let directions = [</span><br><span class="line">  Directions.Up,</span><br><span class="line">  Directions.Down,</span><br><span class="line">  Directions.Left,</span><br><span class="line">  Directions.Right</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>编译为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var directions = [</span><br><span class="line">    0,</span><br><span class="line">    1,</span><br><span class="line">    2,</span><br><span class="line">    3</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><h2 id="类的概念"><a href="#类的概念" class="headerlink" title="类的概念"></a>类的概念</h2><ul>
+<li>类（Class）：定义一件事物的抽象特定，包含属性和方法</li>
+<li>对象（Object）：类的实例，通过 new 生成</li>
+<li>面向对象（OOP）的三大特点：封装、继承、多态</li>
+<li>封装（Encapsulation）：将对数据的操作细节隐藏起来，只暴露对外的接口。调用端不需要知道细节，只能通过对外接口来访问该对象，同时也保证外界无法任意更改对象内部的数据</li>
+<li>继承（Inheritance）：子类继承父类，子类除了拥有父类的所有特性外，还有一些更具体的特性</li>
+<li>多态（Polymorphism）：由继承而产生了相关的不同的类，对同一个方法可以有不同的响应。</li>
+<li>存取器（getter &amp; setter）：用以改变属性的读取和赋值行为</li>
+<li>修饰器（Modifiers）：修饰符是关键字，用以限定成员或类型的性质。比如 public 表示公有属性或方法</li>
+<li>抽象类（Abstract Class）：抽象类是供其他类继承的基类，抽象类不允许被实例化。抽象类中的抽象方法必须在子类中被实现</li>
+<li>接口（Interfaces）：不同类之间公有的属性或方法，可以抽象成一个接口。</li>
+</ul>
+<h2 id="ES6-中类的用法"><a href="#ES6-中类的用法" class="headerlink" title="ES6 中类的用法"></a>ES6 中类的用法</h2><h3 id="属性和方法"><a href="#属性和方法" class="headerlink" title="属性和方法"></a>属性和方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  sayHi() &#123;</span><br><span class="line">    return `My name is $&#123;this.name&#125;`;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let a = new Animal(&quot;Jack&quot;);</span><br><span class="line">console.log(a.sayHi()); //My name is Jack</span><br></pre></td></tr></table></figure>
+<p>使用<code>class</code>定义类，使用<code>constructor</code>定义构造函数。<br>使用<code>new</code>实例化</p>
+<h3 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Cat extends Animal &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    super(name); //调用父类的constructor(name)</span><br><span class="line">    console.log(this.name);</span><br><span class="line">  &#125;</span><br><span class="line">  sayHi() &#123;</span><br><span class="line">    return &quot;Meow,&quot; + super.sayHi(); //调用父类的sayHi()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let c = new Cat(&quot;Tom&quot;); //Tom</span><br><span class="line">console.log(c.sayHi());//Meow,My name is Tom</span><br></pre></td></tr></table></figure>
+<h3 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get name() &#123;</span><br><span class="line">    return &quot;Jack&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  set name(value) &#123;</span><br><span class="line">    console.log(&quot;setter:&quot; + value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let a = new Animal(&quot;Kitty&quot;); //setter:Kitty</span><br><span class="line">a.name = &quot;Tom&quot;; //setter:Tom</span><br><span class="line">console.log(a.name); //Jack</span><br></pre></td></tr></table></figure>
+<p>使用 getter 和 setter 改变属性的赋值和读取行为</p>
+<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>使用<code>static</code>修饰符修饰的方法称为静态方法，不需要实例化，而是直接通过类来调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  static isAnimal(a) &#123;</span><br><span class="line">    return a instanceof Animal;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let a = new Animal(&quot;Kitty&quot;); //setter:Kitty</span><br><span class="line">console.log(Animal.isAnimal(a)); //true</span><br><span class="line">a.isAnimal(a);//a.isAnimal is not a function</span><br></pre></td></tr></table></figure>
+<h2 id="ES7-中类的用法"><a href="#ES7-中类的用法" class="headerlink" title="ES7 中类的用法"></a>ES7 中类的用法</h2><h3 id="实例属性"><a href="#实例属性" class="headerlink" title="实例属性"></a>实例属性</h3><p>ES6 中实例的属性只能通过构造函数中的<code>this.xxx</code>来定义，ES7 提案中可以在类中定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  name = &quot;Jack&quot;;</span><br><span class="line">  constructor() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">let a = new Animal();</span><br><span class="line">console.log(a.name);//Jack</span><br></pre></td></tr></table></figure>
+<h3 id="静态属性"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h3><p>ES7 提案中，可以使用<code>static</code>定义一个静态属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">    static num = 42;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        // ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(Animal.num); // 42</span><br></pre></td></tr></table></figure>
+<h1 id="TypeScript-中类的用法"><a href="#TypeScript-中类的用法" class="headerlink" title="TypeScript 中类的用法"></a>TypeScript 中类的用法</h1><h2 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h2><ul>
+<li><code>public</code>修饰的属性或方法是公有的，可以在任何地方被访问到，默认所有的属性和方法都是<code>public</code>的</li>
+<li><code>private</code>修饰的属性或方法是私有的，不能在声明它的类的外部访问</li>
+<li><code>protected</code>修饰的属性或方法是受保护的，和<code>private</code>类似，区别在于它的子类中也允许被访问</li>
+</ul>
+<h4 id="public"><a href="#public" class="headerlink" title="public"></a>public</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  public name;</span><br><span class="line">  public constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let an = new Animal(&quot;Jack&quot;);</span><br><span class="line">console.log(an.name); //Jack</span><br><span class="line">an.name = &quot;Tom&quot;;</span><br><span class="line">console.log(an.name); //Tom</span><br></pre></td></tr></table></figure>
+<h4 id="private"><a href="#private" class="headerlink" title="private"></a>private</h4><p>希望有的属性无法直接存取的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  private name;</span><br><span class="line">  public constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let an = new Animal(&quot;Jack&quot;);</span><br><span class="line">console.log(an.name);</span><br><span class="line">//error TS2341: Property &apos;name&apos; is private and only accessible within class &apos;Animal&apos;.</span><br><span class="line">an.name = &quot;Tom&quot;;</span><br><span class="line">//error TS2341: Property &apos;name&apos; is private and only accessible within class &apos;Animal&apos;.</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var Animal = (function () &#123;</span><br><span class="line">    function Animal(name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    return Animal;</span><br><span class="line">&#125;());</span><br><span class="line">var an = new Animal(&quot;Jack&quot;);</span><br><span class="line">console.log(an.name);</span><br><span class="line">an.name = &quot;Tom&quot;;</span><br></pre></td></tr></table></figure>
+<p>注意，TypeScript 编译之后的代码中，并没有限制 private 属性在外部的可访问性。</p>
+<p><code>private</code>修饰的属性或方法，在子类中也是不允许访问的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  private name;</span><br><span class="line">  public constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Cat extends Animal &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    super(name);</span><br><span class="line">    console.log(this.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">//error TS2341: Property &apos;name&apos; is private and only accessible within class &apos;Animal&apos;.</span><br></pre></td></tr></table></figure>
+<p>当构造函数修饰为<code>private</code>时，该类不允许被继承或实例化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  public name;</span><br><span class="line">  private constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Cat extends Animal &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    super(name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let a = new Animal(&quot;Jack&quot;);</span><br><span class="line">//error TS2451: Cannot redeclare block-scoped variable &apos;a&apos;</span><br><span class="line">//error TS2673: Constructor of class &apos;Animal&apos; is private and only accessible within the class declaration.</span><br></pre></td></tr></table></figure>
+<p>修饰符还可以使用在构造函数参数中，等同于类中定义该属性，使代码更简洁</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  // public name: string;</span><br><span class="line">  public constructor(public name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h4><p>如果使用<code>protected</code>修饰属性，则允许在子类中访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  protected name;</span><br><span class="line">  public constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Cat extends Animal &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    super(name);</span><br><span class="line">    console.log(this.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用<code>protected</code>修饰构造函数时，该类只允许被继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  public name;</span><br><span class="line">  protected constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Cat extends Animal &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    super(name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let a = new Animal(&quot;Jack&quot;);</span><br><span class="line">//error TS2674: Constructor of class &apos;Animal&apos; is protected and only accessible within the class declaration.</span><br></pre></td></tr></table></figure>
+<h3 id="readonly"><a href="#readonly" class="headerlink" title="readonly"></a>readonly</h3><p>只读关键字属性，只允许出现在属性声明或索引签名中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  readonly name;</span><br><span class="line">  public constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let an = new Animal(&quot;Jack&quot;);</span><br><span class="line">console.log(an.name); //Jack</span><br><span class="line">a.name = &quot;Tom&quot;;</span><br><span class="line">//error TS2540: Cannot assign to &apos;name&apos; because it is a read-only property.</span><br></pre></td></tr></table></figure>
+<p><strong>注意，如果 readonly 和其他访问修饰符同时存在的话，需要写在其后面</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  public constructor(public readonly name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p><code>abstract</code>用于定义抽象类和其中的抽象方法</p>
+<ol>
+<li>抽象类不允许被实例化</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">abstract class Animal &#123;</span><br><span class="line">  public name;</span><br><span class="line">  public constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  public abstract sayHi();</span><br><span class="line">&#125;</span><br><span class="line">let a = new Animal(&quot;Jack&quot;);</span><br><span class="line">// error TS2511: Cannot create an instance of an abstract class.</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>抽象类中的抽象方法必须被子类实现</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">abstract class Animal &#123;</span><br><span class="line">  public name;</span><br><span class="line">  public constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  public abstract sayHi();</span><br><span class="line">&#125;</span><br><span class="line">class Cat extends Animal &#123;</span><br><span class="line">  public eat() &#123;</span><br><span class="line">    console.log(`$&#123;this.name&#125;is eating.`);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let cat = new Cat(&quot;Tom&quot;);</span><br><span class="line">//error TS2515: Non-abstract class &apos;Cat&apos; does not implement inherited abstract member &apos;sayHi&apos; from class &apos;Animal&apos;.</span><br></pre></td></tr></table></figure>
+<p>继承抽象类，实现抽象方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">abstract class Animal &#123;</span><br><span class="line">  public name;</span><br><span class="line">  public constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  public abstract sayHi();</span><br><span class="line">&#125;</span><br><span class="line">class Cat extends Animal &#123;</span><br><span class="line">  public sayHi() &#123;</span><br><span class="line">    console.log(`Meow，My name is $&#123;this.name&#125;.`);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let cat = new Cat(&quot;Tom&quot;);</span><br></pre></td></tr></table></figure>
+<p>编译结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var Animal = (function () &#123;</span><br><span class="line">    function Animal(name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    return Animal;</span><br><span class="line">&#125;());</span><br><span class="line">var Cat = (function (_super) &#123;</span><br><span class="line">    __extends(Cat, _super);</span><br><span class="line">    function Cat() &#123;</span><br><span class="line">        return _super !== null &amp;&amp; _super.apply(this, arguments) || this;</span><br><span class="line">    &#125;</span><br><span class="line">    Cat.prototype.sayHi = function () &#123;</span><br><span class="line">        console.log(&quot;Meow\uFF0CMy name is &quot; + this.name + &quot;.&quot;);</span><br><span class="line">    &#125;;</span><br><span class="line">    return Cat;</span><br><span class="line">&#125;(Animal));</span><br><span class="line">var cat = new Cat(&quot;Tom&quot;);</span><br></pre></td></tr></table></figure>
+<p><strong>需要注意的是，即使是抽象方法，TypeScript 的编译结果中，仍然会存在这个类</strong></p>
+<h2 id="类的类型"><a href="#类的类型" class="headerlink" title="类的类型"></a>类的类型</h2><p>给类加上 TypeScript 的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  constructor(name: string) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  sayHi(): string &#123;</span><br><span class="line">    return `My name is $&#123;this.name&#125;.`;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let an: Animal = new Animal(&quot;Jack&quot;);</span><br><span class="line">console.log(an.sayHi());//My name is Jack.</span><br></pre></td></tr></table></figure>
+<h2 id="在-TypeScript-使用泛型创建工厂函数时，需要引用构造函数的类类型"><a href="#在-TypeScript-使用泛型创建工厂函数时，需要引用构造函数的类类型" class="headerlink" title="在 TypeScript 使用泛型创建工厂函数时，需要引用构造函数的类类型"></a>在 TypeScript 使用泛型创建工厂函数时，需要引用构造函数的类类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function create&lt;T&gt;(c: &#123;new(): T; &#125;): T &#123;//这边的new()不好理解</span><br><span class="line">    return new c();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>传入一个参数，此参数实例化后生成是 T 类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class BeeKeeper &#123;</span><br><span class="line">    hasMask: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ZooKeeper &#123;</span><br><span class="line">    nametag: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Animal &#123;</span><br><span class="line">    numLegs: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Bee extends Animal &#123;</span><br><span class="line">    keeper: BeeKeeper;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Lion extends Animal &#123;</span><br><span class="line">    keeper: ZooKeeper;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createInstance&lt;A extends Animal&gt;(c: new () =&gt; A): A &#123;</span><br><span class="line">    return new c();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">createInstance(Lion).keeper.nametag;  // typechecks!</span><br><span class="line">createInstance(Bee).keeper.hasMask;   // typechecks!</span><br></pre></td></tr></table></figure>
+<p>createInstance 函数的参数是构造函数没有参数的 A 类的类型。</p>
+<h1 id="类与接口"><a href="#类与接口" class="headerlink" title="类与接口"></a>类与接口</h1><h2 id="类实现接口"><a href="#类实现接口" class="headerlink" title="类实现接口"></a>类实现接口</h2><p>不同类之间共有特性，把特性提取成接口，用<code>implements</code>关键字实现。提高了面向对象的灵活性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">interface Alarm &#123;</span><br><span class="line">  alert();</span><br><span class="line">&#125;</span><br><span class="line">class Door &#123;&#125;</span><br><span class="line">class SecurityDoor extends Door implements Alarm &#123;</span><br><span class="line">  alert() &#123;</span><br><span class="line">    console.log(&quot;SecurityDoor alert&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Car implements Alarm &#123;</span><br><span class="line">  alert() &#123;</span><br><span class="line">    console.log(&quot;Car alert&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个类实现多个接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">interface Alarm &#123;</span><br><span class="line">  alert();</span><br><span class="line">&#125;</span><br><span class="line">interface Light &#123;</span><br><span class="line">  lightOn();</span><br><span class="line">  lightOff();</span><br><span class="line">&#125;</span><br><span class="line">class Door &#123;&#125;</span><br><span class="line">class Car implements Alarm &#123;</span><br><span class="line">  alert() &#123;</span><br><span class="line">    console.log(&quot;Car alert&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  lightOn() &#123;</span><br><span class="line">    console.log(&quot;Car light on&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  lightOff() &#123;</span><br><span class="line">    console.log(&quot;Car light off&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="接口继承接口"><a href="#接口继承接口" class="headerlink" title="接口继承接口"></a>接口继承接口</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">interface Alarm &#123;</span><br><span class="line">  alert();</span><br><span class="line">&#125;</span><br><span class="line">interface Light &#123;</span><br><span class="line">  lightOn();</span><br><span class="line">  lightOff();</span><br><span class="line">&#125;</span><br><span class="line">interface LightableAlarm extends Alarm &#123;</span><br><span class="line">  lightOn();</span><br><span class="line">  lightOff();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="接口继承类"><a href="#接口继承类" class="headerlink" title="接口继承类"></a>接口继承类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Point &#123;</span><br><span class="line">  x: number;</span><br><span class="line">  y: number;</span><br><span class="line">&#125;</span><br><span class="line">interface Point3d extends Point &#123;</span><br><span class="line">  z: number;</span><br><span class="line">&#125;</span><br><span class="line">let Point3d: Point3d = &#123; x: 1, y: 2, z: 3 &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="混合类型"><a href="#混合类型" class="headerlink" title="混合类型"></a>混合类型</h2><p>使用接口定义一个函数需要符合的形状</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface SearchFunc &#123;</span><br><span class="line">  (source: string, subString: string): boolean;</span><br><span class="line">&#125;</span><br><span class="line">let mySearch: SearchFunc;</span><br><span class="line">mySearch = function(source: string, subString: string) &#123;</span><br><span class="line">  return source.search(subString) !== 1;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>函数还可以有自己的属性和方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getCounter(): Counter &#123;</span><br><span class="line">  let counter = &lt;Counter&gt;function(start: number) &#123;&#125;;</span><br><span class="line">  counter.interval = 123;</span><br><span class="line">  counter.reset = function() &#123;&#125;;</span><br><span class="line">  return counter;</span><br><span class="line">&#125;</span><br><span class="line">let c = getCounter();</span><br><span class="line">c(10);</span><br><span class="line">c.reset();</span><br><span class="line">c.interval = 5.0;</span><br></pre></td></tr></table></figure>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>定义函数、接口或类的时候，先不指定具体的类型，而在使用的时候再指定类型</p>
+<h2 id="例子-简单"><a href="#例子-简单" class="headerlink" title="例子-简单"></a>例子-简单</h2><p>创建一个指定长度的数组，同时将每一项填充默认值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function createArray(length: number, value: any): Array&lt;any&gt; &#123;</span><br><span class="line">    let result = [];</span><br><span class="line">    for (let i = 0; i &lt; length; i++) &#123;</span><br><span class="line">        result[i] = value;</span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line">createArray(3, &apos;x&apos;); // [&apos;x&apos;, &apos;x&apos;, &apos;x&apos;]</span><br></pre></td></tr></table></figure>
+<p>返回值为数组泛型，并没有准确定义。实际上每一项的类型就是<code>value</code>的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function createArray&lt;T&gt;(length: number, value: T): Array&lt;T&gt; &#123;</span><br><span class="line">  let result: T[] = [];</span><br><span class="line">  for (let i = 0; i &lt; length; i++) &#123;</span><br><span class="line">    result[i] = value;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line">console.log(createArray&lt;string&gt;(3, &quot;x&quot;));</span><br></pre></td></tr></table></figure>
+<p>函数名字后的 T 定义任意输入类型，后面的参数<code>value:T</code>和输出<code>Array&lt;T&gt;</code>中即可使用。<br>调用的时候可以在函数名称后面指定类型，也可以不指定，而让类型推论自动推算。</p>
+<h2 id="多个类型参数"><a href="#多个类型参数" class="headerlink" title="多个类型参数"></a>多个类型参数</h2><p>一次定义多个泛型参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function swap&lt;T, U&gt;(tuple: [T, U]): [U, T] &#123;</span><br><span class="line">  return [tuple[1], tuple[0]];</span><br><span class="line">&#125;</span><br><span class="line">swap([7, &quot;seven&quot;]);</span><br></pre></td></tr></table></figure>
+<p>交换元组</p>
+<h2 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h2><p>在函数内部使用泛型变量，由于不知道它是哪种类型，所以不能随意操作它的属性或方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function loggingIdentity&lt;T&gt;(arg: T): T &#123;</span><br><span class="line">  console.log(arg.length);</span><br><span class="line">  return arg;</span><br><span class="line">&#125;</span><br><span class="line">// error TS2339: Property &apos;length&apos; does not exist on type &apos;T&apos;.</span><br></pre></td></tr></table></figure>
+<p>可以对泛型进行约束，只允许传入那些包含<code>length</code>属性的变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface Lengthwise &#123;</span><br><span class="line">  length: number;</span><br><span class="line">&#125;</span><br><span class="line">function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T): T &#123;</span><br><span class="line">  console.log(arg.length);</span><br><span class="line">  return arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用<code>extends</code>约束泛型<code>T</code>，必须符合接口<code>Lengthwise</code>的形状，也就是必须包含<code>length</code>属性<br>如果传入的参数不符合类型约束，编译阶段就会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">loggingIdentity(7);</span><br><span class="line">//error TS2345: Argument of type &apos;7&apos; is not assignable to parameter of type &apos;Lengthwise&apos;.</span><br></pre></td></tr></table></figure>
+<p>多个类型参数之间也能相互约束：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function copyFields&lt;T extends U, U&gt;(target: T, source: U): T &#123;</span><br><span class="line">  for (let id in source) &#123;</span><br><span class="line">    target[id] = (&lt;T&gt;source)[id];</span><br><span class="line">  &#125;</span><br><span class="line">  return target;</span><br><span class="line">&#125;</span><br><span class="line">let t = &#123; a: 1, b: 2, c: 3, d: 4 &#125;;</span><br><span class="line">copyFields(t, &#123; b: 10, d: 20 &#125;);</span><br></pre></td></tr></table></figure>
+<p>使用了两个类型参数，其中要求 T 继承 U，这样就保证了 U 上不会出现 T 中不存在的字段。</p>
+<h2 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h2><p>可以使用接口的方式来定义一个函数需要符合的形状</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">interface CreateArrayFunc &#123;</span><br><span class="line">  &lt;T&gt;(length: number, value: T): Array&lt;T&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let createArray: CreateArrayFunc;</span><br><span class="line">createArray = function&lt;T&gt;(length: number, value: T): Array&lt;T&gt; &#123;</span><br><span class="line">  let result: T[] = [];</span><br><span class="line">  for (let i = 0; i &lt; length; i++) &#123;</span><br><span class="line">    result[i] = value;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(createArray(3, &quot;x&quot;)); //[&apos;x&apos;,&apos;x&apos;,&apos;x&apos;]</span><br></pre></td></tr></table></figure>
+<p>可以把泛型接口提前到接口名上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface CreateArrayFunc&lt;T&gt;&#123;</span><br><span class="line">  (length: number, value: T): Array&lt;T&gt;;</span><br><span class="line">&#125;</span><br><span class="line">let createArray: CreateArrayFunc&lt;any&gt;;</span><br><span class="line">createArray = function&lt;T&gt;(length: number, value: T): Array&lt;T&gt; &#123;</span><br><span class="line">    let result: T[] = [];</span><br><span class="line">    for (let i = 0; i &lt; length; i++) &#123;</span><br><span class="line">        result[i] = value;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">createArray(3, &apos;x&apos;); // [&apos;x&apos;, &apos;x&apos;, &apos;x&apos;]</span><br></pre></td></tr></table></figure>
+<p><strong>注意，此时在使用泛型接口的时候，需要定义泛型的类型。</strong></p>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class GenericNumber&lt;T&gt; &#123;</span><br><span class="line">  zeroValue: T;</span><br><span class="line">  add: (x: T, y: T) =&gt; T;</span><br><span class="line">&#125;</span><br><span class="line">let myGenericNumber = new GenericNumber&lt;number&gt;();</span><br><span class="line">myGenericNumber.zeroValue = 0;</span><br><span class="line">myGenericNumber.add = function(x, y) &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="泛型参数的默认类型"><a href="#泛型参数的默认类型" class="headerlink" title="泛型参数的默认类型"></a>泛型参数的默认类型</h2><p>TypeScript2.3 以后，可以为泛型中的类型参数指定默认类 U 型，当使用泛型时没有在代码中直接指定类型参数，从实际参数中也无法推测出时，默认类型就会起作用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function createArray&lt;T = string&gt;(length: number, value: T): Array&lt;T&gt; &#123;</span><br><span class="line">  let result: T[] = [];</span><br><span class="line">  for (let i = 0; i &lt; length; i++) &#123;</span><br><span class="line">    result[i] = value;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="声明合并"><a href="#声明合并" class="headerlink" title="声明合并"></a>声明合并</h1><p>如果定义了两个相同名字的函数、接口或类，会合并成一个类型。</p>
+<h2 id="接口的声明合并"><a href="#接口的声明合并" class="headerlink" title="接口的声明合并"></a>接口的声明合并</h2><p>1.非函数成员<br><strong>注意，合并属性的类型必须是唯一的</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface A&#123;</span><br><span class="line">    x: number;</span><br><span class="line">    y: number,</span><br><span class="line">&#125;</span><br><span class="line">interface A&#123;</span><br><span class="line">    y: number;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">let a: A = &#123;</span><br><span class="line">    x: 1,</span><br><span class="line">    y: 1,</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.函数成员<br><strong>函数重载顺序：接口内部安装书写顺序，正序（先写的在前），接口之间，先写的在后</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">interface A&#123;</span><br><span class="line">    x: number;</span><br><span class="line">    foo(bar: number): number;//3</span><br><span class="line">&#125;</span><br><span class="line">interface A&#123;</span><br><span class="line">    y: number;</span><br><span class="line">    foo(bar: string): string;//1</span><br><span class="line">    foo(bar: number[]):number[]//2</span><br><span class="line">&#125;</span><br><span class="line">let a: A = &#123;</span><br><span class="line">    x: 1,</span><br><span class="line">    y: 1,</span><br><span class="line">    foo(bar: any) &#123;</span><br><span class="line">        return bar</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果函数参数是字符串字面量，该函数声明会提升到最前面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">interface A&#123;</span><br><span class="line">    x: number;</span><br><span class="line">    foo(bar: number): number;//5</span><br><span class="line">    foo(bar: &apos;a&apos;): number//2</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">interface A&#123;</span><br><span class="line">    y: number;</span><br><span class="line">    foo(bar: string): string;//3</span><br><span class="line">    foo(bar: number[]): number[];//4</span><br><span class="line">    foo(bar: &apos;b&apos;): number;//1</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">let a: A = &#123;</span><br><span class="line">    x: 1,</span><br><span class="line">    y: 1,</span><br><span class="line">    foo(bar:any):any &#123;</span><br><span class="line">        return bar</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="命名空间和其他类型的合并"><a href="#命名空间和其他类型的合并" class="headerlink" title="命名空间和其他类型的合并"></a>命名空间和其他类型的合并</h2><p>就相当于在原数据上增加属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function Lib() &#123; &#125;</span><br><span class="line">namespace Lib&#123;</span><br><span class="line">    export let version=&apos;1.0&apos;</span><br><span class="line">&#125;</span><br><span class="line">console.log(Lib.version)//1.0</span><br><span class="line"></span><br><span class="line">class C &#123; &#125;</span><br><span class="line">namespace C&#123;</span><br><span class="line">    export let state=1</span><br><span class="line">&#125;</span><br><span class="line">console.log(C.state)//1</span><br><span class="line"></span><br><span class="line">enum Color&#123;</span><br><span class="line">    Green,</span><br><span class="line">    Red,</span><br><span class="line">    Yellow</span><br><span class="line">&#125;</span><br><span class="line">namespace Color&#123;</span><br><span class="line">    export function mix() &#123;</span><br><span class="line">        return 1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(Color.mix())//1</span><br></pre></td></tr></table></figure>
+<h2 id="函数的合并"><a href="#函数的合并" class="headerlink" title="函数的合并"></a>函数的合并</h2><p>重载定义多个函数类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function reverse(x: number): number;</span><br><span class="line">function reverse(x: string): string;</span><br><span class="line">function reverse(x: number | string): number | string &#123;</span><br><span class="line">    if (typeof x === &apos;number&apos;) &#123;</span><br><span class="line">        return Number(x.toString().split(&apos;&apos;).reverse().join(&apos;&apos;));</span><br><span class="line">    &#125; else if (typeof x === &apos;string&apos;) &#123;</span><br><span class="line">        return x.split(&apos;&apos;).reverse().join(&apos;&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类的合并"><a href="#类的合并" class="headerlink" title="类的合并"></a>类的合并</h2><p>与接口的合并规则一致</p>
+<h1 id="模块导入与导出"><a href="#模块导入与导出" class="headerlink" title="模块导入与导出"></a>模块导入与导出</h1><p>ES6 模块导出，commonJS 模块导入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//导出 es6/d.ts</span><br><span class="line">export =function()&#123;</span><br><span class="line">  console.log(&quot;I&apos;m default&quot;)</span><br><span class="line">&#125;</span><br><span class="line">//不能有其他导出</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//导入 node/c.ts</span><br><span class="line">import fun =require(&apos;../es6/d&apos;)</span><br><span class="line">//如果项目tsconfig配置“esModuleInterop”:true</span><br><span class="line">//可以写成</span><br><span class="line">import fun from &apos;../ed6/d&apos;</span><br></pre></td></tr></table></figure>
+<h1 id="编写声明文件"><a href="#编写声明文件" class="headerlink" title="编写声明文件"></a>编写声明文件</h1><h2 id="global-库"><a href="#global-库" class="headerlink" title="global 库"></a>global 库</h2><p>//global-lib.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function globalLib(options) &#123;</span><br><span class="line">  console.log(options);</span><br><span class="line">&#125;</span><br><span class="line">globalLib.version = &quot;1.0.0&quot;;</span><br><span class="line">globalLib.doSomething = function () &#123;</span><br><span class="line">  console.log(&quot;globalLib do somethings&quot;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>global-lib.d.ts</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">declare function globalLib(options: globalLib.Options): void;</span><br><span class="line">  declare namespace globalLib &#123;</span><br><span class="line">    const version: string;</span><br><span class="line">    function doSomething(): void;</span><br><span class="line">    interface Options &#123;</span><br><span class="line">    [key: string]: any;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用<br>引入<code>&lt;script src=&#39;src/lib/global-lib.js&#39;&gt;&lt;/script&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">globalLib(&#123; x: 1 &#125;);</span><br><span class="line">globalLib.doSomething();</span><br></pre></td></tr></table></figure>
+<h2 id="module-库"><a href="#module-库" class="headerlink" title="module 库"></a>module 库</h2><p>module-lib.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const version = &quot;1.0.0&quot;;</span><br><span class="line">function doSomething() &#123;</span><br><span class="line">  console.log(&quot;moduleLib do something&quot;);</span><br><span class="line">&#125;</span><br><span class="line">function moduleLib(options) &#123;</span><br><span class="line">  console.log(options);</span><br><span class="line">&#125;</span><br><span class="line">moduleLib.version = version;</span><br><span class="line">moduleLib.doSomething = doSomething;</span><br><span class="line">module.exports = moduleLib;</span><br></pre></td></tr></table></figure>
+<p>module-lib.d.ts</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">declare function moduleLib(options: Options): void;</span><br><span class="line">interface Options &#123;</span><br><span class="line">  [key: string]: any;</span><br><span class="line">&#125;</span><br><span class="line">declare namespace moduleLib &#123;</span><br><span class="line">  export const version: string;</span><br><span class="line">  function doSomething(): void;</span><br><span class="line">&#125;</span><br><span class="line">export = moduleLib;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import moduleLib from &quot;./module-lib&quot;;</span><br><span class="line">moduleLib(&#123; x: 2 &#125;);</span><br><span class="line">moduleLib.doSomething();</span><br></pre></td></tr></table></figure>
+<h2 id="umd-库"><a href="#umd-库" class="headerlink" title="umd 库"></a>umd 库</h2><p>umd-lib.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(function (root, factory) &#123;</span><br><span class="line">  if (typeof define === &quot;function&quot; &amp;&amp; define.amd) &#123;</span><br><span class="line">    define(factory);</span><br><span class="line">  &#125; else if (typeof module === &quot;object&quot; &amp;&amp; module.exports) &#123;</span><br><span class="line">    module.exports = factory();</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    root.umdLib = factory();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)(this, function () &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    version: &quot;1.0.0&quot;,</span><br><span class="line">    doSomething() &#123;</span><br><span class="line">      console.log(&quot;umdLib do something&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>umd-lib.d.ts</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">declare namespace umdLib &#123;</span><br><span class="line">  const version: string;</span><br><span class="line">  function doSomething(): void;</span><br><span class="line">&#125;</span><br><span class="line">export as namespace umdLib;</span><br><span class="line">export = umdLib;</span><br></pre></td></tr></table></figure>
+<p>使用 1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import umdLib from &quot;./umd-lib.js&quot;;</span><br><span class="line">umdLib.doSomething();</span><br></pre></td></tr></table></figure>
+<p>使用 2<br>引入<code>&lt;script src=&#39;src/lib/umd-lib.js&#39;&gt;&lt;/script&gt;</code><br>需要 ts 配置<code>&quot;allowUmdGlobalAccess&quot;: true</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umdLib.doSomething();</span><br></pre></td></tr></table></figure>
+<h2 id="为库增加属性"><a href="#为库增加属性" class="headerlink" title="为库增加属性"></a>为库增加属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import m from &quot;moment&quot;;</span><br><span class="line">declare module &quot;moment&quot; &#123;</span><br><span class="line">  export function myFunction(): void;</span><br><span class="line">&#125;</span><br><span class="line">m.myFunction = () =&gt; &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="为全局类库增加方法-不建议使用"><a href="#为全局类库增加方法-不建议使用" class="headerlink" title="为全局类库增加方法(不建议使用)"></a>为全局类库增加方法(不建议使用)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">declare global &#123;</span><br><span class="line">  namespace globalLib &#123;</span><br><span class="line">    function doAnything(): void;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">globalLib.doAnything = () =&gt; &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="ts-配置选项"><a href="#ts-配置选项" class="headerlink" title="ts 配置选项"></a>ts 配置选项</h1><p>默认配置：<code>ts -- init</code>生成 ts 默认配置文件</p>
+<h2 id="文件选项"><a href="#文件选项" class="headerlink" title="文件选项"></a>文件选项</h2><h3 id="files-：指定-ts-编译的文件，数组"><a href="#files-：指定-ts-编译的文件，数组" class="headerlink" title="files ：指定 ts 编译的文件，数组"></a>files ：指定 ts 编译的文件，数组</h3><p><code>&quot;files&quot;: [&quot;src/a.ts&quot;]</code></p>
+<h3 id="include-：指定-ts-编译的路径或文件"><a href="#include-：指定-ts-编译的路径或文件" class="headerlink" title="include ：指定 ts 编译的路径或文件"></a>include ：指定 ts 编译的路径或文件</h3><p><code>&quot;include&quot;: [&quot;src/a.ts&quot;,&quot;src/lib&quot;]</code><br>支持通配符<br><code>&quot;src&quot;</code>：包括 src 里面所有的文件<br><code>&quot;src/*&quot;</code>：仅包括 src 一级目录的文件<br><code>&quot;src/*/*&quot;</code>：仅包括 src 二级目录的文件</p>
+<p>编译配置拆分<br>tsconfig.base.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;files&quot;: [&quot;src/a.ts&quot;],</span><br><span class="line">  &quot;include&quot;: [&quot;src&quot;], //通配符 src/*仅src一级目录，src/*/*仅src二级目录</span><br><span class="line">  &quot;exclude&quot;: [&quot;src/lib&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>tsconfig.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;extends&quot;: &quot;./tsconfig.base.json&quot;,</span><br><span class="line">  &quot;exclude&quot;: []//覆盖base里面属性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="编译选项"><a href="#编译选项" class="headerlink" title="编译选项"></a>编译选项</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;include&quot;: [&quot;src&quot;],</span><br><span class="line">  &quot;compilerOptions&quot;: &#123;</span><br><span class="line">    /* Basic Options */</span><br><span class="line">    // &quot;incremental&quot;: true /* 增量编译，生成编译文件 */,</span><br><span class="line">    // &quot;diagnostics&quot;: true /*打印诊断信息*/,</span><br><span class="line">    // &quot;tsBuildInfoFile&quot;: &quot;./buildFile/&quot; /* 指定增量编译文件的名字 */,</span><br><span class="line"></span><br><span class="line">    &quot;target&quot;: &quot;es5&quot; /* Specify ECMAScript target version: &apos;ES3&apos; (default), &apos;ES5&apos;, &apos;ES2015&apos;, &apos;ES2016&apos;, &apos;ES2017&apos;, &apos;ES2018&apos;, &apos;ES2019&apos; or &apos;ESNEXT&apos;. */,</span><br><span class="line">    // &quot;module&quot;: &quot;amd&quot; /* Specify module code generation: &apos;none&apos;, &apos;commonjs&apos;, &apos;amd&apos;, &apos;system&apos;, &apos;umd&apos;, &apos;es2015&apos;, or &apos;ESNext&apos;. */,</span><br><span class="line">    // &quot;outFile&quot;: &quot;./app.js&quot; /* 多个相互依赖的文件编译成一个文件，用于AMD模块中 &quot;module&quot;: &quot;amd&quot;*/,</span><br><span class="line"></span><br><span class="line">    // &quot;lib&quot;: [</span><br><span class="line">    //   &quot;dom&quot;,</span><br><span class="line">    //   &quot;es5&quot;,</span><br><span class="line">    //   &quot;ScriptHost&quot;,</span><br><span class="line">    //   &quot;ES2019.Array&quot;</span><br><span class="line">    // ] /*TS需要引用的库，即声明文件，。es5默认&quot;dom&quot;,&quot;es5&quot;,&quot;ScriptHost&quot; */,</span><br><span class="line"></span><br><span class="line">    // &quot;allowJs&quot;: true /* 允许编译js文件 (.js,jsx) 要指定输出目录，否则报错覆盖原文件*/,</span><br><span class="line">    // &quot;checkJs&quot;: true /* 允许报告.js文件中的错误，与allowJs配合使用 */,</span><br><span class="line">    // &quot;outDir&quot;: &quot;./dest&quot; /* 指定输出目录 */,</span><br><span class="line">    // &quot;rootDir&quot;: &quot;./src&quot; /* 指定输入文件目录（用于控制输出目录结构) ./：输出dest包含src目录，./src:输出dest不包含src目录*/,</span><br><span class="line"></span><br><span class="line">    // &quot;declaration&quot;: true /* 生成声明文件 &apos;.d.ts&apos; */,</span><br><span class="line">    // &quot;declarationDir&quot;: &quot;./types&quot; /* 声明文件的目录 相对于根目录*/,</span><br><span class="line">    // &quot;emitDeclarationOnly&quot;: true /*只生成声明文件*/,</span><br><span class="line"></span><br><span class="line">    // &quot;sourceMap&quot;: true /* 生成source map文件*/,</span><br><span class="line"></span><br><span class="line">    // &quot;inlineSourceMap&quot;: true /*行内source map文件*/,</span><br><span class="line">    // &quot;declarationMap&quot;: true /* 声明文件的source map文件 */,</span><br><span class="line"></span><br><span class="line">    //  &quot;typeRoots&quot;: [] /* 声明文件目录。默认node_modules/@types */,</span><br><span class="line">    // &quot;types&quot;: [] /* 指定需要加载的声明文件包*/</span><br><span class="line"></span><br><span class="line">    // &quot;removeComments&quot;: true /* 删除注释 */,</span><br><span class="line"></span><br><span class="line">    // &quot;noEmit&quot;: true /* 不输出任何文件 */,</span><br><span class="line">    // &quot;noEmitOnError&quot;: true /* 出错时不输出任何文件 */,</span><br><span class="line"></span><br><span class="line">    // &quot;noEmitHelpers&quot;: true /* 不生成helper函数， 安装ts-helpers*/,</span><br><span class="line">    // &quot;importHelpers&quot;: true /* 通过tslib引入helper函数，文件必须是模块 */,</span><br><span class="line"></span><br><span class="line">    // &quot;downlevelIteration&quot;: true /*降级遍历器实现(es3/es5)*/,</span><br><span class="line"></span><br><span class="line">    /* Strict Type-Checking Options */</span><br><span class="line">    &quot;strict&quot;: true /* 开启所有严格的类型检查，为true时，下面所有配置都为true */,</span><br><span class="line">    // &quot;noImplicitAny&quot;: true,                 /* 不允许隐式的any类型 */</span><br><span class="line">    // &quot;strictNullChecks&quot;: true,              /* 不允许把null、undefined赋值给其他类型的变量 */</span><br><span class="line">    // &quot;strictFunctionTypes&quot;: true,           /* 不允许函数参数双向协变*/</span><br><span class="line">    // &quot;strictBindCallApply&quot;: false /* 严格的&apos;bind&apos;, &apos;call&apos;, and &apos;apply&apos; 检查,参数类型不再默认转换*/,</span><br><span class="line">    // &quot;strictPropertyInitialization&quot;: true,  /* 类的实例属性必须初始化 */</span><br><span class="line">    // &quot;noImplicitThis&quot;: false /* 不允许this隐式的&apos;any&apos; 类型. */,</span><br><span class="line">    // &quot;alwaysStrict&quot;: true,                  /* 在代码中注入&quot;use strict&quot;*/</span><br><span class="line"></span><br><span class="line">    /* Additional Checks warning*/</span><br><span class="line">    // &quot;noUnusedLocals&quot;: true,                /*不允许出现声明但未使用的局部变量 */</span><br><span class="line">    // &quot;noUnusedParameters&quot;: true,            /* 检查未使用的函数参会时 */</span><br><span class="line">    // &quot;noImplicitReturns&quot;: true,             /* 每个分支都要有返回值*/</span><br><span class="line">    // &quot;noFallthroughCasesInSwitch&quot;: true,    /* 防止switch语句贯穿 */</span><br><span class="line"></span><br><span class="line">    // &quot;esModuleInterop&quot;: true /*允许export=导出，由import from 导入 */,</span><br><span class="line">    // &quot;allowUmdGlobalAccess&quot;: true,          /* 允许在模块中访问UMD全局变量 */</span><br><span class="line">    // &quot;moduleResolution&quot;: &quot;node&quot;,            /* 模块解析策略 */</span><br><span class="line">    // &quot;baseUrl&quot;: &quot;./&quot;,                       /* 解析非相对模块的基地址 */</span><br><span class="line">    // &quot;paths&quot;: &#123;</span><br><span class="line">    // &quot;jquery&quot;:[&quot;node_modules/jquery/jquery/dist/jquery.min.js&quot;]</span><br><span class="line">    // &#125;,                           /* 路径映射，相对于 &apos;baseUrl&apos;. */</span><br><span class="line">    // &quot;rootDirs&quot;: [&quot;src&quot;,&quot;out&quot;],                        /* 项目运行时将多个目录放到一个虚拟目录下 */</span><br><span class="line">    &quot;jsx&quot;: &quot;react&quot; /*  &apos;preserve&apos;生成代码保留jsx格式,扩展名jsx,可以被babel使用, &apos;react-native&apos;生成代码保留jsx格式，扩展名.js, or &apos;react&apos;生成代码js语法 */,</span><br><span class="line">    &quot;listEmittedFiles&quot;: true /* 打印编译后的输出文件路径*/,</span><br><span class="line">    &quot;listFiles&quot;: true /*打印编译文件，（包括引用的声明文件）*/</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="babel-配置"><a href="#babel-配置" class="headerlink" title="babel 配置"></a>babel 配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">loader: &quot;ts-loader&quot;,</span><br><span class="line">  options: &#123;</span><br><span class="line">    transpileOnly: true, //只做语言转换，不做类型检查</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>提高打包效率<br>可以另外安装插件类型检查</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm i fork-ts-checker-webpack-plugin -D</span><br><span class="line"></span><br><span class="line">plugins: [</span><br><span class="line">  new ForkTsCheckerWebpackPlugin(),</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------</div>
+    
+</div>
+
+
+
+      
+    </div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/10/TypeScript基础/" rel="next" title="TypeScript基础">
+                <i class="fa fa-chevron-left"></i> TypeScript基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/04/TypeScript-React/" rel="prev" title="TypeScript+React">
+                TypeScript+React <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="封多多">
+            
+              <p class="site-author-name" itemprop="name">封多多</p>
+              <p class="site-description motion-element" itemprop="description">前端</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="ttps://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fengduoduo@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/8acefb731467" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#类型别名"><span class="nav-number">1.</span> <span class="nav-text">类型别名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#交叉类型"><span class="nav-number">1.1.</span> <span class="nav-text">交叉类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联合类型"><span class="nav-number">1.2.</span> <span class="nav-text">联合类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引类型"><span class="nav-number">1.3.</span> <span class="nav-text">索引类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#映射类型"><span class="nav-number">1.4.</span> <span class="nav-text">映射类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件类型"><span class="nav-number">1.5.</span> <span class="nav-text">条件类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串字面量类型"><span class="nav-number">2.</span> <span class="nav-text">字符串字面量类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元组"><span class="nav-number">3.</span> <span class="nav-text">元组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">3.1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#赋值"><span class="nav-number">3.2.</span> <span class="nav-text">赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问"><span class="nav-number">3.3.</span> <span class="nav-text">访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#越界元素"><span class="nav-number">3.4.</span> <span class="nav-text">越界元素</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举"><span class="nav-number">4.</span> <span class="nav-text">枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#映射"><span class="nav-number">4.1.</span> <span class="nav-text">映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常数项和计算所得项"><span class="nav-number">4.2.</span> <span class="nav-text">常数项和计算所得项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常数枚举"><span class="nav-number">4.3.</span> <span class="nav-text">常数枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外部枚举"><span class="nav-number">4.4.</span> <span class="nav-text">外部枚举</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类"><span class="nav-number">5.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类的概念"><span class="nav-number">5.1.</span> <span class="nav-text">类的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6-中类的用法"><span class="nav-number">5.2.</span> <span class="nav-text">ES6 中类的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性和方法"><span class="nav-number">5.2.1.</span> <span class="nav-text">属性和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的继承"><span class="nav-number">5.2.2.</span> <span class="nav-text">类的继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存取器"><span class="nav-number">5.2.3.</span> <span class="nav-text">存取器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态方法"><span class="nav-number">5.2.4.</span> <span class="nav-text">静态方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES7-中类的用法"><span class="nav-number">5.3.</span> <span class="nav-text">ES7 中类的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例属性"><span class="nav-number">5.3.1.</span> <span class="nav-text">实例属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态属性"><span class="nav-number">5.3.2.</span> <span class="nav-text">静态属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TypeScript-中类的用法"><span class="nav-number">6.</span> <span class="nav-text">TypeScript 中类的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#访问修饰符"><span class="nav-number">6.1.</span> <span class="nav-text">访问修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#public"><span class="nav-number">6.1.0.1.</span> <span class="nav-text">public</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#private"><span class="nav-number">6.1.0.2.</span> <span class="nav-text">private</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#protected"><span class="nav-number">6.1.0.3.</span> <span class="nav-text">protected</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#readonly"><span class="nav-number">6.1.1.</span> <span class="nav-text">readonly</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象类"><span class="nav-number">6.1.2.</span> <span class="nav-text">抽象类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的类型"><span class="nav-number">6.2.</span> <span class="nav-text">类的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-TypeScript-使用泛型创建工厂函数时，需要引用构造函数的类类型"><span class="nav-number">6.3.</span> <span class="nav-text">在 TypeScript 使用泛型创建工厂函数时，需要引用构造函数的类类型</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#类与接口"><span class="nav-number">7.</span> <span class="nav-text">类与接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类实现接口"><span class="nav-number">7.1.</span> <span class="nav-text">类实现接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口继承接口"><span class="nav-number">7.2.</span> <span class="nav-text">接口继承接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口继承类"><span class="nav-number">7.3.</span> <span class="nav-text">接口继承类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#混合类型"><span class="nav-number">7.4.</span> <span class="nav-text">混合类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型"><span class="nav-number">8.</span> <span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例子-简单"><span class="nav-number">8.1.</span> <span class="nav-text">例子-简单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个类型参数"><span class="nav-number">8.2.</span> <span class="nav-text">多个类型参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型约束"><span class="nav-number">8.3.</span> <span class="nav-text">泛型约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型接口"><span class="nav-number">8.4.</span> <span class="nav-text">泛型接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型类"><span class="nav-number">8.5.</span> <span class="nav-text">泛型类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型参数的默认类型"><span class="nav-number">8.6.</span> <span class="nav-text">泛型参数的默认类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#声明合并"><span class="nav-number">9.</span> <span class="nav-text">声明合并</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#接口的声明合并"><span class="nav-number">9.1.</span> <span class="nav-text">接口的声明合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名空间和其他类型的合并"><span class="nav-number">9.2.</span> <span class="nav-text">命名空间和其他类型的合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的合并"><span class="nav-number">9.3.</span> <span class="nav-text">函数的合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的合并"><span class="nav-number">9.4.</span> <span class="nav-text">类的合并</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块导入与导出"><span class="nav-number">10.</span> <span class="nav-text">模块导入与导出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写声明文件"><span class="nav-number">11.</span> <span class="nav-text">编写声明文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#global-库"><span class="nav-number">11.1.</span> <span class="nav-text">global 库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#module-库"><span class="nav-number">11.2.</span> <span class="nav-text">module 库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#umd-库"><span class="nav-number">11.3.</span> <span class="nav-text">umd 库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为库增加属性"><span class="nav-number">11.4.</span> <span class="nav-text">为库增加属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为全局类库增加方法-不建议使用"><span class="nav-number">11.5.</span> <span class="nav-text">为全局类库增加方法(不建议使用)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ts-配置选项"><span class="nav-number">12.</span> <span class="nav-text">ts 配置选项</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件选项"><span class="nav-number">12.1.</span> <span class="nav-text">文件选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#files-：指定-ts-编译的文件，数组"><span class="nav-number">12.1.1.</span> <span class="nav-text">files ：指定 ts 编译的文件，数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#include-：指定-ts-编译的路径或文件"><span class="nav-number">12.1.2.</span> <span class="nav-text">include ：指定 ts 编译的路径或文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译选项"><span class="nav-number">12.2.</span> <span class="nav-text">编译选项</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#babel-配置"><span class="nav-number">13.</span> <span class="nav-text">babel 配置</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">封多多</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">155.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'BTxpKE3VdbvNYiEqX2SeV2tr-gzGzoHsz',
+        appKey: '4J07ASMlcBVdeBV766IuHEf9',
+        placeholder: '留下你的宝贵意见',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":60,"height":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+

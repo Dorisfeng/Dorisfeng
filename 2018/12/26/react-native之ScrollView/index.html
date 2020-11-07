@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+ <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Papyrus:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fdd’Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="ScrollView 是一个通用的可滚动的容器，可以包含多个组件和视图不仅可以垂直滚动也可以水平滚动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-native之ScrollView">
+<meta property="og:url" content="https://dorisfeng.github.io/2018/12/26/react-native之ScrollView/index.html">
+<meta property="og:site_name" content="fdd’Blog">
+<meta property="og:description" content="ScrollView 是一个通用的可滚动的容器，可以包含多个组件和视图不仅可以垂直滚动也可以水平滚动">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/26/react-native之ScrollView/gif1.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/26/react-native之ScrollView/gif2.gif">
+<meta property="og:image" content="https://dorisfeng.github.io/2018/12/26/react-native之ScrollView/gif3.gif">
+<meta property="og:updated_time" content="2020-06-12T03:26:30.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react-native之ScrollView">
+<meta name="twitter:description" content="ScrollView 是一个通用的可滚动的容器，可以包含多个组件和视图不仅可以垂直滚动也可以水平滚动">
+<meta name="twitter:image" content="https://dorisfeng.github.io/2018/12/26/react-native之ScrollView/gif1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dorisfeng.github.io/2018/12/26/react-native之ScrollView/">
+
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "2d87b4e2"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>react-native之ScrollView | fdd’Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+   <a href="https://github.com/Dorisfeng"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fdd’Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dorisfeng.github.io/2018/12/26/react-native之ScrollView/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="封多多">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fdd’Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react-native之ScrollView</h1>
+        
+
+        <div class="post-meta">
+                  
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T16:29:08+08:00">
+                2018-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/react-native/" itemprop="url" rel="index">
+                    <span itemprop="name">react native</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/26/react-native之ScrollView/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/26/react-native之ScrollView/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.7k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11分
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ScrollView 是一个通用的可滚动的容器，可以包含多个组件和视图<br>不仅可以垂直滚动也可以水平滚动</p>
+<a id="more"></a>
+<h1 id="ScrollView"><a href="#ScrollView" class="headerlink" title="ScrollView"></a>ScrollView</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;ScrollView&gt;</span><br><span class="line">        &lt;Text style=&#123;&#123;fontSize:96&#125;&#125;&gt;1 Scroll me plz&lt;/Text&gt;</span><br><span class="line">        &lt;Image source=&#123;&#123;uri: &quot;https://facebook.github.io/react-native/img/favicon.png&quot;, width: 160, height: 160&#125;&#125; /&gt;</span><br><span class="line">        &lt;Text style=&#123;&#123;fontSize:96&#125;&#125;&gt;2 Scroll me plz&lt;/Text&gt;</span><br><span class="line">        &lt;Image source=&#123;&#123;uri: &quot;https://facebook.github.io/react-native/img/favicon.png&quot;, width: 160, height: 160&#125;&#125; /&gt;</span><br><span class="line">        &lt;Text style=&#123;&#123;fontSize:96&#125;&#125;&gt;3 Scroll me plz&lt;/Text&gt;</span><br><span class="line">        &lt;Image source=&#123;&#123;uri: &quot;https://facebook.github.io/react-native/img/favicon.png&quot;, width: 160, height: 160&#125;&#125; /&gt;</span><br><span class="line">        &lt;Text style=&#123;&#123;fontSize:96&#125;&#125;&gt;4 Scroll me plz&lt;/Text&gt;</span><br><span class="line">        &lt;Image source=&#123;&#123;uri: &quot;https://facebook.github.io/react-native/img/favicon.png&quot;, width: 160, height: 160&#125;&#125; /&gt;</span><br><span class="line">    &lt;/ScrollView&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="/2018/12/26/react-native之ScrollView/gif1.gif" alt="react-image-magnify"></p>
+<p><strong>注意事项</strong></p>
+<ul>
+<li>必须有一个固定的高度</li>
+<li>不建议直接  设置高度</li>
+<li>使用 flex:1，使其自动填充父容器的剩余空间。前提条件是所有的父容器本身也设置了 flex 或指定高度。</li>
+<li>ScrollView 内部的其他响应者尚无法阻止 ScrollView 本身成为响应者。</li>
+<li>只适用于简单数据的渲染，逻辑复杂的数据可以使用 Flatlist</li>
+</ul>
+<h3 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h3><ul>
+<li><p>horizontal<br>默认是垂直方向上排成一列<br>horizontal={true}，子视图会在水平方向上排列<br><strong>效果</strong><br><img src="/2018/12/26/react-native之ScrollView/gif2.gif" alt="horizontal"></p>
+</li>
+<li><p>alwaysBounceVertical<br>IOS 属性<br>默认为 true，垂直方向即使内容比滚动视图本身还要小，也可以弹性拉动。<br>当 horizontal={true}时默认值为 false,否则为 true</p>
+</li>
+<li><p>alwaysBounceHorizontal<br>IOS<br>默认为 true，即使水平方向比滚动视图小，也可以弹性拉动。<br>当 horizontal={true}时默认值为 false,否则为 true</p>
+</li>
+<li><p>keyboardDismissMode<br>用户拖动视图的时候，是否要隐藏软键盘<br>通用值：</p>
+<ul>
+<li>none（默认值），拖动时不隐藏软键盘</li>
+<li>on-frag，开始拖拽的时候隐藏软键盘<br> IOS：</li>
+<li>interactive, 软键盘在拖动的时候逐渐消失，并且上滑会恢复键盘。android 设置此属性和 none 效果一致</li>
+</ul>
+</li>
+<li><p>keyboardShouldPersistTaps<br>点击 scrollView 后是否收起软键盘</p>
+<ul>
+<li>never(默认值)，点击 TextInpt 以为的子组件会使当前的软键盘收起。子元素不会收到点击事件</li>
+<li>always，键盘不会收起，ScrollView 也不捕捉到点击事件，但子组件可以捕获</li>
+<li>handled，当点击事件被子组件捕获时，键盘不会自动收起。切换 TextInput 时键盘可以保持状态，多个 TextInput 的 scrollView 可以使用这个组件。</li>
+</ul>
+</li>
+<li><p>pagingEnabled<br>当值为 true 时，滚动条会停在滚动视图尺寸的整数倍位置。<br>默认为 false，可以用在水平分页上。<br>垂直分页在 Android 上不支持</p>
+</li>
+<li><p>refreshControl<br>指定 RefreshControl 组件，用于为 ScrollView 提供下拉刷新功能，只能用于垂直视图，即 horizontal 不能为 true</p>
+</li>
+<li><p>removeClippedSubviews(使用特性)<br>默认为 true，屏幕之外的子视图（overflo 为 hidden）被移除。可以提高滚动性能</p>
+</li>
+<li><p>scrollEnable<br>默认为 true，为 false 的时候禁止用户滚动，但是可以调用 scrollTo 滚动</p>
+</li>
+<li><p>showHorizontalScrollIndicator<br>默认为 true，当 horizontal={true}显示水平方向的滚动条<br>为 false 时不显示水平滚动条</p>
+</li>
+<li><p>showVerticalScrollIndicator<br>默认为 true，垂直滚动的时候显示垂直方向的滚动条<br>为 false 时不显示垂直滚动条</p>
+</li>
+<li><p>enFillColor<br>滚动视图占据比实际内容更多的空间，可以使用此属性指定某种颜色填充多余的空间。</p>
+</li>
+<li><p>automaticallAdjustContentInsets<br>当滚动视图放在一个导航条或工具条后的时候，IOS 系统是否自动调整内容的范围。<br>默认为 true。<br>如果你的 ScrollView 或 FlatList 的头部出现莫名其妙的空白，尝试此属性设为 false</p>
+</li>
+<li><p>overScrollMode(Android 没发现效果)<br>覆盖默认的 overScroll 模式</p>
+<ul>
+<li>auto 默认值，允许用户在内容超出视频高度后可以滚动</li>
+<li>always，无论内容尺寸，用户始终可滚动视图</li>
+<li>never，始终不允许用户滚动视图</li>
+</ul>
+</li>
+<li><p>bounces （IOS）<br>为 true（默认）时，范围比滚动视图本身大，到达内容尾部的时候，可以弹性拉动一截。<br>为 false，尾部的所有弹性都会被禁用。即使 alwaysBounce 属性为 true</p>
+</li>
+<li><p>bouncesZoom（IOS）<br>为 true 时，使用手势缩放内容可以超过 min/max 限制，然后在手指抬起之后弹回 min/max 的缩放比例。<br>为 false 时，缩放不能超出限制</p>
+</li>
+<li><p>canCancelContentTouches（IOS）<br>为 false 时，一旦子节点响应触摸操作，即使手指开始移动也不会拖动滚动视图。<br>默认为 true</p>
+</li>
+<li><p>centerContent（IOS）<br>值为 true 时，如果滚动视图的内容比视图本身小，则会自动把内容居中放置。当内容比滚动视图大的时候，此属性没有作用。<br>默认为 false</p>
+</li>
+<li><p>contentInset（IOS）<br>内容范围相对视图边缘的坐标。默认为{top:0,left:0,bottom:0,right:0}</p>
+</li>
+<li><p>contentOffset（IOS）<br>用来手动设置初始的滚动坐标，默认值{x:0,y:0}</p>
+</li>
+<li><p>decelerationRate<br>一个浮点数，决定用户抬起手指后，滚动视图减速停下的速度。<br>可以设为 normal 或 fast。分别对应是 IOS 上的 UIScrollViewDecelerationRateNormal 和 UIScrollViewDecelerationRateFast</p>
+<ul>
+<li>normal：IOS 上是 0，998，Android 上是 0.985（默认值）</li>
+<li>fast：0.99</li>
+</ul>
+</li>
+<li><p>directionalLockEnabled IOS）<br>为 true 时，滚动视图在拖拽的时候会锁定只有垂直或水平方向可以滚动，<br>默认为 false</p>
+</li>
+<li><p>indicatorStyle（IOS）<br>设置滚动条的样式，</p>
+<ul>
+<li>default 默认值，等同 black</li>
+<li>black 黑白滚动条</li>
+<li>white 白色滚动条</li>
+</ul>
+</li>
+<li><p>maximumZoomScale（IOS）<br>允许的最大缩放比例。默认为 1.0</p>
+</li>
+<li><p>minimumZoomScale (IOS)<br>允许最小的缩放比例。默认为 1.0</p>
+</li>
+<li><p>pinchGestureEnabled(IOS)<br>设置为 true 时，ScrollView 会允许用过使用双指缩放操作。默认为 true</p>
+</li>
+<li><p>scrollEventThrottle（IOS）<br>控制滚动过程中，scroll 事件被调用的频率（单位是每秒的实际数量）。<br>数值越小越能及时追踪滚动位置，不过会带来性能问题。<br>由于 JS 事件循环需要和屏幕刷新率同步，设置 1-16 之间的数值不会有实质区别。<br>默认为 0，每次视图滚动，scroll 事件只会被调用一次。</p>
+</li>
+<li><p>scrollIndicatorInsets（IOS）<br>决定滚动条距离视图边缘的坐标。这个值应该和 contentInset 一样<br>默认为{top:0,left:0,right:0,bottom:0}</p>
+</li>
+<li><p>scrollToTop<br>为 true 时，点击状态栏的时候视图会滚动到顶部。<br>默认为 true</p>
+</li>
+<li><p>snapToInterval<br>数字类型<br>设置了此属性，会让滚动视图停止后，停止在 snapToInterval 的倍数的位置。<br>可以在一些子视图比滚动视图小的时候用于实现分页，需要与 snapToAlignment 组合使用。</p>
+</li>
+<li><p>snapTopAlignment<br>当设置了，snapToInterval，snapToAlignment 会定义停住点与滚动视图之间的关系</p>
+<ul>
+<li>start（默认）会将停住点对齐在左侧（水平）或顶部（垂直）</li>
+<li>center 会将停住点对齐到中间</li>
+<li>end 会将停驻点对齐到右侧（水平）或底部（垂直）</li>
+</ul>
+</li>
+<li><p>zoomScale<br>滚动视图内容当前的缩放比例。默认为 1.0</p>
+</li>
+<li><p>onContentSizeChange<br>ScrollView 内部可滚动内容的视图发生变化的时候调用。<br>参数为内容视图的宽高:(contentWidth,contentHeight)<br>此方法是通绑定在内容容器上的 onLayout 来实现</p>
+</li>
+<li><p>onMomentumScrollBegin<br>滚动动画开始的时候调用</p>
+</li>
+<li><p>onMomentumScrollEnd<br>滚动动画结束时调用</p>
+</li>
+<li><p>onScroll<br>在滚动过程中，每帧最多调用一次此回调函数，调用的频率可以使用 scrollEventThrottle 属性来控制</p>
+</li>
+<li><p>onScrollBeginDrag<br>用户开始拖动此视图调用此函数</p>
+</li>
+<li><p>onScrollBeginEnd<br>用户停止拖动视图的时候调用此函数</p>
+</li>
+</ul>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ul>
+<li><p>scrollTo()<br>(y: number | { x?: number, y?: number, animated?: boolean }, x: number, animated: boolean)<br>滚动到指定的 x,y 偏移处。第三参数为是否开启平滑滚动视图<br>scrollTo({x:0,y:0,animated:true})</p>
+</li>
+<li><p>scrollToEnd(([options]:object))<br>滚动到视图底部（水平方向的视图则滚动到最右边）<br>加上动画参数 scrollToEnd({animated:true}),启动平滑滚动动画。<br>scrollToEnd({animated:false})立即跳转。<br>不使用参数，默认启动动画</p>
+</li>
+</ul>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="轮播"><a href="#轮播" class="headerlink" title="轮播"></a>轮播</h2><p><strong>效果</strong><br><img src="/2018/12/26/react-native之ScrollView/gif3.gif" alt="轮播"><br><strong>填坑</strong><br>使用分页的时候，利用偏移的位置/宽度得到当前页数，但是宽度相除得到的不是整数，要处理一下，才能实现原点 的效果<br><strong>代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">var imageData= require(&apos;./images/ImageData.json&apos;)</span><br><span class="line">var imgAry=imageData.data;</span><br><span class="line"></span><br><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import &#123;</span><br><span class="line">  Platform,</span><br><span class="line">  StyleSheet,</span><br><span class="line">  TextInput,</span><br><span class="line">  View,</span><br><span class="line">  Text,</span><br><span class="line">  Button,</span><br><span class="line">  TouchableOpacity,</span><br><span class="line">  TouchableWithoutFeedback,</span><br><span class="line">  TouchableHighlight,</span><br><span class="line">  ScrollView,</span><br><span class="line">  Image</span><br><span class="line">&#125; from &apos;react-native&apos;;</span><br><span class="line">// 获取屏幕宽高</span><br><span class="line">import Dimensions from &apos;Dimensions&apos;</span><br><span class="line"></span><br><span class="line">const width=Dimensions.get(&apos;window&apos;).width;</span><br><span class="line">const height=Dimensions.get(&apos;window&apos;).height;</span><br><span class="line"></span><br><span class="line">export default class SetUp extends Component &#123;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props);</span><br><span class="line">        var timer=null;</span><br><span class="line">        this.state=&#123;</span><br><span class="line">            currentPage:0</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    componentDidMount()&#123;</span><br><span class="line">        //自动轮播</span><br><span class="line">        let &#123;currentPage&#125;=this.state</span><br><span class="line">        this.timer= setInterval(()=&gt;&#123;</span><br><span class="line">            currentPage=currentPage&lt;imgAry.length-1?++currentPage:0</span><br><span class="line">            this.scroll.scrollTo(&#123;x:width*currentPage,y:0&#125;)</span><br><span class="line">            this.setState(&#123;currentPage&#125;)</span><br><span class="line">        &#125;,2000)</span><br><span class="line">    &#125;</span><br><span class="line">    componentWillUnMount()&#123;</span><br><span class="line">        this.timer&amp;&amp;clearInterval(this.timer)</span><br><span class="line">    &#125;</span><br><span class="line">    //渲染图片</span><br><span class="line">    renderItem()&#123;</span><br><span class="line">        var itemAry=[];</span><br><span class="line">        itemAry= imgAry.map((item,index)=&gt;&lt;Image key=&#123;index&#125; style=&#123;styles.itemStyle&#125; source=&#123;&#123;uri:item.img&#125;&#125;/&gt;)</span><br><span class="line">        return itemAry</span><br><span class="line">    &#125;</span><br><span class="line">    //渲染原点</span><br><span class="line">    renderPagingIndicator()&#123;</span><br><span class="line">        var itemAry=[];</span><br><span class="line">        itemAry=imgAry.map((item,index)=&gt;&lt;TouchableOpacity key=&#123;index&#125;  onPress=&#123;() =&gt;this.handlePress(index)&#125;&gt;</span><br><span class="line">            &lt;Text  style=&#123;&#123;fontSize:50,color:Number(this.state.currentPage)===Number(index)?&apos;red&apos;:&apos;#ddd&apos;&#125;&#125;&gt;·&lt;/Text&gt;</span><br><span class="line">            &lt;/TouchableOpacity&gt;)</span><br><span class="line">        return  itemAry</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handlePress = index =&gt;&#123;</span><br><span class="line">        this.setState(&#123;currentPage:index&#125;)</span><br><span class="line">        this.scroll.scrollTo(&#123;x:width*index,y:0&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    //轮播动画</span><br><span class="line">    handleAnimate = (e) =&gt; &#123;</span><br><span class="line">        //水平方向偏移量</span><br><span class="line">        var offsetX=e.nativeEvent.contentOffset.x;</span><br><span class="line">        console.log(&apos;offsetX&apos;,offsetX)</span><br><span class="line">        var currentPage=(offsetX.toFixed(0)/width.toFixed(0)).toFixed(0);</span><br><span class="line">        console.log(&apos;currentPage&apos;,currentPage)</span><br><span class="line">        this.setState(&#123;currentPage&#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">                &lt;ScrollView</span><br><span class="line">                 ref=&#123;ref=&gt;this.scroll=ref&#125;</span><br><span class="line">                 style=&#123;styles.scrollViewStyle&#125;</span><br><span class="line">                 horizontal=&#123;true&#125;</span><br><span class="line">                 pagingEnabled=&#123;true&#125;</span><br><span class="line">                 showsHorizontalScrollIndicator=&#123;false&#125;</span><br><span class="line">                 showsHorizontalScrollIndicator=&#123;false&#125;</span><br><span class="line">                 //一帧滚动完毕的时候调用</span><br><span class="line">                 onMomentumScrollEnd=&#123;this.handleAnimate&#125;</span><br><span class="line">                &gt;</span><br><span class="line"></span><br><span class="line">                    &#123;this.renderItem()&#125;</span><br><span class="line">                &lt;/ScrollView&gt;</span><br><span class="line">                &lt;View style=&#123;styles.renderPagingIndicatorStyle&#125;&gt;</span><br><span class="line">                    &#123;this.renderPagingIndicator()&#125;</span><br><span class="line">                &lt;/View&gt;</span><br><span class="line">            &lt;/View&gt;</span><br><span class="line"></span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const styles = StyleSheet.create(&#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    backgroundColor:&apos;white&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  itemStyle:&#123;</span><br><span class="line">      width:width,</span><br><span class="line">      height:200,</span><br><span class="line">      //图片等比例缩放</span><br><span class="line">      resizeMode:&apos;contain&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  scrollViewStyle:&#123;</span><br><span class="line">      backgroundColor:&apos;yellow&apos;,</span><br><span class="line">      marginTop:20</span><br><span class="line">  &#125;,</span><br><span class="line">  renderPagingIndicatorStyle:&#123;</span><br><span class="line">      backgroundColor:&apos;transparent&apos;,</span><br><span class="line">      flexDirection:&apos;row&apos;,</span><br><span class="line">      justifyContent:&apos;center&apos;,</span><br><span class="line">      width:width,</span><br><span class="line">      position:&apos;absolute&apos;,</span><br><span class="line">      bottom:0</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>图片</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;data&quot;:[</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;img&quot;:&quot;https://upload.jianshu.io/admin_banners/web_images/4590/7f1edd154f90446a038d6ecd10bebf6e8929fbf5.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;图片一&quot;</span><br><span class="line">        &#125;,&#123;</span><br><span class="line">            &quot;img&quot;:&quot;https://upload.jianshu.io/admin_banners/web_images/4600/67db00190e013279ccac4b00bc5702c5f974b9aa.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;图片二&quot;</span><br><span class="line">        &#125;,&#123;</span><br><span class="line">            &quot;img&quot;:&quot;https://upload.jianshu.io/admin_banners/web_images/4592/cd1030acd8a908397ed53775bcb0dbd5a05727ef.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;图片三&quot;</span><br><span class="line">        &#125;,&#123;</span><br><span class="line">            &quot;img&quot;:&quot;https://upload.jianshu.io/admin_banners/web_images/4588/c9d175a9865206d371742d53c41ed4a042c5d00b.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;图片四&quot;</span><br><span class="line">        &#125;,&#123;</span><br><span class="line">            &quot;img&quot;:&quot;https://upload.jianshu.io/admin_banners/web_images/4596/1686f2fe090d3a75481c6fad69aba5396f82d260.png?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;图片五&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;other&quot;:[</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;title&quot;:&quot;其它信息&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------</div>
+    
+</div>
+
+
+
+      
+    </div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/react-native之练习demo/" rel="next" title="react-native之练习demo">
+                <i class="fa fa-chevron-left"></i> react-native之练习demo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/27/hexo配置填坑/" rel="prev" title="hexo配置填坑">
+                hexo配置填坑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="封多多">
+            
+              <p class="site-author-name" itemprop="name">封多多</p>
+              <p class="site-description motion-element" itemprop="description">前端</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="ttps://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fengduoduo@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/8acefb731467" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ScrollView"><span class="nav-number">1.</span> <span class="nav-text">ScrollView</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">1.1.</span> <span class="nav-text">效果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用属性"><span class="nav-number">1.1.1.</span> <span class="nav-text">常用属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">常用方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number">2.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#轮播"><span class="nav-number">2.1.</span> <span class="nav-text">轮播</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">封多多</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">155.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'BTxpKE3VdbvNYiEqX2SeV2tr-gzGzoHsz',
+        appKey: '4J07ASMlcBVdeBV766IuHEf9',
+        placeholder: '留下你的宝贵意见',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":60,"height":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+

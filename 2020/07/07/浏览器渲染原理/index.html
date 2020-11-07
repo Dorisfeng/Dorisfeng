@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+ <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="yv0w6KBTEx">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Papyrus:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fdd’Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="浏览器渲染原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器渲染原理">
+<meta property="og:url" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/index.html">
+<meta property="og:site_name" content="fdd’Blog">
+<meta property="og:description" content="浏览器渲染原理">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img1.webp">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img2.webp">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img3.png">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img4.png">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img5.png">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img6.png">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img7.png">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img8.webp">
+<meta property="og:updated_time" content="2020-08-19T09:05:17.129Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器渲染原理">
+<meta name="twitter:description" content="浏览器渲染原理">
+<meta name="twitter:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img1.webp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/">
+
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "2d87b4e2"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>浏览器渲染原理 | fdd’Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+   <a href="https://github.com/Dorisfeng"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fdd’Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="封多多">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fdd’Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器渲染原理</h1>
+        
+
+        <div class="post-meta">
+                  
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-07T17:02:17+08:00">
+                2020-07-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/07/07/浏览器渲染原理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/07/浏览器渲染原理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.9k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18分
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>浏览器渲染原理</p>
+<a id="more"></a>
+<h2 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h2><p>渲染引擎+JS 引擎<br>浏览器内核分类：</p>
+<ol>
+<li>IE - Trident</li>
+<li>Firefox - Gecko</li>
+<li>Safari - Webkit</li>
+<li>Chrome - Blink （Webkit 的分支）<br>Webkit 占比最多。</li>
+</ol>
+<h2 id="浏览器线程"><a href="#浏览器线程" class="headerlink" title="浏览器线程"></a>浏览器线程</h2><ul>
+<li>GUI 渲染线程<br>GUI-图形用户界面，那 GUI 渲染线程也就是负责渲染浏览器界面上显示内容，即负责解析 HTML 标签和 CSS 样式。在浏览器的五个渲染过程中，GUI 渲染线程均参与其中。</li>
+<li>JS 引擎线程<br>负责处理 JavaScript 脚本的线程。单线程，执行栈+任务队列。<br>事件循环机制</li>
+<li>定时触发线程<br>处理<code>setTimeout</code>、<code>setInterval</code>代码的线程。<br>当定时器被触发后，会将需要执行的任务添加到JS的任务队列，当JS引擎线程空闲的时候，会按顺序执行任务队列中的任务。</li>
+<li>事件处理线程<br>JS 引擎遇到事件处理程序代码块时，会将这个处理程序添加到事件处理线程中。当事件满足条件被触发后，事件处理程序会将该事件添加到前面提到前面说的 JS 执行时维护的任务队列中，之后就交由 JS 引擎线程去处理。</li>
+<li><p>异步 http 请求线程<br>用于处理<code>XMLHttpRequest</code>请求。<br>需要向服务器发起请求时，就会交给该线程处理。当请求得到响应后，如果需要执行回调函数，会将回调放入JS的任务队列，后续再由JS引擎线程处理。</p>
+<h2 id="页面加载过程"><a href="#页面加载过程" class="headerlink" title="页面加载过程"></a>页面加载过程</h2></li>
+<li><p>浏览器根据 DNS 服务器得到域名的 IP 地址</p>
+</li>
+<li>向 IP 发送 HTTP 请求</li>
+<li>服务器收到、处理并返回 HTTP 请求</li>
+<li>浏览器得到返回内容</li>
+</ul>
+<h2 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h2><ol>
+<li><strong>解析 HTML 生成 DOM 树</strong> - 渲染引擎首先解析<code>HTML</code>文档，生成<code>DOM</code>树；</li>
+<li><strong>解析 CSS 生成 CSSOM 树</strong> - 处理<code>CSS</code>标记，构成层叠样式表模型<code>CSSOM</code>(CSS Object Model)；</li>
+<li><strong>构建 Render 树</strong> - 将<code>DOM</code>和<code>CSSOM</code>合并为渲染树（rendering tree），代表一系列将被渲染的对象；</li>
+<li><strong>布局 Render 树</strong> - 渲染树的每个元素包含的内容都是计算过的，被称作布局<code>layout</code>。浏览器使用一种流式处理的方法，只需要一次绘制操作就可以布局所有的元素。</li>
+<li><strong>绘制 Render 树</strong> - 将渲染树的各个节点绘制到屏幕上，<code>painting</code>。</li>
+</ol>
+<p>以上五个步骤并不一定一次性顺序完成，如果 DOM 或 CSSOM 被修改，以上过程需要重复执行，这样才能计算出哪些像素需要在屏幕上重新渲染。</p>
+<p><img src="/2020/07/07/浏览器渲染原理/img1.webp" alt="渲染过程"></p>
+<h2 id="浏览器渲染具体流程"><a href="#浏览器渲染具体流程" class="headerlink" title="浏览器渲染具体流程"></a>浏览器渲染具体流程</h2><h3 id="构建-DOM-树"><a href="#构建-DOM-树" class="headerlink" title="构建 DOM 树"></a>构建 DOM 树</h3><p>当浏览器接收到服务器返回来的 HTML 文档后，会遍历文档节点，生成 DOM 树。</p>
+<p><strong>重点</strong>：</p>
+<ul>
+<li><code>DOM</code>树在构建过程中可能会被<code>CSS</code>和<code>JS</code>的加载而阻塞；</li>
+<li><code>display:none</code>的元素也会在<code>DOM</code>树中；</li>
+<li>注释也会在<code>DOM</code>树中；</li>
+<li><code>script</code>标签也会在<code>DOM</code>树中</li>
+</ul>
+<p>无论是<code>DOM</code>还是<code>CSSOM</code>，都是要经过<code>Bytes=&gt;Characters=&gt;Tokens=&gt;Nodes=&gt;DOM</code>这个解析步骤。<br><img src="/2020/07/07/浏览器渲染原理/img2.webp" alt="构建 DOM 树"></p>
+<ol>
+<li><strong>转换</strong>，将接收到的 HTML 原始字节根据指定编码（一般是 UTF-8）转换成字符（Character）。</li>
+<li><strong>令牌化</strong>， 通过状态机将字符串转换为<code>Token</code>,每个<code>Token</code>都具有特殊含义和一组规则。</li>
+<li><strong>词法分析</strong>，<code>Token</code>会被转换成定义了属性等规则的‘对象’。</li>
+<li><strong>DOM 构建</strong>， 利用栈构建 DOM 树。</li>
+</ol>
+<h4 id="Token-的拆分"><a href="#Token-的拆分" class="headerlink" title="Token 的拆分"></a>Token 的拆分</h4><p><code>Token</code>（词）出自编译原理，表示最小的有意义的单元。</p>
+<p>词（token）是如何被拆分的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p class=&quot;a&quot;&gt;text text text&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>这段代码依次被拆分成<code>token</code>:</p>
+<ul>
+<li><code>&lt;p</code> - ’开始标签‘的开始</li>
+<li><code>class=&#39;a&#39;</code> - 属性</li>
+<li><code>&gt;</code> - ’开始标签‘的结束</li>
+<li><code>text text text</code> - 文本</li>
+<li><code>&lt;/p&gt;</code> - 结束标签</li>
+</ul>
+<p><strong>常见的 token</strong><br>|token|解释|<br>|–|–|<br>|<code>&lt;xxx</code> |’开始标签‘的开始|<br>|<code>a=&#39;xxx&#39;</code>|属性|<br>|<code>&gt;</code>|’开始标签‘的结束|<br>|text text text|文本|<br>|<code>&lt;/xxx&gt;</code>|结束标签|<br>|<code>&lt;!xxxx&gt;</code>|注释|<br>|<code>&lt;![CDATA[hello world!]]&gt;</code>|CDATA 数据节点|</p>
+<p>在 Chrome 里，总共定义了 7 中 Token 类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">enum TokenType &#123;</span><br><span class="line">    StartTag,</span><br><span class="line">    EndTag,</span><br><span class="line">    Comment,</span><br><span class="line">    Character,</span><br><span class="line">    Uninitialized,</span><br><span class="line">    DOCTYPE,</span><br><span class="line">    EndOfFile,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>代码从字符流中读取字符，在接收第一个字符之前，无法判断这个是哪个词（token），随着我们接收的字符越来越多，拼出其他内容的可能性越来越小。比如，我们接收第一字符<code>&lt;</code>，我们就能确定这个不是文本节点，接着读到第二个字符<code>x</code>，那么我们一下子就知道这不是注释和 CDATA 了，接下来我们就一直读，直到遇到“&gt;”或者空格，这样就得到了一个完整的词（token）了。<br>这样我们每读入一个字符，其实都要做一次决策，而且这些决策是跟’当前状态‘有关。</p>
+<h4 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h4><p>将字符流解析成 Token 的最常用方案。<br>简单的状态机：<br><img src="/2020/07/07/浏览器渲染原理/img3.png" alt="HTML词法状态机"><br>真正完整的 HTML 词法状态机，比上图描述的要复杂的多，更详细的内容可以参考<a href="https://html.spec.whatwg.org/multipage/parsing.html#tokenization" target="_blank" rel="noopener">HTML 官方文档</a>，HTML 官方文档了 80 个状态。</p>
+<p><strong>状态机的具体过程：</strong></p>
+<ul>
+<li><p>初始状态，从 data 开始，首先区分<code>&lt;</code>和<code>非&lt;</code></p>
+<ul>
+<li>如果是<code>非&lt;</code>那么可以判断这个是一个文本节点。</li>
+<li>如果是<code>&lt;</code>，那么进入一个标签状态</li>
+</ul>
+</li>
+<li><p>标签状态</p>
+<ul>
+<li>如果下一个字符是”!”，那么可能进入注释节点或 CDATA 节点</li>
+<li>如果下一个字符是”/“，那么可以确定进入一个结束标签</li>
+<li>如果下一个字符是字母，那么可以确定进入一个开始标签，<code>tag open</code>状态</li>
+<li>如果要完整处理各种 HTML 标准中定义的东西，还要考虑”?”,”%”等内容<br>-</li>
+</ul>
+</li>
+<li><p><code>tag open</code>状态</p>
+<ul>
+<li>字母<code>letter</code></li>
+<li>“!”</li>
+<li>“/“</li>
+</ul>
+<p>就这样根据字符去判断下一步的状态。其本质就是将每个词的“特征字符”逐个拆分成独立的状态，然后再把所有词的特征字符合并起来，形成一个连通图。</p>
+</li>
+</ul>
+<h4 id="构建-DOM-树-1"><a href="#构建-DOM-树-1" class="headerlink" title="构建 DOM 树"></a>构建 DOM 树</h4><p>事实上，构建 DOM 的过程中，不是等所有 Token 都转换完成后再去生成节点对象，而是一边生成 Token 一边消耗 Token 来生成节点对象。<br>也就是，每个 Token 被生成后，会立刻消耗这个 Token 创建出节点对象。<br><strong>注意：带有结束标签标识的 Token 不会创建节点对象。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line">     &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line"> &lt;/head&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line">     &lt;div&gt;</span><br><span class="line">         &lt;p class=&quot;a&quot;&gt;text text text&lt;/p&gt;</span><br><span class="line">     &lt;/div&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>把这段代码拆成 Token 之后，就是下面这样，我这里省略了里面的换行跟空格。<br>|TagName|type|attr|text|<br>|–|–|–|–|–|<br>|html|StartTag||’’|<br>|head|StartTag||’’|<br>|meta|StartTag|charset=’utf-8’|’’|<br>|head|EndTag||’’|<br>|body|StartTag||’’|<br>|div|StartTag||’’|<br>|p|StartTag|class=’a’|’’|<br>||Character||’text text text’|<br>|div|EndTag||’’|<br>|body|EndTag||’’|<br>|html|EndTag||’’|<br>||EndOfFile||’’|</p>
+<p><strong>第一步</strong>，在 Tokens 中，<code>StartTag</code>和<code>EndTag</code>通常需要成对匹配。对于<code>&lt;br/&gt;</code>这种自闭合标签，可以视为入栈后立马出栈。<br>在解析开始的时候，会默认创建一个根为<code>document</code>的空 DOM 结构。同时会将一个 <code>startTag document</code> 的 Token 放入栈底。<br><img src="/2020/07/07/浏览器渲染原理/img4.png" alt="DOM1"><br><strong>第二步</strong>，经过词法分析后一个个 <code>StartTag</code> 被放入栈中，同时会创建响应的 DOM 节点，当遇到<code>tagName</code>相同的<code>EndTag</code> 时，对应的<code>StartTag</code>（正常情况下在栈顶，否则出错）弹出栈。<br><img src="/2020/07/07/浏览器渲染原理/img5.png" alt="DOM2"><br><strong>第三步</strong>，不断的出栈入栈，最后生成 DOM 树<br><img src="/2020/07/07/浏览器渲染原理/img6.png" alt="DOM3"><br>上面是最简单的情况，在实际构建过程还是需要考虑如下情况：</p>
+<ul>
+<li>遇到<code>StartTag</code>就入栈一个节点，当前节点就是这个节点的父节点</li>
+<li>遇到<code>EndTag</code>就出栈一个节点（还可以检查是否匹配）</li>
+<li>栈顶元素就是当前节点</li>
+<li>遇到属性，就添加到当前节点</li>
+<li>遇到文本节点，如果当前节点是文本节点，则跟文本节点合并，否则入栈成为当前节点的子节点</li>
+<li>遇到注释节点，作为当前节点的子节点</li>
+</ul>
+<p>HTML 具有很强的容错能力，奥妙在于当<code>EndTag</code>跟栈顶的<code>StartTag</code> 不匹配的时候如何处理。</p>
+<h3 id="构建-CSSOM-规则树"><a href="#构建-CSSOM-规则树" class="headerlink" title="构建 CSSOM 规则树"></a>构建 CSSOM 规则树</h3><p>在浏览器构建 DOM 树时，在 HTML 文档的 head 部分遇到了一个 link 标记，该标记引用一个外部 CSS 样式表：style.css。由于预见到需要利用该 CSS 资源来渲染页面，它会立即发出对该资源的请求，并返回以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">body &#123; font-size: 16px &#125;</span><br><span class="line">p &#123; font-weight: bold &#125;</span><br><span class="line">span &#123; color: red &#125;</span><br><span class="line">p span &#123; display: none &#125;</span><br><span class="line">img &#123; float: right &#125;</span><br></pre></td></tr></table></figure>
+<p>与处理 HTML 时一样，我们需要将收到的 CSS 规则转换成某种浏览器能够理解和处理的东西。因此，我们会重复 HTML 过程，不过是为 CSS 而不是 HTML：<code>Bytes=&gt;Characters=&gt;Tokens=&gt;Nodes=&gt;DOM</code><br><img src="/2020/07/07/浏览器渲染原理/img7.png" alt="CSSOM1"><br><code>.CSS 文件</code>，又名层叠样式表。当<code>CSSOM</code>树生成节点时，每一个节点首先会继承其父节点的所有样式，层叠覆盖，然后再以”向下级联”的规则，为该节点应用更具体的样式，递归生成<code>CSSOM</code>树。譬如，上右图中第二层的<code>p</code>节点，有父节点<code>body</code>，因此该<code>p</code>将继承 body <code>节点的样式：</code>“font-size: 16px;”<code>。然后再应用该</code>p<code>节点自身的样式：</code>“font-weight: bold;”<code>。所以最终该</code>p<code>节点的样式为：</code>“font-size: 16px;font-weight: bold;”`。<br>还请注意，以上树并非完整的 CSSOM 树，它只显示了我们决定在样式表中替换的样式。每个浏览器都提供一组默认样式（也称为“User Agent 样式”），即我们不提供任何自定义样式时所看到的样式，我们的样式只是替换这些默认样式。</p>
+<p><strong>注意：CSS 匹配 HTML 元素是一个相当复杂和有性能问题的事情。所以，DOM 树要小，CSS 尽量用 id 和 class，千万不要过渡层叠下去</strong></p>
+<h3 id="构建渲染树-（Render-Tree）"><a href="#构建渲染树-（Render-Tree）" class="headerlink" title="构建渲染树 （Render Tree）"></a>构建渲染树 （Render Tree）</h3><p>通过 DOM 树和 CSS 规则树，浏览器就可以通过它两构建渲染树了。</p>
+<ul>
+<li>浏览器会先从 DOM 树的根节点开始遍历每个可见节点</li>
+<li>某些节点完全不可见（例如 script 标签、meta 标签），因为它们不会在渲染结果中反映，所以会被忽略</li>
+<li>某些节点通过 CSS 隐藏，也会在渲染树中忽略。比如设置或继承<code>display:none</code></li>
+<li><p>给每个可见节点找到相应匹配的 CSSOM 规则，并应有这些规则。</p>
+<p><img src="/2020/07/07/浏览器渲染原理/img8.webp" alt="构建渲染树"></p>
+</li>
+</ul>
+<h3 id="布局与绘制"><a href="#布局与绘制" class="headerlink" title="布局与绘制"></a>布局与绘制</h3><p>当浏览器生成渲染树以后，就会根据渲染树来进行布局（也可以叫做回流）。这一阶段浏览器要做的事情是要弄清楚各个节点在页面中的确切位置和大小。通常这一行为也被称为“自动重排”。<br>布局流程的输出是一个“盒模型”，它会精确地捕获每个元素在视口内的确切位置和尺寸，所有相对测量值都将转换为屏幕上的绝对像素。<br>布局完成后，浏览器会立即发出“Paint Setup”和“Paint”事件，将渲染树转换成屏幕上的像素。</p>
+<h2 id="与之相关的几个问题"><a href="#与之相关的几个问题" class="headerlink" title="与之相关的几个问题"></a>与之相关的几个问题</h2><h3 id="为什么操作-DOM-慢"><a href="#为什么操作-DOM-慢" class="headerlink" title="为什么操作 DOM 慢"></a>为什么操作 DOM 慢</h3><p>DOM 是属于渲染引擎相关，而 JS 又与 JS 引擎相关，于是在用 JS 操作 DOM 的时候，其实涉及到浏览器两大线程之间的通信，必然会有性能损耗。还有操作 DOM 可能会导致重绘回流的情况。<br><strong>经典面试题：插入几万个 DOM，如何实现页面不卡顿？</strong></p>
+<ol>
+<li><code>requestAnimationFrame</code>循环插入 DOM</li>
+<li>虚拟滚动（virtualized scroll）<br>只渲染可视区域的内容，非可视区域的完全不渲染，当用户滚动的时候实时渲染</li>
+</ol>
+<h3 id="浏览器如果渲染过程中遇到-JS-文件怎么处理"><a href="#浏览器如果渲染过程中遇到-JS-文件怎么处理" class="headerlink" title="浏览器如果渲染过程中遇到 JS 文件怎么处理"></a>浏览器如果渲染过程中遇到 JS 文件怎么处理</h3><p>渲染过程中如果遇到<code>&lt;script&gt;</code>就停止渲染，执行 JS 代码。因为浏览器的渲染引擎和 JS 引擎是互斥的。JS 代码的加载、解析与执行都会阻塞 DOM 的构建，<br>如果你想首屏渲染的越快，就越不应该在首屏就加载 JS 文件，这也是建议将 script 标签放在 body 标签底部的原因。当然在当下，并不是说 script 标签必须放在底部，因为你可以给 script 标签添加 defer 或者 async 属性（下文会介绍）。</p>
+<p><strong>JS 文件不只是阻塞 DOM 的构建，它会导致 CSSOM 也阻塞 DOM 的构建。</strong><br>原本 DOM 和 CSSOM 的构建是互不影响，但是一旦引入了 JavaScript，CSSOM 也开始阻塞 DOM 的构建，只有 CSSOM 构建完毕后，DOM 再恢复 DOM 构建。</p>
+<h3 id="什么情况下阻塞渲染"><a href="#什么情况下阻塞渲染" class="headerlink" title="什么情况下阻塞渲染"></a>什么情况下阻塞渲染</h3><ol>
+<li><p>渲染的前提是生成渲染树，所以<code>HTML</code>和<code>CSS</code>肯定会阻塞渲染。所以，渲染的<strong>文件越小</strong>，并且<strong>扁平层级，优化选择器</strong>，就渲染的越快。<br>当解析<code>HTML</code>的时候，会把新来的元素插入<code>DOM</code>树里面，同时去查找<code>CSS</code>，然后把对应的样式规则应用到元素上，查找样式表是按照从右到左的顺序去匹配的。<br>例如：div p {font-size: 16px}，会先寻找所有 p 标签并判断它的父标签是否为 div 之后才会决定要不要采用这个样式进行渲染）。<br>所以，我们平时写 CSS 时，尽量用 id 和 class，千万不要过渡层叠。</p>
+</li>
+<li><p>当浏览器在解析到<code>script</code> 标签时，会暂停构建<code>DOM</code>，完成后才会从暂停的地方重新开始。也就是说，如果你想首屏渲染的越快，就越不应该在首屏就加载<code>JS</code>文件，这也是都建议将<code>script</code>标签放在<code>body</code>标签底部的原因。<br>现在可以给<code>script</code>标签添加<code>defer</code>或者<code>async</code>属性，异步加载<code>JS</code>文件:</p>
+<ul>
+<li><code>defer</code>:表示延迟执行引入的<code>JavaScript</code>，但是会放到<code>HTML</code>解析完成后，并且<code>JS</code>文件加载完成后，顺序执行，这时，可以把 script 标签放在任意位置。</li>
+<li><code>async</code>: 表示异步执行引入的<code>JavaScript</code>，是在自己加载完成后立即执行，如果是多个，执行顺序和加载顺序无关。</li>
+</ul>
+</li>
+</ol>
+<p>需要注意的是，这种方式加载的<code>JavaScript</code>依然会阻塞<code>load</code>事件。换句话说，<code>async-script</code>可能在<code>DOMContentLoaded</code>触发之前或之后执行，但一定在<code>load</code>触发之前执行。</p>
+<h2 id="回流（reflow）和重绘（repaint"><a href="#回流（reflow）和重绘（repaint" class="headerlink" title="回流（reflow）和重绘（repaint)"></a>回流（reflow）和重绘（repaint)</h2><h3 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h3><p>当一个元素的外观发生变化，但没有改变布局，重新把元素的外观绘制出来的过程<br><strong>常见的引起重绘的属性</strong><br>|||||<br>|–|–|–|–|<br>|color|border-style|visibility|background|<br>|text-decoration|background-image|background-position|background-repeat|<br>|outline-color|outline|outline-style|border-radius|<br>|outline-with|box-shadow|background-size||</p>
+<h3 id="回流、重构、重排"><a href="#回流、重构、重排" class="headerlink" title="回流、重构、重排"></a>回流、重构、重排</h3><p>当 DOM 变化影响可元素的几何信息（<code>DOM</code> 对象的位置、尺寸大小、显隐），浏览器需要重新计算元素的几何属性，将其安放在界面的正确位置。<br>每个页面至少需要一次回流，就是页面第一次加载的时候。<br>回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变父节点里的子节点很可能会导致父节点的一系列回流。<br><strong>触发条件</strong></p>
+<ul>
+<li>添加或删除可见的<code>DOM</code>元素</li>
+<li>元素位置改变</li>
+<li>元素尺寸改变 – 边距<code>padding/margin</code>、边框<code>border</code>、宽度<code>width</code>、高度<code>height</code></li>
+<li>元素内容改变 – 输入框输入文字</li>
+<li>页面渲染初始化 – 无法避免</li>
+<li>浏览器窗口尺寸改变 – <code>resize</code>事件发生</li>
+<li>隐藏可见元素 – <code>display:none</code></li>
+<li>激活<code>CSS</code>伪类</li>
+<li>读取某些元素属性 – <code>offsetLeft/Top/Height/Width</code>, <code>clientTop/Left/Width/Height</code>, <code>scrollTop/Left/Width/Height</code>, <code>width/height</code>, <code>getComputedStyle()</code>, <code>currentStyle(IE)</code></li>
+</ul>
+<h2 id="浏览器的渲染队列"><a href="#浏览器的渲染队列" class="headerlink" title="浏览器的渲染队列"></a>浏览器的渲染队列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">div.style.left = &apos;10px&apos;;</span><br><span class="line">div.style.top = &apos;10px&apos;;</span><br><span class="line">div.style.width = &apos;20px&apos;;</span><br><span class="line">div.style.height = &apos;20px&apos;;</span><br></pre></td></tr></table></figure>
+<p>这段代码理论上会触发 4 次重排+重绘，因为每一次都改变了元素的几何属性，实际上最后只触发了一次重排，这都得益于浏览器的渲染队列机制：<br>当我们修改了元素的几何属性，导致浏览器触发重排或重绘时。它会把该操作放进渲染队列，等到队列中的操作到了一定的数量或者到了一定的时间间隔时，浏览器就会批量执行这些操作。</p>
+<ul>
+<li>强制刷新队列:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">div.style.left = &apos;10px&apos;;</span><br><span class="line">console.log(div.offsetLeft);</span><br><span class="line">div.style.top = &apos;10px&apos;;</span><br><span class="line">console.log(div.offsetTop);</span><br><span class="line">div.style.width = &apos;20px&apos;;</span><br><span class="line">console.log(div.offsetWidth);</span><br><span class="line">div.style.height = &apos;20px&apos;;</span><br><span class="line">console.log(div.offsetHeight);</span><br></pre></td></tr></table></figure>
+<p>这段代码会触发 4 次重排+重绘，因为在<code>console</code>中你请求的这几个样式信息，无论何时浏览器都会立即执行渲染队列的任务，即使该值与你操作中修改的值没关联。<br>因为队列中，可能会有影响到这些值的操作，为了给我们最精确的值，浏览器会立即重排+重绘。<br><strong>强制刷新队列的 style 样式请求：</strong></p>
+<ol>
+<li><code>offsetTop</code>, <code>offsetLeft</code>, <code>offsetWidth</code>, <code>offsetHeight</code></li>
+<li><code>scrollTop</code>, <code>scrollLeft</code>, <code>scrollWidth</code>, <code>scrollHeight</code></li>
+<li><code>clientTop</code>, <code>clientLeft</code>, <code>clientWidth</code>, <code>clientHeight</code></li>
+<li><code>getComputedStyle()</code>, 或者 IE 的 <code>currentStyle</code></li>
+</ol>
+<p>我们在开发中，应该谨慎的使用这些 style 请求，注意上下文关系,避免一行代码一个重排，这对性能是个巨大的消耗</p>
+<h3 id="优化：减少重绘和回流"><a href="#优化：减少重绘和回流" class="headerlink" title="优化：减少重绘和回流"></a>优化：减少重绘和回流</h3><ol>
+<li><p><strong>分离读写操作</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">div.style.left = &apos;10px&apos;;</span><br><span class="line">div.style.top = &apos;10px&apos;;</span><br><span class="line">div.style.width = &apos;20px&apos;;</span><br><span class="line">div.style.height = &apos;20px&apos;;</span><br><span class="line">console.log(div.offsetLeft);</span><br><span class="line">console.log(div.offsetTop);</span><br><span class="line">console.log(div.offsetWidth);</span><br><span class="line">console.log(div.offsetHeight);</span><br></pre></td></tr></table></figure>
+<p>上面触发 4 次重排+重绘的代码，这次只触发了一次重排。<br>在第一个<code>console</code> 的时候，浏览器把之前上面四个写操作的渲染队列都给清空了。剩下的<code>console</code>，因为渲染队列本来就是空的，所以并没有触发重排，仅仅拿值而已。</p>
+</li>
+<li><p><strong>样式集中改变</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">div.style.left = &apos;10px&apos;;</span><br><span class="line">div.style.top = &apos;10px&apos;;</span><br><span class="line">div.style.width = &apos;20px&apos;;</span><br><span class="line">div.style.height = &apos;20px&apos;;</span><br></pre></td></tr></table></figure>
+<p>虽然现在大部分浏览器有渲染队列优化，不排除有些浏览器以及老版本的浏览器效率仍然低下：建议通过改变 class 或者 csstext 属性集中改变样式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// bad</span><br><span class="line">var left = 10;</span><br><span class="line">var top = 10;</span><br><span class="line">el.style.left = left + &quot;px&quot;;</span><br><span class="line">el.style.top  = top  + &quot;px&quot;;</span><br><span class="line">// good</span><br><span class="line">el.className += &quot; theclassname&quot;;</span><br><span class="line">// good</span><br><span class="line">el.style.cssText += &quot;; left: &quot; + left + &quot;px; top: &quot; + top + &quot;px;&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>缓存布局信息</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// bad 强制刷新 触发两次重排</span><br><span class="line"> div.style.left = div.offsetLeft + 1 + &apos;px&apos;;</span><br><span class="line"> div.style.top = div.offsetTop + 1 + &apos;px&apos;;</span><br><span class="line"></span><br><span class="line"> // good 缓存布局信息 相当于读写分离</span><br><span class="line"> var curLeft = div.offsetLeft;</span><br><span class="line"> var curTop = div.offsetTop;</span><br><span class="line"> div.style.left = curLeft + 1 + &apos;px&apos;;</span><br><span class="line"> div.style.top = curTop + 1 + &apos;px&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>离线改变 dom</strong></p>
+<ul>
+<li><p>隐藏要操作的<code>dom</code><br>在要操作 dom 之前，通过 display 隐藏 dom，当操作完成之后，才将元素的 display 属性为可见，因为不可见的元素不会触发重排和重绘。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dom.display = &apos;none&apos;</span><br><span class="line">// 修改dom样式</span><br><span class="line">dom.display = &apos;block&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过使用<code>DocumentFragment</code>创建一个 dom 碎片,在它上面批量操作 dom，操作完成之后，再添加到文档中，这样只会触发一次重排。</p>
+</li>
+<li>复制节点，在副本上工作，然后替换。</li>
+</ul>
+</li>
+<li><p><strong>position 属性为 absolute 或 fixed</strong><br>将需要多次重排的元素，<code>position</code> 属性设为 <code>absolute</code> 或 <code>fixed</code> 的元素，重排开销比较小，不用考虑它对其他元素的影响。</p>
+</li>
+<li><p><strong>优化动画</strong><br>动画实现的速度的选择，动画速度越快，回流次数越多，也可以选择使用 <code>requestAnimationFrame</code></p>
+</li>
+<li>不要使用<code>table</code>布局，可能很小的一个小改动会造成整个<code>table</code>的重新布局<br>去·</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------</div>
+    
+</div>
+
+
+
+      
+    </div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/07/m-面试题汇总/" rel="next" title="m-面试题汇总">
+                <i class="fa fa-chevron-left"></i> m-面试题汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/14/JS-变量对象/" rel="prev" title="JS-变量对象">
+                JS-变量对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="封多多">
+            
+              <p class="site-author-name" itemprop="name">封多多</p>
+              <p class="site-description motion-element" itemprop="description">前端</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="ttps://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fengduoduo@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/8acefb731467" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器内核"><span class="nav-number">1.</span> <span class="nav-text">浏览器内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器线程"><span class="nav-number">2.</span> <span class="nav-text">浏览器线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面加载过程"><span class="nav-number">3.</span> <span class="nav-text">页面加载过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器渲染过程"><span class="nav-number">4.</span> <span class="nav-text">浏览器渲染过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器渲染具体流程"><span class="nav-number">5.</span> <span class="nav-text">浏览器渲染具体流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建-DOM-树"><span class="nav-number">5.1.</span> <span class="nav-text">构建 DOM 树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Token-的拆分"><span class="nav-number">5.1.1.</span> <span class="nav-text">Token 的拆分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态机"><span class="nav-number">5.1.2.</span> <span class="nav-text">状态机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构建-DOM-树-1"><span class="nav-number">5.1.3.</span> <span class="nav-text">构建 DOM 树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建-CSSOM-规则树"><span class="nav-number">5.2.</span> <span class="nav-text">构建 CSSOM 规则树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建渲染树-（Render-Tree）"><span class="nav-number">5.3.</span> <span class="nav-text">构建渲染树 （Render Tree）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局与绘制"><span class="nav-number">5.4.</span> <span class="nav-text">布局与绘制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与之相关的几个问题"><span class="nav-number">6.</span> <span class="nav-text">与之相关的几个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么操作-DOM-慢"><span class="nav-number">6.1.</span> <span class="nav-text">为什么操作 DOM 慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器如果渲染过程中遇到-JS-文件怎么处理"><span class="nav-number">6.2.</span> <span class="nav-text">浏览器如果渲染过程中遇到 JS 文件怎么处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么情况下阻塞渲染"><span class="nav-number">6.3.</span> <span class="nav-text">什么情况下阻塞渲染</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回流（reflow）和重绘（repaint"><span class="nav-number">7.</span> <span class="nav-text">回流（reflow）和重绘（repaint)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重绘"><span class="nav-number">7.1.</span> <span class="nav-text">重绘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回流、重构、重排"><span class="nav-number">7.2.</span> <span class="nav-text">回流、重构、重排</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的渲染队列"><span class="nav-number">8.</span> <span class="nav-text">浏览器的渲染队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化：减少重绘和回流"><span class="nav-number">8.1.</span> <span class="nav-text">优化：减少重绘和回流</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">封多多</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">155.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'BTxpKE3VdbvNYiEqX2SeV2tr-gzGzoHsz',
+        appKey: '4J07ASMlcBVdeBV766IuHEf9',
+        placeholder: '留下你的宝贵意见',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":60,"height":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+
