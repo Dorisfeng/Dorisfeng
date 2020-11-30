@@ -153,7 +153,7 @@
 <meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img6.png">
 <meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img7.png">
 <meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img8.webp">
-<meta property="og:updated_time" content="2020-08-19T09:05:17.129Z">
+<meta property="og:updated_time" content="2020-11-17T13:17:21.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器渲染原理">
 <meta name="twitter:description" content="浏览器渲染原理">
@@ -511,12 +511,12 @@
 <h2 id="浏览器线程"><a href="#浏览器线程" class="headerlink" title="浏览器线程"></a>浏览器线程</h2><ul>
 <li>GUI 渲染线程<br>GUI-图形用户界面，那 GUI 渲染线程也就是负责渲染浏览器界面上显示内容，即负责解析 HTML 标签和 CSS 样式。在浏览器的五个渲染过程中，GUI 渲染线程均参与其中。</li>
 <li>JS 引擎线程<br>负责处理 JavaScript 脚本的线程。单线程，执行栈+任务队列。<br>事件循环机制</li>
-<li>定时触发线程<br>处理<code>setTimeout</code>、<code>setInterval</code>代码的线程。<br>当定时器被触发后，会将需要执行的任务添加到JS的任务队列，当JS引擎线程空闲的时候，会按顺序执行任务队列中的任务。</li>
+<li>定时触发线程<br>处理<code>setTimeout</code>、<code>setInterval</code>代码的线程。<br>当定时器被触发后，会将需要执行的任务添加到 JS 的任务队列，当 JS 引擎线程空闲的时候，会按顺序执行任务队列中的任务。</li>
 <li>事件处理线程<br>JS 引擎遇到事件处理程序代码块时，会将这个处理程序添加到事件处理线程中。当事件满足条件被触发后，事件处理程序会将该事件添加到前面提到前面说的 JS 执行时维护的任务队列中，之后就交由 JS 引擎线程去处理。</li>
-<li><p>异步 http 请求线程<br>用于处理<code>XMLHttpRequest</code>请求。<br>需要向服务器发起请求时，就会交给该线程处理。当请求得到响应后，如果需要执行回调函数，会将回调放入JS的任务队列，后续再由JS引擎线程处理。</p>
-<h2 id="页面加载过程"><a href="#页面加载过程" class="headerlink" title="页面加载过程"></a>页面加载过程</h2></li>
-<li><p>浏览器根据 DNS 服务器得到域名的 IP 地址</p>
-</li>
+<li>异步 http 请求线程<br>用于处理<code>XMLHttpRequest</code>请求。<br>需要向服务器发起请求时，就会交给该线程处理。当请求得到响应后，如果需要执行回调函数，会将回调放入 JS 的任务队列，后续再由 JS 引擎线程处理。</li>
+</ul>
+<h2 id="页面加载过程"><a href="#页面加载过程" class="headerlink" title="页面加载过程"></a>页面加载过程</h2><ul>
+<li>浏览器根据 DNS 服务器得到域名的 IP 地址</li>
 <li>向 IP 发送 HTTP 请求</li>
 <li>服务器收到、处理并返回 HTTP 请求</li>
 <li>浏览器得到返回内容</li>
@@ -631,7 +631,7 @@
 </li>
 </ol>
 <p>需要注意的是，这种方式加载的<code>JavaScript</code>依然会阻塞<code>load</code>事件。换句话说，<code>async-script</code>可能在<code>DOMContentLoaded</code>触发之前或之后执行，但一定在<code>load</code>触发之前执行。</p>
-<h2 id="回流（reflow）和重绘（repaint"><a href="#回流（reflow）和重绘（repaint" class="headerlink" title="回流（reflow）和重绘（repaint)"></a>回流（reflow）和重绘（repaint)</h2><h3 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h3><p>当一个元素的外观发生变化，但没有改变布局，重新把元素的外观绘制出来的过程<br><strong>常见的引起重绘的属性</strong><br>|||||<br>|–|–|–|–|<br>|color|border-style|visibility|background|<br>|text-decoration|background-image|background-position|background-repeat|<br>|outline-color|outline|outline-style|border-radius|<br>|outline-with|box-shadow|background-size||</p>
+<h2 id="回流（reflow）和重绘（repaint）"><a href="#回流（reflow）和重绘（repaint）" class="headerlink" title="回流（reflow）和重绘（repaint）"></a>回流（reflow）和重绘（repaint）</h2><h3 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h3><p>当一个元素的外观发生变化，但没有改变布局，重新把元素的外观绘制出来的过程<br><strong>常见的引起重绘的属性</strong><br>|||||<br>|–|–|–|–|<br>|color|border-style|visibility|background|<br>|text-decoration|background-image|background-position|background-repeat|<br>|outline-color|outline|outline-style|border-radius|<br>|outline-with|box-shadow|background-size||</p>
 <h3 id="回流、重构、重排"><a href="#回流、重构、重排" class="headerlink" title="回流、重构、重排"></a>回流、重构、重排</h3><p>当 DOM 变化影响可元素的几何信息（<code>DOM</code> 对象的位置、尺寸大小、显隐），浏览器需要重新计算元素的几何属性，将其安放在界面的正确位置。<br>每个页面至少需要一次回流，就是页面第一次加载的时候。<br>回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变父节点里的子节点很可能会导致父节点的一系列回流。<br><strong>触发条件</strong></p>
 <ul>
 <li>添加或删除可见的<code>DOM</code>元素</li>
@@ -819,7 +819,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -830,7 +830,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -903,7 +903,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器内核"><span class="nav-number">1.</span> <span class="nav-text">浏览器内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器线程"><span class="nav-number">2.</span> <span class="nav-text">浏览器线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面加载过程"><span class="nav-number">3.</span> <span class="nav-text">页面加载过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器渲染过程"><span class="nav-number">4.</span> <span class="nav-text">浏览器渲染过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器渲染具体流程"><span class="nav-number">5.</span> <span class="nav-text">浏览器渲染具体流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建-DOM-树"><span class="nav-number">5.1.</span> <span class="nav-text">构建 DOM 树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Token-的拆分"><span class="nav-number">5.1.1.</span> <span class="nav-text">Token 的拆分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态机"><span class="nav-number">5.1.2.</span> <span class="nav-text">状态机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构建-DOM-树-1"><span class="nav-number">5.1.3.</span> <span class="nav-text">构建 DOM 树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建-CSSOM-规则树"><span class="nav-number">5.2.</span> <span class="nav-text">构建 CSSOM 规则树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建渲染树-（Render-Tree）"><span class="nav-number">5.3.</span> <span class="nav-text">构建渲染树 （Render Tree）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局与绘制"><span class="nav-number">5.4.</span> <span class="nav-text">布局与绘制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与之相关的几个问题"><span class="nav-number">6.</span> <span class="nav-text">与之相关的几个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么操作-DOM-慢"><span class="nav-number">6.1.</span> <span class="nav-text">为什么操作 DOM 慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器如果渲染过程中遇到-JS-文件怎么处理"><span class="nav-number">6.2.</span> <span class="nav-text">浏览器如果渲染过程中遇到 JS 文件怎么处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么情况下阻塞渲染"><span class="nav-number">6.3.</span> <span class="nav-text">什么情况下阻塞渲染</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回流（reflow）和重绘（repaint"><span class="nav-number">7.</span> <span class="nav-text">回流（reflow）和重绘（repaint)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重绘"><span class="nav-number">7.1.</span> <span class="nav-text">重绘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回流、重构、重排"><span class="nav-number">7.2.</span> <span class="nav-text">回流、重构、重排</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的渲染队列"><span class="nav-number">8.</span> <span class="nav-text">浏览器的渲染队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化：减少重绘和回流"><span class="nav-number">8.1.</span> <span class="nav-text">优化：减少重绘和回流</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器内核"><span class="nav-number">1.</span> <span class="nav-text">浏览器内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器线程"><span class="nav-number">2.</span> <span class="nav-text">浏览器线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面加载过程"><span class="nav-number">3.</span> <span class="nav-text">页面加载过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器渲染过程"><span class="nav-number">4.</span> <span class="nav-text">浏览器渲染过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器渲染具体流程"><span class="nav-number">5.</span> <span class="nav-text">浏览器渲染具体流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建-DOM-树"><span class="nav-number">5.1.</span> <span class="nav-text">构建 DOM 树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Token-的拆分"><span class="nav-number">5.1.1.</span> <span class="nav-text">Token 的拆分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态机"><span class="nav-number">5.1.2.</span> <span class="nav-text">状态机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构建-DOM-树-1"><span class="nav-number">5.1.3.</span> <span class="nav-text">构建 DOM 树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建-CSSOM-规则树"><span class="nav-number">5.2.</span> <span class="nav-text">构建 CSSOM 规则树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建渲染树-（Render-Tree）"><span class="nav-number">5.3.</span> <span class="nav-text">构建渲染树 （Render Tree）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局与绘制"><span class="nav-number">5.4.</span> <span class="nav-text">布局与绘制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与之相关的几个问题"><span class="nav-number">6.</span> <span class="nav-text">与之相关的几个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么操作-DOM-慢"><span class="nav-number">6.1.</span> <span class="nav-text">为什么操作 DOM 慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器如果渲染过程中遇到-JS-文件怎么处理"><span class="nav-number">6.2.</span> <span class="nav-text">浏览器如果渲染过程中遇到 JS 文件怎么处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么情况下阻塞渲染"><span class="nav-number">6.3.</span> <span class="nav-text">什么情况下阻塞渲染</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回流（reflow）和重绘（repaint）"><span class="nav-number">7.</span> <span class="nav-text">回流（reflow）和重绘（repaint）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重绘"><span class="nav-number">7.1.</span> <span class="nav-text">重绘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回流、重构、重排"><span class="nav-number">7.2.</span> <span class="nav-text">回流、重构、重排</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的渲染队列"><span class="nav-number">8.</span> <span class="nav-text">浏览器的渲染队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化：减少重绘和回流"><span class="nav-number">8.1.</span> <span class="nav-text">优化：减少重绘和回流</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -944,7 +944,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 

@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="fdd’Blog">
 <meta property="og:description" content="GET 和 POST 核心机制与区别">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-20T06:57:40.054Z">
+<meta property="og:updated_time" content="2020-11-13T15:44:06.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GET和POST区别">
 <meta name="twitter:description" content="GET 和 POST 核心机制与区别">
@@ -452,7 +452,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  792字
+                  1.3k字
                 </span>
               
 
@@ -468,7 +468,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分
+                  4分
                 </span>
               
             </div>
@@ -498,7 +498,30 @@
 <p><code>GET</code>和<code>POST</code>携带的数据格式也是有区别的，浏览器发出<code>GET</code>请求时分为两种情况，第一种用户自己在浏览器的地址栏输入，第二种点击<code>html</code>的<code>a</code>标签触发了<code>href</code>中的<code>url</code>。其实并不是<code>GET</code>只能用<code>url</code>,而是浏览器直接发出的<code>GET</code>只能由一个<code>url</code>触发。所以如果<code>GET</code>上要在<code>url</code>之外带一些参数就要依靠<code>querystring</code>。<br>浏览器的<code>POST</code>请求都来自表单提交，表单的数据被浏览器编码到 HTTP 请求的 body 里。两种编码方式：<code>application/x-www-form-urlencoded</code>用来传输简单数据，例如：”key1=value1&amp;key2=value2”,<code>multipart/form-data</code>用来传输文件。<br>浏览器在<code>POST</code>表单数据时，也可以带上参数，直接写在<code>action</code>的<code>url</code>里。<br>一般说“<code>GET</code>请求没有<code>body</code>，只有<code>url</code>，请求数据放在<code>url</code>的<code>querystring</code>中；<code>POST</code>请求的数据在<code>body</code>中“。但这种情况仅限于浏览器发请求的场景。</p>
 <h2 id="接口中的-GET-和-POST"><a href="#接口中的-GET-和-POST" class="headerlink" title="接口中的 GET 和 POST"></a>接口中的 GET 和 POST</h2><p>这里指通过浏览器的<code>Ajax api</code>，或者<code>iOS/Android</code>的<code>App</code>的<code>http client</code>，<code>java</code> 的<code>commons-httpclient/okhttp</code>或者是<code>curl</code>，<code>postman</code>之类的工具发出来的<code>GET</code>和<code>POST</code>请求。此时 GET/POST 不光能用在前端和后端的交互中，还能用在后端各个子服务的调用中（即当一种 RPC 协议使用）。<br>REST 接口规范、风格，约定了<code>GET</code>,<code>POST</code>,<code>PUT</code>,<code>DELETE</code>，这 4 个接口获取、创建、替换、删除，<code>REST</code>最佳实践还推荐在请求体使用<code>JSON</code>格式。<br><code>JSON</code>相对于<code>x-www-form-urlencoded</code>的优势在于: 1. 嵌套结构 2. 可以支持更丰富的数据类型。</p>
 <h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p>因为 POST 用 body 传输数据，而 GET 用 url 传输，更容易看到，所以 GET 更不安全。但是从攻击角度，无论是 GET 还是 POST 都不够安全，因为 HTTP 本身时明文协议，每个 HTTP 请求和返回的每个 byte 都会在网络上明文传输，不论是 url,header 或 body。<br>为了避免传输中数据被窃取，必须做从客户端到服务器的端端加密。业界的通行做法就是 https</p>
-<h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><p>URL 编码<br>utf-8 编码<br>body 编码</p>
+<h2 id="通常区别"><a href="#通常区别" class="headerlink" title="通常区别"></a>通常区别</h2><p><a href="https://www.cnblogs.com/logsharing/p/8448446.html" target="_blank" rel="noopener">参考</a></p>
+<ul>
+<li>GET 在浏览器回退时是无害的，而 POST 会再次提交请求。</li>
+<li>GET 产生的 URL 地址可以被存为标签，而 POST 不可以。</li>
+<li>GET 请求会被浏览器主动缓存，而 POST 不会，除非手动设置。</li>
+<li>GET 请求只能进行 url 编码，而 POST 支持多种编码方式。</li>
+<li>GET 请求参数会被完整保留在浏览器历史记录里，而 POST 中的参数不会被保留。</li>
+<li>GET 请求在 URL 中传送的参数是有长度限制的，而 POST 么有。</li>
+<li>GET 比 POST 更不安全，因为参数直接暴露在 URL 上，所以不能用来传递敏感信息。</li>
+</ul>
+<h2 id="实际区别"><a href="#实际区别" class="headerlink" title="实际区别"></a>实际区别</h2><p>没有区别，底层都是<code>TCP/IP</code>,并无差别。但是由于<code>HTTP</code> 的规定和浏览器/服务器的限制，导致他们在应用过程中体现出一些不同。<br><code>Get</code> 请求也可以传输 <code>body</code>，只不过有些服务器直接忽略，浏览器限制 <code>URL</code> 大小 2k，服务器 64k。</p>
+<p>区别：<code>GET</code> 产生一个 <code>TCP</code> 数据包；<code>POST</code> 产生两个 <code>TCP</code> 数据包。</p>
+<p>对于 GET 方式的请求，浏览器会把 <code>http header</code> 和 <code>data</code> 一并发送出去，服务器响应 200（返回数据）；</p>
+<p>而对于 <code>POST</code>，浏览器先发送<code>header</code>，服务器响应<code>100 continue</code>，浏览器再发送 <code>data</code>，服务器响应 200 ok（返回数据）。</p>
+<h2 id="为什么不能使用-GET-代替-POST"><a href="#为什么不能使用-GET-代替-POST" class="headerlink" title="为什么不能使用 GET 代替 POST"></a>为什么不能使用 GET 代替 POST</h2><ol>
+<li>GET 与 POST 都有自己的语义，不能随便混用。</li>
+<li>据研究，在网络环境好的情况下，发一次包的时间和发两次包的时间差别基本可以无视。而在网络环境差的情况下，两次包的 TCP 在验证数据包完整性上，有非常大的优点。</li>
+<li>并不是所有浏览器都会在 POST 中发送两次包，Firefox 就只发送一次。</li>
+</ol>
+<h2 id="为什么不能使用-POST-代替-GET"><a href="#为什么不能使用-POST-代替-GET" class="headerlink" title="为什么不能使用 POST 代替 GET"></a>为什么不能使用 POST 代替 GET</h2><ul>
+<li>POST 发送两次包</li>
+<li>POST 不能自动被浏览器缓存</li>
+<li>POST 不能存为书签</li>
+</ul>
 
       
     </div>
@@ -631,7 +654,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -642,7 +665,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -715,7 +738,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景一：浏览器的-GET-和-POST"><span class="nav-number">1.</span> <span class="nav-text">场景一：浏览器的 GET 和 POST</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET"><span class="nav-number">1.1.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POST"><span class="nav-number">1.2.</span> <span class="nav-text">POST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口中的-GET-和-POST"><span class="nav-number">2.</span> <span class="nav-text">接口中的 GET 和 POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">3.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码"><span class="nav-number">4.</span> <span class="nav-text">编码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景一：浏览器的-GET-和-POST"><span class="nav-number">1.</span> <span class="nav-text">场景一：浏览器的 GET 和 POST</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET"><span class="nav-number">1.1.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POST"><span class="nav-number">1.2.</span> <span class="nav-text">POST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口中的-GET-和-POST"><span class="nav-number">2.</span> <span class="nav-text">接口中的 GET 和 POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">3.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通常区别"><span class="nav-number">4.</span> <span class="nav-text">通常区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际区别"><span class="nav-number">5.</span> <span class="nav-text">实际区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么不能使用-GET-代替-POST"><span class="nav-number">6.</span> <span class="nav-text">为什么不能使用 GET 代替 POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么不能使用-POST-代替-GET"><span class="nav-number">7.</span> <span class="nav-text">为什么不能使用 POST 代替 GET</span></a></li></ol></div>
             
 
           </div>
@@ -756,7 +779,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 

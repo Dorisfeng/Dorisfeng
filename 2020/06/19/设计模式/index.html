@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="fdd’Blog">
 <meta property="og:description" content="前端常用的几种设计模式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-20T01:15:53.932Z">
+<meta property="og:updated_time" content="2020-11-26T14:54:33.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式">
 <meta name="twitter:description" content="前端常用的几种设计模式">
@@ -452,7 +452,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.8k字
+                  2k字
                 </span>
               
 
@@ -468,7 +468,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8分
+                  9分
                 </span>
               
             </div>
@@ -494,6 +494,7 @@
 <a id="more"></a>
 <h1 id="发布-订阅模式（观察者模式）"><a href="#发布-订阅模式（观察者模式）" class="headerlink" title="发布-订阅模式（观察者模式）"></a>发布-订阅模式（观察者模式）</h1><p>定义一对一或一对多的依赖关系，当发布者发生变化时，订阅方都会收到通知。<br>异步编程中可以利用这种模式传递回调函数。比如请求成功或错误等事件。无需关系异步操作运行的内部状态，只需要订阅异步执行完成这个节点。<br>例子：DOM 节点绑定事件函数，这时 DOM 节点就是发布者，事件函数就是订阅者，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const btn=document.getElementById(&apos;btn&apos;);</span><br><span class="line">btn.addEventListener(&apos;click&apos;,function(event)&#123;</span><br><span class="line">    console.log(&apos;按钮被点击&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">class Publish &#123;</span><br><span class="line">        constructor() &#123;</span><br><span class="line">            this.subscribers = &#123;&#125;; //缓存订阅者</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">        * topic 标识订阅者</span><br><span class="line">         callback</span><br><span class="line">        */</span><br><span class="line">        subscribe(topic, callback) &#123;</span><br><span class="line"></span><br><span class="line">            if (typeof callback !== &apos;function&apos;) &#123;</span><br><span class="line">                return &apos;回调必须是函数！&apos;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            let callbacks = this.subscribers[topic];</span><br><span class="line"></span><br><span class="line">            if (!callbacks) &#123;</span><br><span class="line">                this.subscribers[topic] = [callback]</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                callbacks.push(callback)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //触发订阅的事件</span><br><span class="line">        publish(topic, ...args) &#123;</span><br><span class="line">            let callbacks = this.subscribers[topic] || [];</span><br><span class="line">            callbacks.forEach(callback =&gt; callback.apply(this, args))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //取消订阅</span><br><span class="line">        unsubscribe(topic, fn) &#123;</span><br><span class="line">            let callbacks = this.subscribers[topic];</span><br><span class="line">            if (!callbacks) &#123;</span><br><span class="line">                return &apos;未注册事件&apos;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                this.subscribers[topic] = callbacks.filter(callback =&gt; callback !== fn)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    let pub = new Publish();</span><br><span class="line">    const fn1 = (val) =&gt; &#123;</span><br><span class="line">        console.log(&apos;test1&apos;, val)</span><br><span class="line">    &#125;</span><br><span class="line">    const fn2 = (val) =&gt; &#123;</span><br><span class="line">        console.log(&apos;test2&apos;, val)</span><br><span class="line">    &#125;</span><br><span class="line">    pub.subscribe(&apos;test&apos;, fn1)</span><br><span class="line">    pub.subscribe(&apos;test&apos;, fn2)</span><br><span class="line">    pub.unsubscribe(&apos;test&apos;, fn1)</span><br><span class="line">    pub.publish(&apos;test&apos;, 111)</span><br></pre></td></tr></table></figure>
 <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>确保一个类只有唯一一个实例，并且提供一个访问它的全局访问点。<br>举例：Window，全局缓存，全局状态管理<br>单例模式只实例化一次，多次调用实例化函数返回的都是第一次创建的实例对象。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//单例模式</span><br><span class="line">let Singleton = function (name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.instance = null;</span><br><span class="line">&#125;</span><br><span class="line">Singleton.prototype.getName = function () &#123;</span><br><span class="line">    return this.name</span><br><span class="line">&#125;</span><br><span class="line">//获取实例对象</span><br><span class="line">Singleton.getInstance = function (name) &#123;</span><br><span class="line">    if (!this.instance) &#123;</span><br><span class="line">        this.instance = new Singleton(name)</span><br><span class="line">    &#125;</span><br><span class="line">    return this.instance</span><br><span class="line">&#125;</span><br><span class="line">let a = Singleton.getInstance(&apos;aa&apos;);</span><br><span class="line">let b = Singleton.getInstance(&apos;bb&apos;);</span><br><span class="line">console.log(a === b)</span><br></pre></td></tr></table></figure>
 <p>实际例子</p>
@@ -675,7 +676,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -686,7 +687,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -800,7 +801,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 

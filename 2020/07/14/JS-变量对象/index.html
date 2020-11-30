@@ -147,7 +147,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://dorisfeng.github.io/2020/07/14/JS-变量对象/img1.png">
 <meta property="og:image" content="https://dorisfeng.github.io/2020/07/14/JS-变量对象/img2.png">
-<meta property="og:updated_time" content="2020-07-16T07:15:08.177Z">
+<meta property="og:updated_time" content="2020-11-10T03:28:52.693Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS-变量对象">
 <meta name="twitter:description" content="变量对象">
@@ -455,7 +455,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  987字
+                  989字
                 </span>
               
 
@@ -505,7 +505,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(foo); // function foo</span><br><span class="line">function foo() &#123; console.log(&apos;function foo&apos;) &#125;</span><br><span class="line">var foo = 20;</span><br></pre></td></tr></table></figure>
 <p><code>函数参数与变量同名，参数为准</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function foo(a)&#123;</span><br><span class="line">  console.log(a);//20</span><br><span class="line">  a=10;</span><br><span class="line">&#125;</span><br><span class="line">foo(20)</span><br></pre></td></tr></table></figure>
-<p><code>函数参数与内部函数同名，参数为准</code></p>
+<p><code>函数参数与内部函数同名，内部函数为准</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function foo(a)&#123;</span><br><span class="line">  console.log(a); //f a()&#123;&#125;</span><br><span class="line">  function a()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">foo(20)</span><br></pre></td></tr></table></figure>
 <h3 id="具体过程"><a href="#具体过程" class="headerlink" title="具体过程"></a>具体过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function test() &#123;</span><br><span class="line">    console.log(a);</span><br><span class="line">    console.log(foo());</span><br><span class="line"></span><br><span class="line">    var a = 1;</span><br><span class="line">    function foo() &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
 <ol>
@@ -686,7 +686,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -697,7 +697,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -811,7 +811,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 

@@ -145,14 +145,15 @@
 <meta property="og:site_name" content="fdd’Blog">
 <meta property="og:description" content="考点+面试题">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/06/20/m-核心考点/img1.webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11538622-93ea98e7946f7ec1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11538622-5c5c211accca495a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11538622-be1ec4f2cae2620e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2020-07-14T13:52:17.382Z">
+<meta property="og:updated_time" content="2020-11-09T08:07:48.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="m-核心考点">
 <meta name="twitter:description" content="考点+面试题">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/11538622-93ea98e7946f7ec1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://dorisfeng.github.io/2020/06/20/m-核心考点/img1.webp">
 
 
 
@@ -456,7 +457,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.3k字
+                  2.9k字
                 </span>
               
 
@@ -472,7 +473,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9分
+                  12分
                 </span>
               
             </div>
@@ -496,7 +497,8 @@
       
         <p>考点+面试题</p>
 <a id="more"></a>
-<h2 id="一、"><a href="#一、" class="headerlink" title="一、"></a>一、</h2><h2 id="三、面向对象，构造函数、原型与原型链"><a href="#三、面向对象，构造函数、原型与原型链" class="headerlink" title="三、面向对象，构造函数、原型与原型链"></a>三、面向对象，构造函数、原型与原型链</h2><ul>
+<h2 id="一、"><a href="#一、" class="headerlink" title="一、"></a>一、</h2><h2 id="三、面向对象，构造函数、原型与原型链"><a href="#三、面向对象，构造函数、原型与原型链" class="headerlink" title="三、面向对象，构造函数、原型与原型链"></a>三、面向对象，构造函数、原型与原型链</h2><p><img src="/2020/06/20/m-核心考点/img1.webp" alt="继承"></p>
+<ul>
 <li><p><strong>1. 对象</strong><br>定义：无序属性的集合，其属性可以包含基本值，对象或者函数。<br>创建对象的方法：</p>
 <ul>
 <li>new 方法</li>
@@ -510,15 +512,18 @@
 <li>根据原型创建对象</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let obj=Object.create(Object.prototype)</span><br><span class="line">let obj=Object.create(null)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>工厂模式<br>就是提供一个生成一类对象的函数，通过这个函数返回一个对象。<br>解决代码重复代码</li>
+</li>
 </ul>
+<p><strong>create 函数的实现</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const create=(proto)=&gt;&#123;</span><br><span class="line">  let fun=function()&#123;&#125;</span><br><span class="line">  fun.prototype=proto;</span><br><span class="line">  return new fun()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>工厂模式<br>就是提供一个生成一类对象的函数，通过这个函数返回一个对象。<br>解决代码重复代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var createPerson = function (name, age) &#123;</span><br><span class="line">      var o = new Object();</span><br><span class="line">      o.name = name;</span><br><span class="line">      o.age = age;</span><br><span class="line">      o.getName = function () &#123;</span><br><span class="line">          return this.name</span><br><span class="line">      &#125;</span><br><span class="line">      return o;</span><br><span class="line">  &#125;</span><br><span class="line">  var perTom = createPerson(&apos;Tom&apos;, 20);</span><br><span class="line">  var perJake = createPerson(&apos;Jake&apos;, 22);</span><br></pre></td></tr></table></figure>
 <p>缺点：</p>
-<ul>
-<li>无法识别对象实例</li>
-<li>相同的对象的方法会复制很多份，造成浪费</li>
-</ul>
+</li>
+<li><p>无法识别对象实例</p>
+</li>
+<li><p>相同的对象的方法会复制很多份，造成浪费</p>
 </li>
 <li><p><strong>2. 构造函数</strong><br>目的：创建一个自定义类。<br>使用 new 关键字调用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function demo() &#123;</span><br><span class="line">        console.log(this)</span><br><span class="line">    &#125;</span><br><span class="line">    demo()  //window</span><br><span class="line">    new demo()  //demo</span><br></pre></td></tr></table></figure>
@@ -531,9 +536,8 @@
 <li>将构造函数的 this，指向中间对象</li>
 <li>如果构造函数存在返回值，返回该返回值，否则返回中间对象</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>3. 原型</strong><br>原型对象的方法与属性就变成了共有方法与属性。</p>
+<li><p><strong>3. 原型</strong><br><strong>谈谈你对 JS 原型和原型链的理解：</strong><br>原型对象为其他对象提供共享的方法与属性的对象。在创建对象的时，每个对象都包含一个隐式引用指向它的原型对象或者<code>null</code>。<br>原型也是对象，它也有自己的原型，这个就构成了原型链。</p>
 <p><em>每个函数都可以是构造函数，每个对象都可以是原型对象。函数 prototype 指向原型，实例<code>__proto__</code>指向原型</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//构造函数</span><br><span class="line">function Person(name, age) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">//通过prototype属性，将方法挂载带原型对象上</span><br><span class="line">Person.prototype.getName= function()&#123;</span><br><span class="line">    return this.name</span><br><span class="line">&#125;</span><br><span class="line">var p1 = new Person(&apos;tim&apos;, 10);</span><br><span class="line">var p2 = new Person(&apos;jak&apos;, 22);</span><br><span class="line">console.log(p1.getName === p2.getName)  //true</span><br></pre></td></tr></table></figure>
 <p><img src="https://upload-images.jianshu.io/upload_images/11538622-93ea98e7946f7ec1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="原型"><br><strong>当我们访问实例对象中的属性或方法时，会优先访问实例对象自身的属性和方法。</strong><br>判断对象是否拥有某个属性/放发，无论该属性、方法存在于实例对象还是原型对象。</p>
@@ -544,10 +548,37 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype = &#123;</span><br><span class="line">        constructor:Person, // 显示constructor的指向</span><br><span class="line">        getName:function()&#123;&#125;,</span><br><span class="line">        getAge:function()&#123;&#125;,</span><br><span class="line">        sayHello:function()&#123;&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>4. 原型链</strong><br><img src="https://upload-images.jianshu.io/upload_images/11538622-5c5c211accca495a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="原型链"><br>add 是 Function 对象的实例。而 Function 的原型对象时 Object 的实例。这构成了一条原型链。</p>
+<p><strong>原型链有什么作用</strong><br>存储多个对象的共有属性和方法。我们在访问对象的属性时，实际是查找的整个原型链上的属性，返回第一个找到的对应属性值，过程：首先查找当前对象上是否包含该属性，如果包含就返回返回，否则查找当前对象的原型是否包含，。。。,如果都不包含返回<code>undefined</code>。</p>
+<p><strong>实现一个在原型链上查找属性的方法</strong></p>
 </li>
-<li><p><strong>5. 继承</strong></p>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const lookupProperty = (object, propertyName) =&gt; &#123;</span><br><span class="line">      let current = object;</span><br><span class="line"></span><br><span class="line">      if (current === null) &#123;</span><br><span class="line">          throw new Error(`Cannot read property &apos;$&#123;propertyName&#125;&apos; of $&#123;object&#125;`)</span><br><span class="line">      &#125;</span><br><span class="line">      while (current) &#123;</span><br><span class="line">          console.log(current)</span><br><span class="line">          if (current.hasOwnProperty(propertyName)) &#123;</span><br><span class="line">              return current[propertyName]</span><br><span class="line">          &#125;</span><br><span class="line">          current = Object.getPrototypeOf(current)</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line">      return undefined</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  console.log(lookupProperty(&#123;&#125;, &apos;toString&apos;) === Object.prototype.toString) //true</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>5. 继承</strong><br><strong>如何实现继承</strong></p>
+<ul>
+<li>显示原型继承:开发者操作的继承</li>
+</ul>
+<ol>
+<li><code>Object.setPropertyOf(obj1,obj2)</code><br>将<code>obj2</code>设置为<code>obj1</code>的原型</li>
+<li><code>Object.create(obj)</code><br>以<code>obj</code>为原型创建新对象</li>
+</ol>
+<ul>
+<li>隐式原型继承<br>使用<code>new</code>关键字实例化时，会自动继承<code>constructor</code>的<code>prototype</code>对象，作为实例的原型。<br>内置构造函数，如：Object, Array, Boolean, String, Number，Function。</li>
+</ul>
+<p><strong>如何实现超类的继承(Class 的继承)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const inherit=(SuperConstructor,properties)=&gt;&#123;</span><br><span class="line"></span><br><span class="line">  let &#123;constructor&#125;=properties;</span><br><span class="line">  let SubConstructor=function(...args)&#123;</span><br><span class="line">    SuperConstructor.call(this,...args);</span><br><span class="line">    constructor.call(this,...args);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  SubConstructor.prototype=&#123;</span><br><span class="line">    ...properties,</span><br><span class="line">    constructor:SubConstructor</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Object.setPrototypeOf(</span><br><span class="line">    SubConstructor.prototype,</span><br><span class="line">    SuperConstructor.prototype</span><br><span class="line">  )</span><br><span class="line">  return SuperConstructor</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第一步，编写新的<code>constructor</code>，将两个<code>constructor</code>通过<code>apply/call</code>的方式调用，合并他们的属性，超类优先调用<br>第二步，为新的构造函数的原型对象设置为子类的原型，并且修改<code>constructor</code>属性<br>第三步,设置新的原型对象继承超类的原型对象。<br><strong>原型中比较少人知道的特性</strong><br>对象访问<code>__proto__</code>属性，其实就是调用<code>Object.prototype</code>里面的访问时属性<code>get</code></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let obj=new Object();</span><br><span class="line">obj.a=1;</span><br><span class="line">obj.b=2</span><br></pre></td></tr></table></figure>
+<p>语法糖-对象字面量<br><code>let obj={a:1,b:2}</code></p>
+<p>通过字面量创的新对象，有两层隐式行为</p>
+<ol>
+<li>通过<code>new Object()</code>或<code>new Array()</code>等内置构造函数创建新对象</li>
+<li>隐式进行原型继承</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//构造函数的继承</span><br><span class="line">function cPerson(name, age, job) &#123;</span><br><span class="line">    Person.call(this, name, age);</span><br><span class="line">    this.job = job</span><br><span class="line">&#125;</span><br><span class="line">//原型链继承</span><br><span class="line">cPerson.prototype = new Person();</span><br><span class="line">//添加方法</span><br><span class="line">cPerson.prototype.getLive = function () &#123;&#125;</span><br><span class="line">var p3 = new cPerson(&apos;111&apos;, 333, &apos;ddd&apos;)</span><br></pre></td></tr></table></figure>
-</li>
+<ul>
 <li><p><strong>6. 更好的继承</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function Student(name, age, grade) &#123;</span><br><span class="line">//构造函数继承</span><br><span class="line">    Person.call(this, name, age);</span><br><span class="line">    this.grade = grade;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function create(proto, options) &#123;</span><br><span class="line">    //创建一个空对象</span><br><span class="line">    var tmp = &#123;&#125;;</span><br><span class="line">    //让新的空对象成为父类对象的实例</span><br><span class="line">    tmp.__proto__ = proto;</span><br><span class="line">    //传入的方法都挂载到新对象上，新的对象作为子类对象的原型</span><br><span class="line">    Object.defineProperties(tmp, options);</span><br><span class="line">    return tmp</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">//原型继承</span><br><span class="line">Student.prototype = create(Person.prototype, &#123;</span><br><span class="line">    //重新指定构造函数</span><br><span class="line">    constructor: Student,</span><br><span class="line">    getGrade: &#123;</span><br><span class="line">        value: function () &#123;</span><br><span class="line">            return this.grade</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>在 ECMAScript5 中直接提供了一个 Object.create 方法来完成我们上面自己封装的 create 的功能。因此我们可以直接使用 Object.create.</p>
@@ -771,7 +802,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -782,7 +813,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -896,7 +927,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 

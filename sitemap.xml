@@ -2,30 +2,310 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://dorisfeng.github.io/2020/11/06/JS-%E7%A7%91%E9%87%8C%E5%8C%96/</loc>
+    <loc>https://dorisfeng.github.io/2020/06/22/JS-Promise/</loc>
     
-    <lastmod>2020-11-07T08:10:44.638Z</lastmod>
+    <lastmod>2020-11-30T09:22:13.638Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/06/22/JS-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/</loc>
+    
+    <lastmod>2020-11-29T15:27:50.334Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/01/05/m-%E5%AE%89%E5%85%A8/</loc>
+    
+    <lastmod>2020-11-27T08:34:59.343Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/12/09/React-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%961/</loc>
+    
+    <lastmod>2020-11-27T04:31:46.441Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/11/24/React-%E6%BA%90%E7%A0%81/</loc>
+    
+    <lastmod>2020-11-27T02:39:22.976Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/06/19/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    
+    <lastmod>2020-11-26T14:54:33.179Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/01/06/m-%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD/</loc>
+    
+    <lastmod>2020-11-24T13:45:47.329Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/01/05/m-HTTP%E5%8D%8F%E8%AE%AE/</loc>
+    
+    <lastmod>2020-11-24T12:45:20.283Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/11/10/React-%E8%99%9A%E6%8B%9FDOM/</loc>
+    
+    <lastmod>2020-11-24T01:21:59.178Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/11/20/JS-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
+    
+    <lastmod>2020-11-22T05:00:38.272Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/11/19/%E6%95%B0%E7%BB%84-%E6%8E%92%E5%BA%8F/</loc>
+    
+    <lastmod>2020-11-20T09:28:58.196Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/10/08/%E6%95%B0%E7%BB%84-%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2020-11-19T08:33:54.924Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/06/30/JS-EventLoop/</loc>
+    
+    <lastmod>2020-11-19T06:39:55.915Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/07/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/</loc>
+    
+    <lastmod>2020-11-17T13:17:21.098Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/06/17/m-HTML/</loc>
+    
+    <lastmod>2020-11-16T14:24:48.497Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/07/23/html5-%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/</loc>
+    
+    <lastmod>2020-11-16T14:21:32.595Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/08/20/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/</loc>
+    
+    <lastmod>2020-11-13T15:44:06.415Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/07/14/JS-%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/</loc>
+    
+    <lastmod>2020-11-10T03:28:52.693Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2018/12/12/React-native%E4%B9%8BFlexBox/</loc>
+    
+    <lastmod>2020-11-10T02:48:05.647Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/01/14/React-native%E4%B9%8BFlatList/</loc>
+    
+    <lastmod>2020-11-10T02:47:55.695Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/03/09/React-native%E4%B9%8BAndroid%E5%B1%95%E7%A4%BAGIF/</loc>
+    
+    <lastmod>2020-11-10T02:47:55.695Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/02/12/React-native%E4%B9%8BAndroid%E5%90%AF%E5%8A%A8%E9%A1%B5%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2020-11-10T02:47:55.660Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2018/12/12/React-native%E4%B9%8BTextInput/</loc>
+    
+    <lastmod>2020-11-10T02:47:55.659Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2018/12/12/React-native%E4%B9%8BImage/</loc>
+    
+    <lastmod>2020-11-10T02:47:55.634Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2018/12/15/React-native%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/</loc>
+    
+    <lastmod>2020-11-10T02:47:55.634Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/11/07/React-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%962/</loc>
+    
+    <lastmod>2020-11-10T02:47:55.615Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2018/12/25/React-native%E4%B9%8B%E7%BB%83%E4%B9%A0demo/</loc>
+    
+    <lastmod>2020-11-10T02:47:55.615Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2018/12/20/React-native%E4%B9%8BTouchable%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.790Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/11/29/TypeScript%E8%BF%9B%E9%98%B6/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.701Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/12/04/TypeScript-React/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.701Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/12/06/Babel/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.701Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2018/12/07/%E5%9B%BE%E7%89%87%E6%8B%96%E5%8A%A8%E7%BB%84%E4%BB%B6/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.701Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/03/17/webpack%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.701Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2018/12/21/window%E5%AF%B9%E8%B1%A1/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.701Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/11/09/TypeScript%E5%85%A5%E9%97%A8/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.701Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/04/04/webpack%E4%B9%8BTapable/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.700Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/11/10/TypeScript%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.700Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/01/24/pdf-js%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.700Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2018/12/05/%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BB%84%E4%BB%B6/</loc>
+    
+    <lastmod>2020-11-10T02:47:47.659Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2018/12/26/React-native%E4%B9%8BScrollView/</loc>
+    
+    <lastmod>2020-11-10T02:47:46.240Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2020/06/20/m-%E6%A0%B8%E5%BF%83%E8%80%83%E7%82%B9/</loc>
+    
+    <lastmod>2020-11-09T08:07:48.445Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dorisfeng.github.io/2019/10/11/%E5%AF%B9%E8%B1%A1-%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2020-11-09T05:48:50.145Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://dorisfeng.github.io/2020/11/06/JS-%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/</loc>
     
-    <lastmod>2020-11-07T08:08:51.577Z</lastmod>
+    <lastmod>2020-11-07T08:24:37.251Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2020/11/07/react-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%962/</loc>
+    <loc>https://dorisfeng.github.io/2020/11/06/JS-%E7%A7%91%E9%87%8C%E5%8C%96/</loc>
     
-    <lastmod>2020-11-07T07:46:26.264Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2019/12/09/react-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%961/</loc>
-    
-    <lastmod>2020-11-07T07:45:03.895Z</lastmod>
+    <lastmod>2020-11-07T08:24:32.710Z</lastmod>
     
   </url>
   
@@ -51,13 +331,6 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2020/06/22/JS-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/</loc>
-    
-    <lastmod>2020-10-30T15:33:14.306Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2019/01/14/ES9/</loc>
     
     <lastmod>2020-10-30T15:31:06.744Z</lastmod>
@@ -79,13 +352,6 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2019/11/29/TypeScript%E8%BF%9B%E9%98%B6/</loc>
-    
-    <lastmod>2020-08-25T06:35:15.159Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2020/06/18/m-JS/</loc>
     
     <lastmod>2020-08-20T07:38:14.714Z</lastmod>
@@ -93,30 +359,9 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2020/08/20/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/</loc>
-    
-    <lastmod>2020-08-20T06:57:40.054Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2019/11/06/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87nginx%E7%9F%A5%E8%AF%86/</loc>
     
     <lastmod>2020-08-20T02:29:45.984Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2020/07/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/</loc>
-    
-    <lastmod>2020-08-19T09:05:17.129Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2020/06/30/JS-EventLoop/</loc>
-    
-    <lastmod>2020-08-19T08:49:19.175Z</lastmod>
     
   </url>
   
@@ -145,20 +390,6 @@
     <loc>https://dorisfeng.github.io/2019/04/05/ES6/</loc>
     
     <lastmod>2020-08-18T01:54:37.829Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2020/06/17/m-HTML/</loc>
-    
-    <lastmod>2020-08-17T05:15:34.516Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2019/12/04/TypeScript-React/</loc>
-    
-    <lastmod>2020-08-13T06:20:38.131Z</lastmod>
     
   </url>
   
@@ -198,13 +429,6 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2020/07/23/html5-%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/</loc>
-    
-    <lastmod>2020-07-23T07:06:03.372Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2020/07/21/LESS/</loc>
     
     <lastmod>2020-07-21T14:05:17.381Z</lastmod>
@@ -226,20 +450,6 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2019/10/08/%E6%95%B0%E7%BB%84-%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95/</loc>
-    
-    <lastmod>2020-07-20T07:54:24.589Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2020/06/22/JS-Promise/</loc>
-    
-    <lastmod>2020-07-20T07:17:14.087Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2020/01/05/m-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/</loc>
     
     <lastmod>2020-07-20T02:53:37.433Z</lastmod>
@@ -257,13 +467,6 @@
     <loc>https://dorisfeng.github.io/2018/11/21/MarkDown/</loc>
     
     <lastmod>2020-07-19T04:36:07.106Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2020/01/05/m-%E5%AE%89%E5%85%A8/</loc>
-    
-    <lastmod>2020-07-19T04:35:59.492Z</lastmod>
     
   </url>
   
@@ -303,13 +506,6 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2020/07/14/JS-%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/</loc>
-    
-    <lastmod>2020-07-16T07:15:08.177Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2020/07/16/JS-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%89%A7%E8%A1%8C%E6%A0%88/</loc>
     
     <lastmod>2020-07-16T05:56:16.389Z</lastmod>
@@ -317,37 +513,9 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2020/06/20/m-%E6%A0%B8%E5%BF%83%E8%80%83%E7%82%B9/</loc>
-    
-    <lastmod>2020-07-14T13:52:17.382Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2019/10/11/%E5%AF%B9%E8%B1%A1-%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95/</loc>
-    
-    <lastmod>2020-07-14T12:56:28.527Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2020/01/06/m-%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD/</loc>
-    
-    <lastmod>2020-07-07T09:23:48.821Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2019/10/08/JS-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/</loc>
     
     <lastmod>2020-07-07T09:08:51.175Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2020/01/05/m-HTTP%E5%8D%8F%E8%AE%AE/</loc>
-    
-    <lastmod>2020-07-07T08:59:38.093Z</lastmod>
     
   </url>
   
@@ -394,13 +562,6 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2018/12/21/window%E5%AF%B9%E8%B1%A1/</loc>
-    
-    <lastmod>2020-06-26T01:35:56.844Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2018/12/21/DOM%E6%93%8D%E4%BD%9C/</loc>
     
     <lastmod>2020-06-25T06:05:41.241Z</lastmod>
@@ -411,13 +572,6 @@
     <loc>https://dorisfeng.github.io/2020/06/22/JS-CommonJS/</loc>
     
     <lastmod>2020-06-25T03:42:53.987Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2020/06/19/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    
-    <lastmod>2020-06-20T01:15:53.932Z</lastmod>
     
   </url>
   
@@ -436,30 +590,9 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2019/03/17/webpack%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2020-06-12T03:35:21.556Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2020/01/19/vue-%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
     
     <lastmod>2020-06-12T03:35:11.713Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2019/11/09/TypeScript%E5%85%A5%E9%97%A8/</loc>
-    
-    <lastmod>2020-06-12T03:35:07.576Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2019/11/10/TypeScript%E5%9F%BA%E7%A1%80/</loc>
-    
-    <lastmod>2020-06-12T03:35:02.349Z</lastmod>
     
   </url>
   
@@ -499,23 +632,9 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2019/12/06/Babel/</loc>
-    
-    <lastmod>2020-06-12T03:32:48.517Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2019/02/26/%E9%87%8D%E5%AD%A6%E5%89%8D%E7%AB%AF-HTMl%E8%AF%AD%E4%B9%89%E6%A0%87%E7%AD%BE/</loc>
     
     <lastmod>2020-06-12T03:32:31.370Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2018/12/05/%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BB%84%E4%BB%B6/</loc>
-    
-    <lastmod>2020-06-12T03:32:27.864Z</lastmod>
     
   </url>
   
@@ -534,13 +653,6 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2018/12/07/%E5%9B%BE%E7%89%87%E6%8B%96%E5%8A%A8%E7%BB%84%E4%BB%B6/</loc>
-    
-    <lastmod>2020-06-12T03:31:23.755Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2019/04/07/%E6%89%8B%E5%86%99webpack/</loc>
     
     <lastmod>2020-06-12T03:31:15.088Z</lastmod>
@@ -555,58 +667,9 @@
   </url>
   
   <url>
-    <loc>https://dorisfeng.github.io/2019/04/04/webpack%E4%B9%8BTapable/</loc>
-    
-    <lastmod>2020-06-12T03:29:28.306Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dorisfeng.github.io/2019/07/24/MongoDB/</loc>
     
     <lastmod>2020-06-12T03:28:52.702Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2018/12/12/react-native%E4%B9%8BTextInput/</loc>
-    
-    <lastmod>2020-06-12T03:28:27.459Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2018/12/12/react-native%E4%B9%8BImage/</loc>
-    
-    <lastmod>2020-06-12T03:27:24.945Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2018/12/26/react-native%E4%B9%8BScrollView/</loc>
-    
-    <lastmod>2020-06-12T03:26:30.500Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2018/12/20/react-native%E4%B9%8BTouchable%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2020-06-12T03:26:17.372Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2019/01/24/pdf-js%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2020-06-12T03:26:11.808Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2018/12/15/react-native%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/</loc>
-    
-    <lastmod>2020-06-12T03:25:54.888Z</lastmod>
     
   </url>
   
@@ -621,41 +684,6 @@
     <loc>https://dorisfeng.github.io/2019/09/04/Python-Spark2-0-Hadoop/</loc>
     
     <lastmod>2020-06-12T03:25:50.031Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2018/12/25/react-native%E4%B9%8B%E7%BB%83%E4%B9%A0demo/</loc>
-    
-    <lastmod>2020-06-12T03:25:35.752Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2019/02/12/react-native%E4%B9%8BAndroid%E5%90%AF%E5%8A%A8%E9%A1%B5%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2020-06-12T03:25:31.323Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2019/03/09/react-native%E4%B9%8BAndroid%E5%B1%95%E7%A4%BAGIF/</loc>
-    
-    <lastmod>2020-06-12T03:25:27.870Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2019/01/14/react-native%E4%B9%8BFlatList/</loc>
-    
-    <lastmod>2020-06-12T03:25:24.927Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dorisfeng.github.io/2018/12/12/react-native%E4%B9%8BFlexBox/</loc>
-    
-    <lastmod>2020-06-12T03:25:21.424Z</lastmod>
     
   </url>
   

@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="fdd’Blog">
 <meta property="og:description" content="HTML5">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-17T05:15:34.516Z">
+<meta property="og:updated_time" content="2020-11-16T14:24:48.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="m-HTML">
 <meta name="twitter:description" content="HTML5">
@@ -452,7 +452,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  622字
+                  669字
                 </span>
               
 
@@ -492,7 +492,7 @@
       
         <p>HTML5</p>
 <a id="more"></a>
-<h2 id="谈谈你对-HTML5-的理解"><a href="#谈谈你对-HTML5-的理解" class="headerlink" title="谈谈你对 HTML5 的理解"></a>谈谈你对 HTML5 的理解</h2><p><a href="https://dorisfeng.github.io/2020/07/23/html5-%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/">语义化标签</a><br><a href="https://dorisfeng.github.io/2020/07/23/html5-音视频处理/">音视频处理</a><br><a href="https://dorisfeng.github.io/2020/07/23/html5-%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0/">表单元素和表单校验</a><br><a href="https://dorisfeng.github.io/2020/07/20/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/">响应式布局</a></p>
+<h2 id="谈谈你对-HTML5-的理解"><a href="#谈谈你对-HTML5-的理解" class="headerlink" title="谈谈你对 HTML5 的理解"></a>谈谈你对 HTML5 的理解</h2><p><a href="https://dorisfeng.github.io/2020/07/23/html5-%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/">语义化标签</a><br><a href="https://dorisfeng.github.io/2020/07/23/html5-音视频处理/">音视频处理</a><br><a href="https://dorisfeng.github.io/2020/07/23/html5-%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0/">增强型表单：表单元素和表单校验</a><br><a href="https://dorisfeng.github.io/2020/07/20/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/">响应式布局</a></p>
 <h3 id="CSS-预编译语言"><a href="#CSS-预编译语言" class="headerlink" title="CSS 预编译语言"></a>CSS 预编译语言</h3><p><a href="https://dorisfeng.github.io/categories/CSS/">LESS</a><br>SASS</p>
 <h3 id="canvas-webGL"><a href="#canvas-webGL" class="headerlink" title="canvas/webGL"></a>canvas/webGL</h3><p><a href="https://dorisfeng.github.io/2020/07/23/html5-canvas%E5%9F%BA%E7%A1%80/">canvas 基础</a><br><a href="https://dorisfeng.github.io/2020/07/29/html5-canvas%E5%8A%A8%E7%94%BB/">canvas 动画</a><br>webGL：3D 动画，暂时没兴趣，用不着</p>
 <h3 id="history-API"><a href="#history-API" class="headerlink" title="history API"></a>history API</h3><ul>
@@ -513,6 +513,10 @@
 <h3 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame()"></a>requestAnimationFrame()</h3><p>要求浏览器在下次重绘之前调用指定的回调函数更新动画，参数是回调函数，该回调函数会在浏览器下一次重绘之前执行。<br>返回值：请求 ID，整数。可以使用<code>window.cancelAnimationFrame(id)</code>取消回调函数。<br><a href="https://dorisfeng.github.io/2020/06/22/JS-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程- requestAnimationFrame</a></p>
 <h3 id="地理定位"><a href="#地理定位" class="headerlink" title="地理定位"></a>地理定位</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function getLocation()</span><br><span class="line">&#123;</span><br><span class="line">    if (navigator.geolocation)</span><br><span class="line">    &#123;</span><br><span class="line">        navigator.geolocation.getCurrentPosition(showPosition);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        x.innerHTML=&quot;该浏览器不支持获取地理位置。&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Web-Sockets"><a href="#Web-Sockets" class="headerlink" title="Web Sockets"></a>Web Sockets</h3><p><a href="https://dorisfeng.github.io/2020/07/17/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">跨域-webSocket</a></p>
+<h3 id="Web-Storage"><a href="#Web-Storage" class="headerlink" title="Web Storage"></a>Web Storage</h3><ul>
+<li>localStorage<br>没有时间限制的数据存储</li>
+<li>sessionStorage<br>针对一个 session 的数据存储, 当用户关闭浏览器窗口后，数据会被删除。</li>
+</ul>
 
       
     </div>
@@ -645,7 +649,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -656,7 +660,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -729,7 +733,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#谈谈你对-HTML5-的理解"><span class="nav-number">1.</span> <span class="nav-text">谈谈你对 HTML5 的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-预编译语言"><span class="nav-number">1.1.</span> <span class="nav-text">CSS 预编译语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas-webGL"><span class="nav-number">1.2.</span> <span class="nav-text">canvas/webGL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#history-API"><span class="nav-number">1.3.</span> <span class="nav-text">history API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requestAnimationFrame"><span class="nav-number">1.4.</span> <span class="nav-text">requestAnimationFrame()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地理定位"><span class="nav-number">1.5.</span> <span class="nav-text">地理定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Sockets"><span class="nav-number">1.6.</span> <span class="nav-text">Web Sockets</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#谈谈你对-HTML5-的理解"><span class="nav-number">1.</span> <span class="nav-text">谈谈你对 HTML5 的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-预编译语言"><span class="nav-number">1.1.</span> <span class="nav-text">CSS 预编译语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas-webGL"><span class="nav-number">1.2.</span> <span class="nav-text">canvas/webGL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#history-API"><span class="nav-number">1.3.</span> <span class="nav-text">history API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requestAnimationFrame"><span class="nav-number">1.4.</span> <span class="nav-text">requestAnimationFrame()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地理定位"><span class="nav-number">1.5.</span> <span class="nav-text">地理定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Sockets"><span class="nav-number">1.6.</span> <span class="nav-text">Web Sockets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Storage"><span class="nav-number">1.7.</span> <span class="nav-text">Web Storage</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -770,7 +774,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 

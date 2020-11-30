@@ -147,7 +147,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://dorisfeng.github.io/2020/06/22/JS-异步编程/img1.webp">
 <meta property="og:image" content="https://dorisfeng.github.io/2020/06/22/JS-异步编程/img2.webp">
-<meta property="og:updated_time" content="2020-10-30T15:33:14.306Z">
+<meta property="og:updated_time" content="2020-11-29T15:27:50.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS-异步编程">
 <meta name="twitter:description" content="JS 异步编程以及面试题">
@@ -455,7 +455,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.3k字
+                  2.6k字
                 </span>
               
 
@@ -471,7 +471,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9分
+                  10分
                 </span>
               
             </div>
@@ -548,14 +548,15 @@
 <p><a href="https://dorisfeng.github.io/2020/06/22/JS-Promise/">Promise</a></p>
 <h2 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h2><p><a href="https://www.jianshu.com/writer#/notebooks/40257545/notes/36722437" target="_blank" rel="noopener">async/await</a><br>一个函数如果加上 <code>async</code> ，那么该函数就会返回一个 <code>Promise</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">async function test() &#123;</span><br><span class="line">  return &quot;1&quot;</span><br><span class="line">&#125;</span><br><span class="line">console.log(test()) // -&gt; Promise &#123;&lt;resolved&gt;: &quot;1&quot;&#125;</span><br></pre></td></tr></table></figure>
-<p><code>async</code> 就是将函数返回值使用 <code>Promise.resolve()</code> 包裹了下，和 <code>then</code>中处理返回值一样，并且 <code>await</code> 只能配套 <code>async</code> 使用<br><code>async</code>和<code>await</code>是目前异步的终极解决方案，优点在于语义化更强，能够解决回调地狱问题。<br>缺点：如果几个异步操作没有依赖性，使用<code>await</code>会降低性能。</p>
+<p><code>async</code> 就是将函数返回值使用 <code>Promise.resolve()</code> 包裹了下，和 <code>then</code>中处理返回值一样，并且 <code>await</code> 只能配套 <code>async</code> 使用<br><code>async</code>和<code>await</code>是目前异步的终极解决方案，优点在于语义化更强，能够解决回调地狱问题。<br>缺点：在于滥用<code>await</code>可能会导致性能问题，因为<code>await</code>会阻塞代码，也许之后的异步代码并不依赖于前者，但仍然需要等待前者完成，导致代码失去了并发性。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">async function test() &#123;</span><br><span class="line">  // 以下代码没有依赖性的话，完全可以使用 Promise.all 的方式</span><br><span class="line">  // 如果有依赖性的话，其实就是解决回调地狱的例子了</span><br><span class="line">  await fetch(url)</span><br><span class="line">  await fetch(url1)</span><br><span class="line">  await fetch(url2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>执行顺序</strong><br>会等待<code>await</code>后面的语句或函数会放到微任务队列中，等待当前宏任务执行完毕，才去清空微任务队列，然后才会执行<code>await</code>下一行的代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let a = 0</span><br><span class="line">let b = async () =&gt; &#123;</span><br><span class="line">    console.log(0,a);</span><br><span class="line">  a = a + await 10</span><br><span class="line">  console.log(&apos;2&apos;, a) // -&gt; &apos;2&apos; 10</span><br><span class="line">&#125;</span><br><span class="line">b()</span><br><span class="line">a++</span><br><span class="line">console.log(&apos;1&apos;, a) // -&gt; &apos;1&apos; 1</span><br><span class="line">// 0 0</span><br><span class="line">// 1 1</span><br><span class="line">// 2 10</span><br></pre></td></tr></table></figure>
+<p><strong>执行顺序</strong><br>await 返回一个 Promise 对象，await 后面如果是函数会立即执行，await 会产生一个微任务(Promise.then 是微任务)。<br>执行完 await 后面的表达式或函数，将 await 后面的代码全部放到微任务队列中。跳出 async 函数，执行其他代码，宏任务执行完毕，执行微任务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">let a = 0</span><br><span class="line">let b = async () =&gt; &#123;</span><br><span class="line">    console.log(0,a);</span><br><span class="line">  a = a + await 10</span><br><span class="line">  console.log(&apos;2&apos;, a) // -&gt; &apos;2&apos; 10</span><br><span class="line">  a=(await 10)+a;</span><br><span class="line">  console.log(&apos;3&apos;,a)// -&gt; &apos;3&apos; 20</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b()</span><br><span class="line">a++</span><br><span class="line">console.log(&apos;1&apos;, a) // -&gt; &apos;1&apos; 1</span><br><span class="line">// 0 0</span><br><span class="line">// 1 1</span><br><span class="line">// 2 10</span><br><span class="line">// 3 20</span><br></pre></td></tr></table></figure>
+<p><strong>在 await 前面的值都会同步执行， await 后面的才会异步执行，所有等待 await 返回之前，a 的值早就确定</strong></p>
 <ol>
-<li>先执行宏任务函数 b,打印<code>0 0</code>，接着<code>await 10</code>放大微任务队列，函数 b 停止执行，</li>
-<li>宏任务接着执行<code>a++</code>, 打印<code>1 1</code></li>
-<li>宏任务清空了，执行微任务，<code>a=a+10</code>，打印<code>2 10</code></li>
+<li>首先函数 b 先执行，在执行到 await 10 之前变量 a 还是 0，因为在 await 内部实现了 generators ，generators 会保留堆栈中东西，所以这时候 a = 0 被保存了下来,</li>
+<li>因为 await 是异步操作，遇到 await 就会立即返回一个 pending 状态的 Promise 对象，暂时返回执行代码的控制权，使得函数外的代码得以继续执行，所以会先执行 console.log(‘1’, a)</li>
+<li>这时候同步代码执行完毕，开始执行异步代码，将保存下来的值拿出来使用，这时候 a = 10</li>
 </ol>
 
       
@@ -689,7 +690,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -700,7 +701,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -814,7 +815,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 

@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="fdd’Blog">
 <meta property="og:description" content="Babel7 概念和用法https://github.com/YvetteLau/Blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-12T03:32:48.517Z">
+<meta property="og:updated_time" content="2020-11-10T02:47:47.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Babel">
 <meta name="twitter:description" content="Babel7 概念和用法https://github.com/YvetteLau/Blog">
@@ -516,11 +516,11 @@
 <ul>
 <li>@babel/preset-env</li>
 <li>@babel/preset-flow</li>
-<li>@babel/preset-react</li>
+<li>@babel/preset-React</li>
 <li>@babel/preset-typescript<br><strong>注意，babel7 开始，所有针对标准天阶段的功能所编写的预设（stage preset）已经被弃用，以及移除<code>@babel/preset-stage-x</code></strong></li>
 </ul>
 <h2 id="babel-preset-env"><a href="#babel-preset-env" class="headerlink" title="@babel/preset-env"></a>@babel/preset-env</h2><p>作用：对我们所使用的并且目标浏览器缺失的功能进行代码转换和加载<code>polyfill</code>。不进行任何配置时，<code>@babel/preset-env</code>所包含的插件将支持所有最新的 JS 特性（ES2015/es6,ES2016/es7 等，不包括 stage 阶段），将其转换成 ES5 代码。如果使用了 stage 阶段的语法，编译时会报错，需要安装对应的插件。<br><code>@babel/preset-env</code>会很具配置的目标环境，来生成插件列表来编译，对于基于浏览的项目，可以使用<code>.browserslistrc</code>文件来指定目标环境。也可以在 package.json 里面添加 key 为<code>browserslist</code>配置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//create-react-app默认配置</span><br><span class="line">&quot;browserslist&quot;: &#123;</span><br><span class="line">    &quot;production&quot;: [</span><br><span class="line">      &quot;&gt;0.2%&quot;, //包括浏览器市场份额超过0.2％的用户所需的 polyfill 和代码转换</span><br><span class="line">      &quot;not dead&quot;,</span><br><span class="line">      &quot;not op_mini all&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;development&quot;: [</span><br><span class="line">      &quot;last 1 chrome version&quot;,</span><br><span class="line">      &quot;last 1 firefox version&quot;,</span><br><span class="line">      &quot;last 1 safari version&quot;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//create-React-app默认配置</span><br><span class="line">&quot;browserslist&quot;: &#123;</span><br><span class="line">    &quot;production&quot;: [</span><br><span class="line">      &quot;&gt;0.2%&quot;, //包括浏览器市场份额超过0.2％的用户所需的 polyfill 和代码转换</span><br><span class="line">      &quot;not dead&quot;,</span><br><span class="line">      &quot;not op_mini all&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;development&quot;: [</span><br><span class="line">      &quot;last 1 chrome version&quot;,</span><br><span class="line">      &quot;last 1 firefox version&quot;,</span><br><span class="line">      &quot;last 1 safari version&quot;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
 <p>新建<code>.browserslistrc</code>，配置如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">last 2 Chrome versions</span><br></pre></td></tr></table></figure>
 <p>index 编译后箭头函数还在，因为 chrome 最新的两个版本已经支持箭头函数</p>
@@ -589,8 +589,8 @@
 <li>插件从前往后调用</li>
 <li>预设从后往前调用</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;presets&quot;: [&quot;@babel/preset-env&quot;, &quot;@babel/preset-react&quot;]</span><br><span class="line">    &quot;plugins&quot;: [&quot;@babel/plugin-proposal-class-properties&quot;, &quot;@babel/plugin-syntax-dynamic-import&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>先执行 @babel/plugin-proposal-class-properties，后执行 @babel/plugin-syntax-dynamic-import<br>先执行 @babel/preset-react， 后执行 @babel/preset-env。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;presets&quot;: [&quot;@babel/preset-env&quot;, &quot;@babel/preset-React&quot;]</span><br><span class="line">    &quot;plugins&quot;: [&quot;@babel/plugin-proposal-class-properties&quot;, &quot;@babel/plugin-syntax-dynamic-import&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先执行 @babel/plugin-proposal-class-properties，后执行 @babel/plugin-syntax-dynamic-import<br>先执行 @babel/preset-React， 后执行 @babel/preset-env。</p>
 <h2 id="参数结构"><a href="#参数结构" class="headerlink" title="参数结构"></a>参数结构</h2><p>插件和预设都可以接受参数，参数由插件名和参数对象组成一个数组。</p>
 <h2 id="插件短名称"><a href="#插件短名称" class="headerlink" title="插件短名称"></a>插件短名称</h2><p>如果插件名称为 @babel/plugin-XXX，可以使用短名称@babel/XXX<br>如果插件名称为 babel-plugin-XXX，可以使用端名称 XXX，该规则同样适用于带有 scope 的插件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;plugins&quot;: [</span><br><span class="line">        &quot;newPlugin&quot;, //同 &quot;babel-plugin-newPlugin&quot;</span><br><span class="line">        &quot;@scp/myPlugin&quot; //同 &quot;@scp/babel-plugin-myPlugin&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -644,8 +644,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/12/09/react-性能优化1/" rel="prev" title="react-性能优化2">
-                react-性能优化2 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/12/09/React-性能优化1/" rel="prev" title="React-性能优化2">
+                React-性能优化2 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -728,7 +728,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -739,7 +739,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -853,7 +853,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 

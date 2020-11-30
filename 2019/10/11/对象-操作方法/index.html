@@ -149,7 +149,7 @@
 <meta property="og:image" content="https://dorisfeng.github.io/2019/10/11/对象-操作方法/img2.png">
 <meta property="og:image" content="https://dorisfeng.github.io/2019/10/11/对象-操作方法/img3.png">
 <meta property="og:image" content="https://dorisfeng.github.io/2019/10/11/对象-操作方法/img4.png">
-<meta property="og:updated_time" content="2020-07-14T12:56:28.527Z">
+<meta property="og:updated_time" content="2020-11-09T05:48:50.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对像-操作方法">
 <meta name="twitter:description" content="对像-操作方法">
@@ -510,9 +510,9 @@
 <p>将对象变成数组，对象属性变成子数组<br>返回一个给定对象自身可枚举属性的键值对数组，数组每个元素是一个包含键和值的数组</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;x:1,y:2&#125;</span><br><span class="line">let arr = Object.entries(obj)</span><br><span class="line">//arr</span><br><span class="line">//[[&apos;x&apos;,1],[&apos;y&apos;,2]]</span><br><span class="line">for(let [x, y] of arr)&#123;</span><br><span class="line">    console.log(x,y)</span><br><span class="line">&#125;</span><br><span class="line">//x 1</span><br><span class="line">//y 2</span><br></pre></td></tr></table></figure>
 <ul>
-<li><h3 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h3><p>返回对象自身可枚举属性属性名组成的数组，不包含 Symbol 类型的属性</p>
+<li><h3 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h3><p>返回对象自身<code>可枚举</code>属性属性名组成的数组，不包含 Symbol 类型的属性</p>
 </li>
-<li><h3 id="for…-in"><a href="#for…-in" class="headerlink" title="for… in"></a>for… in</h3><p>遍历返回对象的自身和原型链上的可枚举属性（不包含 Symbol 属性）</p>
+<li><h3 id="for…-in"><a href="#for…-in" class="headerlink" title="for… in"></a>for… in</h3><p>遍历返回对象的<code>自身和原型链</code>上的可枚举属性（不包含 Symbol 属性）</p>
 </li>
 <li><h3 id="Object-getOwnPropertyNames"><a href="#Object-getOwnPropertyNames" class="headerlink" title="Object.getOwnPropertyNames()"></a>Object.getOwnPropertyNames()</h3><p>返回对象的所有自身属性的属性名（包括不可枚举属性但不包括 Symbol 值属性）组成的数组</p>
 </li>
@@ -701,7 +701,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -712,7 +712,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -826,7 +826,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 

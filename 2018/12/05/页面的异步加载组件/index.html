@@ -138,18 +138,18 @@
 
 
 
-<meta name="description" content="来源：简书项目组件：react-loadable作用：异步加载详情页面具体：页面首先打包首页，打开详情页的时候，再打包详情页">
+<meta name="description" content="来源：简书项目组件：React-loadable作用：异步加载详情页面具体：页面首先打包首页，打开详情页的时候，再打包详情页">
 <meta name="keywords" content="组件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="异步打包详情页面">
 <meta property="og:url" content="https://dorisfeng.github.io/2018/12/05/页面的异步加载组件/index.html">
 <meta property="og:site_name" content="fdd’Blog">
-<meta property="og:description" content="来源：简书项目组件：react-loadable作用：异步加载详情页面具体：页面首先打包首页，打开详情页的时候，再打包详情页">
+<meta property="og:description" content="来源：简书项目组件：React-loadable作用：异步加载详情页面具体：页面首先打包首页，打开详情页的时候，再打包详情页">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-12T03:32:27.864Z">
+<meta property="og:updated_time" content="2020-11-10T02:47:47.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="异步打包详情页面">
-<meta name="twitter:description" content="来源：简书项目组件：react-loadable作用：异步加载详情页面具体：页面首先打包首页，打开详情页的时候，再打包详情页">
+<meta name="twitter:description" content="来源：简书项目组件：React-loadable作用：异步加载详情页面具体：页面首先打包首页，打开详情页的时候，再打包详情页">
 
 
 
@@ -412,8 +412,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
                   </a>
                 </span>
 
@@ -491,17 +491,17 @@
       
 
       
-        <p>来源：简书项目<br>组件：react-loadable<br>作用：异步加载详情页面<br>具体：页面首先打包首页，打开详情页的时候，再打包详情页</p>
+        <p>来源：简书项目<br>组件：React-loadable<br>作用：异步加载详情页面<br>具体：页面首先打包首页，打开详情页的时候，再打包详情页</p>
 <a id="more"></a>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-loadable</span><br></pre></td></tr></table></figure>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add React-loadable</span><br></pre></td></tr></table></figure>
 <h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>1、在当前页面 index 所在文件夹下，创建 loadable.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import Loadable from &apos;react-loadable&apos;;</span><br><span class="line">import Loading from &apos;./my-loading-component&apos;;</span><br><span class="line"></span><br><span class="line">const LoadableComponent = Loadable(&#123;</span><br><span class="line">  loader: () =&gt; import(&apos;./my-component&apos;),</span><br><span class="line">  //需要异步加载的页面，本例是./index.js,index.js可省略</span><br><span class="line">  loading: Loading,</span><br><span class="line">  //页面加载时展示的loading，可以是一个自己写的组件，或者</span><br><span class="line">  //loading()&#123;</span><br><span class="line">  //   return &lt;div&gt;正在加载&lt;/div&gt;</span><br><span class="line">  //&#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;LoadableComponent/&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import Loadable from &apos;React-loadable&apos;;</span><br><span class="line">import Loading from &apos;./my-loading-component&apos;;</span><br><span class="line"></span><br><span class="line">const LoadableComponent = Loadable(&#123;</span><br><span class="line">  loader: () =&gt; import(&apos;./my-component&apos;),</span><br><span class="line">  //需要异步加载的页面，本例是./index.js,index.js可省略</span><br><span class="line">  loading: Loading,</span><br><span class="line">  //页面加载时展示的loading，可以是一个自己写的组件，或者</span><br><span class="line">  //loading()&#123;</span><br><span class="line">  //   return &lt;div&gt;正在加载&lt;/div&gt;</span><br><span class="line">  //&#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;LoadableComponent/&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>2、修改详情页面路由配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import Detail from &apos;./pages/detail/&apos;;</span><br><span class="line">//变为</span><br><span class="line">import Detail from &apos;./pages/detail/loadable&apos;;</span><br></pre></td></tr></table></figure>
 <p>3、这样详细页面无法直接访问项目到路由</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route component=&#123;component&#125; /&gt;</span><br></pre></td></tr></table></figure>
 <p>只有写在该标签中的页面才能直接在 this.props.match 访问到路由<br>修改在 detail 页面代码<br>引入 withRouter</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123; withRouter &#125; from &apos;react-router-dom&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123; withRouter &#125; from &apos;React-router-dom&apos;</span><br></pre></td></tr></table></figure>
 <p>同时包裹 detail 组件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Detail))</span><br></pre></td></tr></table></figure>
 
@@ -642,7 +642,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -653,7 +653,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -767,7 +767,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 

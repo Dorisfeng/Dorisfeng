@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="fdd’Blog">
 <meta property="og:description" content="使用 window 创建全局变量，遇到坑。来学习一下 window 对象到底是什么？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-26T01:35:56.844Z">
+<meta property="og:updated_time" content="2020-11-10T02:47:47.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="window对象">
 <meta name="twitter:description" content="使用 window 创建全局变量，遇到坑。来学习一下 window 对象到底是什么？">
@@ -492,8 +492,8 @@
       
         <p>使用 window 创建全局变量，遇到坑。<br>来学习一下 window 对象到底是什么？</p>
 <a id="more"></a>
-<p>首先记录一下遇到的坑：<br>在 react 项目里面使用向 window 对象添加新属性的方式创建一个全局变量，以便在整个项目中复用该变量，<br>天真的以为将 window.SERVERHOST=’<a href="http://localhost:3000&#39;放在任何地方都可以，" target="_blank" rel="noopener">http://localhost:3000&#39;放在任何地方都可以，</a><br>所以就偷懒放到了封装请求 api.js,以便打包部署的时候一起改变请求 Server 地址 。<br>测试发现刷新某些页面之后 window.SERVERHOST 拿到的永远是 undefined，<br><strong>注意</strong> window 对象在刷新页面之后会重置<br>之所以有些页面还可以拿到，是因为页面刷新同时发送请求，执行了 api.js，重新设置 window.SERVERHOST=’<a href="http://localhost:3000&#39;" target="_blank" rel="noopener">http://localhost:3000&#39;</a></p>
-<p>解决方法：<br>1、将 window.SERVERHOST=’<a href="http://localhost:3000&#39;放到所有页面都要执行的路由配置文件中，" target="_blank" rel="noopener">http://localhost:3000&#39;放到所有页面都要执行的路由配置文件中，</a><br>这样刷新后重新判断路由，就可以创建新的全局 SERVERHOST<br>2、创建一个 js 文件，创建常量 const SERVERHOST=’<a href="http://localhost:3000&#39;,然后export" target="_blank" rel="noopener">http://localhost:3000&#39;,然后export</a> { SERVERHOST},<br>在其他需要使用的页面就可以通过 import 引入该变量。同样，其他全局需要使用的一些变量或方法也可以都放在该文件中。</p>
+<p>首先记录一下遇到的坑：<br>在 React 项目里面使用向 window 对象添加新属性的方式创建一个全局变量，以便在整个项目中复用该变量，<br>天真的以为将 window.SERVERHOST=’<a href="http://localhost:3000&#39;放在任何地方都可以，" target="_blank" rel="noopener">http://localhost:3000&#39;放在任何地方都可以，</a><br>所以就偷懒放到了封装请求 api.js,以便打包部署的时候一起改变请求 Server 地址 。<br>测试发现刷新某些页面之后 window.SERVERHOST 拿到的永远是 undefined，<br><strong>注意</strong> window 对象在刷新页面之后会重置<br>之所以有些页面还可以拿到，是因为页面刷新同时发送请求，执行了 api.js，重新设置 window.SERVERHOST=’<a href="http://localhost:3000&#39;" target="_blank" rel="noopener">http://localhost:3000&#39;</a></p>
+<p>解决方法：<br>1、将 window.SERVERHOST=’<a href="http://localhost:3000&#39;放到所有页面都要执行的路由配置文件中，" target="_blank" rel="noopener">http://localhost:3000&#39;放到所有页面都要执行的路由配置文件中，</a><br>这样刷新后重新判断路由，就可以创建新的全局 SERVERHOST<br>2、创建一个 js 文件，创建常量 const SERVERHOST=’<a href="http://localhost:3000&#39;,然后" target="_blank" rel="noopener">http://localhost:3000&#39;,然后</a> export { SERVERHOST},<br>在其他需要使用的页面就可以通过 import 引入该变量。同样，其他全局需要使用的一些变量或方法也可以都放在该文件中。</p>
 <p>由于其他均使用了 window.SERVERHOST，所有我采用的方法一，其实方法二更合理一些</p>
 <h1 id="Wndow-对象"><a href="#Wndow-对象" class="headerlink" title="Wndow 对象"></a>Wndow 对象</h1><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>指当前浏览器窗口，是所有对象的顶层对象<br>JS 规定，浏览器环境的所有全局变量，都是 window 对象的属性</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a=1;</span><br><span class="line">window.a //1</span><br></pre></td></tr></table></figure>
@@ -591,8 +591,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/20/react-native之Touchable介绍与使用/" rel="next" title="react-native之Touchable介绍与使用">
-                <i class="fa fa-chevron-left"></i> react-native之Touchable介绍与使用
+              <a href="/2018/12/20/React-native之Touchable介绍与使用/" rel="next" title="React-native之Touchable介绍与使用">
+                <i class="fa fa-chevron-left"></i> React-native之Touchable介绍与使用
               </a>
             
           </div>
@@ -685,7 +685,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -696,7 +696,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -810,7 +810,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 

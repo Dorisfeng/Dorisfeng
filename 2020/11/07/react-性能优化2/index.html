@@ -138,17 +138,22 @@
 
 
 
-<meta name="description" content="react-hook 性能优化方案">
+<meta name="description" content="React-hook 性能优化方案">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react-性能优化2">
-<meta property="og:url" content="https://dorisfeng.github.io/2020/11/07/react-性能优化2/index.html">
+<meta property="og:title" content="React-性能优化2">
+<meta property="og:url" content="https://dorisfeng.github.io/2020/11/07/React-性能优化2/index.html">
 <meta property="og:site_name" content="fdd’Blog">
-<meta property="og:description" content="react-hook 性能优化方案">
+<meta property="og:description" content="React-hook 性能优化方案">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-07T07:46:26.264Z">
+<meta property="og:image" content="https://dorisfeng.github.io/images/bg3.jpg">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/11/07/React-性能优化2/img1.png">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/11/07/React-性能优化2/img2.png">
+<meta property="og:image" content="https://dorisfeng.github.io/2020/11/07/React-性能优化2/img3.png">
+<meta property="og:updated_time" content="2020-11-10T02:47:55.615Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="react-性能优化2">
-<meta name="twitter:description" content="react-hook 性能优化方案">
+<meta name="twitter:title" content="React-性能优化2">
+<meta name="twitter:description" content="React-hook 性能优化方案">
+<meta name="twitter:image" content="https://dorisfeng.github.io/images/bg3.jpg">
 
 
 
@@ -178,7 +183,7 @@
 
 
 
-  <link rel="canonical" href="https://dorisfeng.github.io/2020/11/07/react-性能优化2/">
+  <link rel="canonical" href="https://dorisfeng.github.io/2020/11/07/React-性能优化2/">
 
 
 
@@ -196,7 +201,7 @@
   </script>
 
 
-  <title>react-性能优化2 | fdd’Blog</title>
+  <title>React-性能优化2 | fdd’Blog</title>
   
 
 
@@ -357,7 +362,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dorisfeng.github.io/2020/11/07/react-性能优化2/">
+    <link itemprop="mainEntityOfPage" href="https://dorisfeng.github.io/2020/11/07/React-性能优化2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="封多多">
@@ -374,7 +379,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">react-性能优化2</h1>
+          <h1 class="post-title" itemprop="name headline">React-性能优化2</h1>
         
 
         <div class="post-meta">
@@ -407,8 +412,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/11/07/react-性能优化2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/11/07/react-性能优化2/" itemprop="commentCount"></span>
+                <a href="/2020/11/07/React-性能优化2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/11/07/React-性能优化2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -430,7 +435,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  8字
+                  1.6k字
                 </span>
               
 
@@ -446,7 +451,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分
+                  8分
                 </span>
               
             </div>
@@ -468,8 +473,30 @@
       
 
       
-        <p>react-hook 性能优化方案</p>
+        <p><img src="/images/bg3.jpg" alt="React"><br>React-hook 性能优化方案</p>
 <a id="more"></a>
+<h2 id="使用-children-避免没必要的渲染"><a href="#使用-children-避免没必要的渲染" class="headerlink" title="使用 children 避免没必要的渲染"></a>使用 children 避免没必要的渲染</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useState, useContext &#125; from &quot;React&quot;;</span><br><span class="line"></span><br><span class="line">const ThemeContext = React.createContext();</span><br><span class="line"></span><br><span class="line">function ChildNonTheme() &#123;</span><br><span class="line">  console.log(&quot;不关心皮肤的子组件渲染了&quot;);</span><br><span class="line">  return &lt;div&gt;不关心皮肤，皮肤改变的时候别让我重新渲染&lt;/div&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function ChildWithTheme() &#123;</span><br><span class="line">  const theme = useContext(ThemeContext);</span><br><span class="line">  console.log(&quot;有皮肤的子组件&quot;);</span><br><span class="line">  return &lt;div&gt;我是有皮肤的，&#123;theme&#125;&lt;/div&gt;;</span><br><span class="line">&#125;</span><br><span class="line">// function ThemeApp(&#123; children &#125;) &#123;</span><br><span class="line">//   const [theme, setTheme] = useState(&quot;light&quot;);</span><br><span class="line">//   const onChangeTheme = () =&gt; setTheme(theme === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;);</span><br><span class="line">//   return (</span><br><span class="line">//     &lt;ThemeContext.Provider value=&#123;theme&#125;&gt;</span><br><span class="line">//       &lt;button onClick=&#123;onChangeTheme&#125;&gt;改变皮肤&lt;/button&gt;</span><br><span class="line">//       &#123;children&#125;</span><br><span class="line">//     &lt;/ThemeContext.Provider&gt;</span><br><span class="line">//   );</span><br><span class="line">// &#125;</span><br><span class="line">export default function App() &#123;</span><br><span class="line">  const [theme, setTheme] = useState(&quot;light&quot;);</span><br><span class="line">  const onChangeTheme = () =&gt; setTheme(theme === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;);</span><br><span class="line">  return (</span><br><span class="line">    &lt;ThemeContext.Provider value=&#123;theme&#125;&gt;</span><br><span class="line">      &lt;button onClick=&#123;onChangeTheme&#125;&gt;改变皮肤&lt;/button&gt;</span><br><span class="line">      &lt;ChildWithTheme /&gt;</span><br><span class="line">      &lt;ChildNonTheme /&gt;</span><br><span class="line">      &lt;ChildNonTheme /&gt;</span><br><span class="line">      &lt;ChildNonTheme /&gt;</span><br><span class="line">      &lt;ChildNonTheme /&gt;</span><br><span class="line">      &lt;ChildNonTheme /&gt;</span><br><span class="line">    &lt;/ThemeContext.Provider&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>点击改变皮肤<br><img src="/2020/11/07/React-性能优化2/img1.png" alt="img1"><br>没有使用皮肤的子组件也进行了无效的重新渲染。<br>本质上由于<code>React</code>自上向下递归更新，<code>&lt;ChildNoTheme/&gt;</code>会被翻译为<code>React.createElement(ChildNonTheme)</code>，<code>React</code>的<code>props</code>属性是<code>immutable</code>的，每次调用函数式组件的时候，会生成一份新的<code>props</code>引用。<br><code>createElement</code>的返回结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const childNonThemeElement=&#123;</span><br><span class="line">    type:&apos;ChildNonTheme&apos;,</span><br><span class="line">    props:&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于<code>props</code>引用更新，导致<code>ChildNonTheme</code>组件重新渲染。<br>解决办法：利用<code>children</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useState, useContext &#125; from &quot;React&quot;;</span><br><span class="line"></span><br><span class="line">const ThemeContext = React.createContext();</span><br><span class="line"></span><br><span class="line">function ChildNonTheme() &#123;</span><br><span class="line">  console.log(&quot;不关心皮肤的子组件渲染了&quot;);</span><br><span class="line">  return &lt;div&gt;不关心皮肤，皮肤改变的时候别让我重新渲染&lt;/div&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function ChildWithTheme() &#123;</span><br><span class="line">  const theme = useContext(ThemeContext);</span><br><span class="line">  return &lt;div&gt;我是有皮肤的，&#123;theme&#125;&lt;/div&gt;;</span><br><span class="line">&#125;</span><br><span class="line">function ThemeApp(&#123; children &#125;) &#123;</span><br><span class="line">  const [theme, setTheme] = useState(&quot;light&quot;);</span><br><span class="line">  const onChangeTheme = () =&gt; setTheme(theme === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;);</span><br><span class="line">  return (</span><br><span class="line">    &lt;ThemeContext.Provider value=&#123;theme&#125;&gt;</span><br><span class="line">      &lt;button onClick=&#123;onChangeTheme&#125;&gt;改变皮肤&lt;/button&gt;</span><br><span class="line">      &#123;children&#125;</span><br><span class="line">    &lt;/ThemeContext.Provider&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">export default function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;ThemeApp&gt;</span><br><span class="line">      &lt;ChildWithTheme /&gt;</span><br><span class="line">      &lt;ChildNonTheme /&gt;</span><br><span class="line">      &lt;ChildNonTheme /&gt;</span><br><span class="line">      &lt;ChildNonTheme /&gt;</span><br><span class="line">      &lt;ChildNonTheme /&gt;</span><br><span class="line">      &lt;ChildNonTheme /&gt;</span><br><span class="line">    &lt;/ThemeApp&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总结，把渲染比较费时，但是不需要关心子组件提升到有状态组件的外部，作为<code>children</code>或者<code>props</code>传递进去直接使用，防止不必要的渲染。<br>这个优化也一样可以用 React.memo 包裹子组件来做，不过相对的增加维护成本，根据场景权衡选择。</p>
+<h2 id="Context-读写分离"><a href="#Context-读写分离" class="headerlink" title="Context 读写分离"></a>Context 读写分离</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useState, useContext &#125; from &quot;React&quot;;</span><br><span class="line"></span><br><span class="line">const LogContext = React.createContext();</span><br><span class="line"></span><br><span class="line">function LogProvider(&#123; children &#125;) &#123;</span><br><span class="line">  const [logs, setLogs] = useState([]);</span><br><span class="line">  const addLog = (log) =&gt; setLogs((prevLogs) =&gt; [...prevLogs, log]);</span><br><span class="line"></span><br><span class="line">  return &lt;LogContext.Provider value=&#123;&#123; logs, addLog &#125;&#125;&gt;&#123;children&#125;&lt;/LogContext.Provider&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Logger1() &#123;</span><br><span class="line">  const &#123; addLog &#125; = useContext(LogContext);</span><br><span class="line">  console.log(&quot;Logger1 render&quot;);</span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;p&gt;一个能发日志的组件1&lt;/p&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; addLog(&quot;logger1&quot;)&#125;&gt;发日志&lt;/button&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">function Logger2() &#123;</span><br><span class="line">  const &#123; addLog &#125; = useContext(LogContext);</span><br><span class="line">  console.log(&quot;Logger2 render&quot;);</span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;p&gt;一个能发日志的组件2&lt;/p&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; addLog(&quot;logger2&quot;)&#125;&gt;发日志&lt;/button&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">function LogsPanel() &#123;</span><br><span class="line">  console.log(&quot;panel&quot;);</span><br><span class="line">  const &#123; logs &#125; = useContext(LogContext);</span><br><span class="line">  return logs.map((log, index) =&gt; &lt;p key=&#123;index&#125;&gt;&#123;log&#125;&lt;/p&gt;);</span><br><span class="line">&#125;</span><br><span class="line">export default function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;LogProvider&gt;</span><br><span class="line">      &lt;Logger1 /&gt;</span><br><span class="line">      &lt;Logger2 /&gt;</span><br><span class="line"></span><br><span class="line">      &lt;LogsPanel /&gt;</span><br><span class="line">    &lt;/LogProvider&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/07/React-性能优化2/img2.png" alt="context"><br>点击任意一个发日志的按钮，所有的<code>Logger</code>和<code>LogsPanel</code>都会重新渲染。<br>在现实场景中，如果存在多个写日志的组件，每次都导致全局的组件都重新渲染。<br>原因：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当Provider的value的值发生变化，内部所有的消费组件都会重新渲染。Provider及其内部consumer组件都不受制于shouldComponentUpdate函数，因此当consumer组件在其祖先组件退出更新的情况下也能更新。</span><br></pre></td></tr></table></figure>
+<p>当<code>LogProvider</code>中的<code>addLog</code>被子组件调用，导致<code>LogProvider</code>重新渲染之后，必然会导致传递给<code>Provider</code>的<code>value</code>发生变化，由于<code>value</code>包含了<code>logs</code>和<code>setLogs</code>属性，所以两者中任意一个发生变化，都会导致所有的订阅了<code>LogProvider</code>的子组件重新渲染。</p>
+<p>解决办法：读写分离，把<code>logs</code>和<code>setLogs</code>分别通过不同的<code>Provider</code>传递，这样负责写入的组件改了<code>logs</code>，其他的写组件并不会重新渲染，只有真正关心<code>logs</code> 的读组件会重新渲染。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useState, useContext, useCallback &#125; from &quot;React&quot;;</span><br><span class="line"></span><br><span class="line">const LogDispatchContext = React.createContext();</span><br><span class="line">const LogStateContext = React.createContext();</span><br><span class="line">function LogProvider(&#123; children &#125;) &#123;</span><br><span class="line">  const [logs, setLogs] = useState([]);</span><br><span class="line">  const addLog = useCallback((log) =&gt; setLogs((prevLogs) =&gt; [...prevLogs, log]), []);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;LogDispatchContext.Provider value=&#123;addLog&#125;&gt;</span><br><span class="line">      &lt;LogStateContext.Provider value=&#123;logs&#125;&gt; &#123;children&#125;&lt;/LogStateContext.Provider&gt;</span><br><span class="line">    &lt;/LogDispatchContext.Provider&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Logger1() &#123;</span><br><span class="line">  const addLog = useContext(LogDispatchContext);</span><br><span class="line">  console.log(&quot;Logger1 render&quot;);</span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;p&gt;一个能发日志的组件1&lt;/p&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; addLog(&quot;logger1&quot;)&#125;&gt;发日志&lt;/button&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">function Logger2() &#123;</span><br><span class="line">  const addLog = useContext(LogDispatchContext);</span><br><span class="line">  console.log(&quot;Logger2 render&quot;);</span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;p&gt;一个能发日志的组件2&lt;/p&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; addLog(&quot;logger2&quot;)&#125;&gt;发日志&lt;/button&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">function LogsPanel() &#123;</span><br><span class="line">  const logs = useContext(LogStateContext);</span><br><span class="line">  console.log(&quot;panel&quot;);</span><br><span class="line">  return logs.map((log, index) =&gt; &lt;p key=&#123;index&#125;&gt;&#123;log&#125;&lt;/p&gt;);</span><br><span class="line">&#125;</span><br><span class="line">export default function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;LogProvider&gt;</span><br><span class="line">      &lt;Logger1 /&gt;</span><br><span class="line">      &lt;Logger2 /&gt;</span><br><span class="line"></span><br><span class="line">      &lt;LogsPanel /&gt;</span><br><span class="line">    &lt;/LogProvider&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了保证<code>addLog</code>方法不会重新生成，需要使用<code>useCallback</code>把<code>addLog</code>方法包裹起来，才能保证<code>LogProvider</code>重渲染的时候，传递给的<code>LogDispatcherContext</code>的<code>value</code>不发生变化。<br><img src="/2020/11/07/React-性能优化2/img3.png" alt="React"></p>
+<h2 id="Context-代码组织"><a href="#Context-代码组织" class="headerlink" title="Context 代码组织"></a>Context 代码组织</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const LogStateContext = React.createContext();</span><br><span class="line">const LogDispatcherContext = React.createContext();</span><br><span class="line"></span><br><span class="line">export function useLogState() &#123;</span><br><span class="line">  const context = React.useContext(LogStateContext);</span><br><span class="line">  if (context === undefined) &#123;</span><br><span class="line">    throw new Error(&quot;useLogState must be used within a LogSTateProvider&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  return context;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function useLogDispatcher() &#123;</span><br><span class="line">  const context = React.useContext(LogDispatcherContext);</span><br><span class="line">  if (context === undefined) &#123;</span><br><span class="line">    throw new Error(&quot;useLogDispatcher must be used within a logDispatcherContext&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  return context;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果同时调用两个<code>context</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">export function useLogs() &#123;</span><br><span class="line">  return [useLogState(), useLogDispatcher()];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//使用</span><br><span class="line">export function App()&#123;</span><br><span class="line">    const [logs,addLogs]=useLogs()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="组合-Providers"><a href="#组合-Providers" class="headerlink" title="组合 Providers"></a>组合 Providers</h2><p>多个嵌套的<code>Provider</code>嵌套</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const StateProviders=(&#123;children&#125;)=&gt;(</span><br><span class="line"> &lt;LogProvider&gt;</span><br><span class="line">    &lt;UserProvider&gt;</span><br><span class="line">        &lt;MenuProvider&gt;</span><br><span class="line">            &lt;AppProvider&gt;</span><br><span class="line">                &#123;children&#125;</span><br><span class="line">            &lt;/AppProvider&gt;</span><br><span class="line">        &lt;/MenuProvider&gt;</span><br><span class="line">    &lt;/UserProvider&gt;</span><br><span class="line"> &lt;/LogProvider&gt;</span><br><span class="line">)</span><br><span class="line">function App()&#123;</span><br><span class="line">    return(</span><br><span class="line">        &lt;StateProvider&gt;</span><br><span class="line">            &lt;Main/&gt;</span><br><span class="line">        &lt;/StateProvider&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>封装<code>redux</code>中的<code>compose</code>方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function composeProvider(...providers)&#123;</span><br><span class="line">    return (&#123;children&#125;)=&gt;&#123;</span><br><span class="line">        providers.reduce((prev,Provider)=&gt;&lt;Provider&gt;&#123;prev&#125;&lt;/Provider&gt;, children</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码可以简化为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const StateProviders = composeProviders(</span><br><span class="line">  LogProvider,</span><br><span class="line">  UserProvider,</span><br><span class="line">  MenuProvider,</span><br><span class="line">  AppProvider,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;StateProvider&gt;</span><br><span class="line">      &lt;Main /&gt;</span><br><span class="line">    &lt;/StateProvider&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -517,6 +544,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/10/React-虚拟DOM/" rel="prev" title="React-虚拟DOM">
+                React-虚拟DOM <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -571,8 +602,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -589,7 +629,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -600,7 +640,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -664,6 +704,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-children-避免没必要的渲染"><span class="nav-number">1.</span> <span class="nav-text">使用 children 避免没必要的渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context-读写分离"><span class="nav-number">2.</span> <span class="nav-text">Context 读写分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context-代码组织"><span class="nav-number">3.</span> <span class="nav-text">Context 代码组织</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合-Providers"><span class="nav-number">4.</span> <span class="nav-text">组合 Providers</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -698,7 +754,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">155.3k</span>
+    <span title="Site words total count">166.6k</span>
   
 </div>
 
