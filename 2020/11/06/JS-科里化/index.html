@@ -146,7 +146,7 @@
 <meta property="og:description" content="科里化的简单应用">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://dorisfeng.github.io/images/bg1.jpg">
-<meta property="og:updated_time" content="2020-11-07T08:24:32.710Z">
+<meta property="og:updated_time" content="2020-12-07T03:24:54.795Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS-科里化">
 <meta name="twitter:description" content="科里化的简单应用">
@@ -454,7 +454,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  408字
+                  427字
                 </span>
               
 
@@ -470,7 +470,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分
+                  2分
                 </span>
               
             </div>
@@ -495,7 +495,7 @@
         <p><img src="/images/bg1.jpg" alt="科里化"><br>科里化的简单应用</p>
 <a id="more"></a>
 <p>科里化是将一个函数所需要的多个参数分开传入函数中，每次调用会返回一个新函数，用于处理剩余参数。<br>所以将一个函数科里化的过程就是收集函数参数的过程，递归搜集参数，收集完成后，在最深层计算结果并返回。</p>
-<h2 id="科里化通用式"><a href="#科里化通用式" class="headerlink" title="科里化通用式"></a>科里化通用式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function createCurry(fn,restLen,args)&#123;</span><br><span class="line">    restLen=restLen||fn.length;</span><br><span class="line">    args=args||[];</span><br><span class="line">    const wrapper=function()&#123;</span><br><span class="line">        let _args=[].slice.call(arguments);</span><br><span class="line">        [].push.call(args,_args);</span><br><span class="line">        if(restLen&gt;_args.length)&#123;</span><br><span class="line">            restLen-=_args.length;</span><br><span class="line">            return wrapper(fn,restLen,args)</span><br><span class="line">        &#125;</span><br><span class="line">        return fn.apply(fn,args)</span><br><span class="line">    &#125;</span><br><span class="line">    return wrapper</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="科里化通用式"><a href="#科里化通用式" class="headerlink" title="科里化通用式"></a>科里化通用式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function curry(fn, args) &#123;</span><br><span class="line">    let length = fn.length;</span><br><span class="line">    let subArgs = args || [];</span><br><span class="line">    return function () &#123;</span><br><span class="line">        let subArgs = [...arguments].slice(0);</span><br><span class="line">        subArgs = [...subArgs, ...args]</span><br><span class="line">        if (subArgs.length &gt;= length) &#123;</span><br><span class="line">            return fn.apply(this, subArgs)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return curry.call(this, fn, subArgs)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// es6 实现</span><br><span class="line">function curry(fn, ...args) &#123;</span><br><span class="line">  return fn.length &lt;= args.length ? fn(...args) : curry.bind(null, fn, ...args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>验证手机号码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function checkPhone(phoneNumber)&#123;</span><br><span class="line">    return /^1[34578]\d&#123;9&#125;$/.test(phoneNumber)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运用科里化</p>
@@ -649,7 +649,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -660,7 +660,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -774,7 +774,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">166.6k</span>
+    <span title="Site words total count">172.3k</span>
   
 </div>
 

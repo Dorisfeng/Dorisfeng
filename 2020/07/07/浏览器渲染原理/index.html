@@ -153,7 +153,7 @@
 <meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img6.png">
 <meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img7.png">
 <meta property="og:image" content="https://dorisfeng.github.io/2020/07/07/浏览器渲染原理/img8.webp">
-<meta property="og:updated_time" content="2020-11-17T13:17:21.098Z">
+<meta property="og:updated_time" content="2020-12-09T07:16:55.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器渲染原理">
 <meta name="twitter:description" content="浏览器渲染原理">
@@ -420,8 +420,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
+                  <a href="/categories/浏览器渲染/" itemprop="url" rel="index">
+                    <span itemprop="name">浏览器渲染</span>
                   </a>
                 </span>
 
@@ -501,13 +501,8 @@
       
         <p>浏览器渲染原理</p>
 <a id="more"></a>
-<h2 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h2><p>渲染引擎+JS 引擎<br>浏览器内核分类：</p>
-<ol>
-<li>IE - Trident</li>
-<li>Firefox - Gecko</li>
-<li>Safari - Webkit</li>
-<li>Chrome - Blink （Webkit 的分支）<br>Webkit 占比最多。</li>
-</ol>
+<h2 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h2><p>渲染引擎+JS 引擎<br>浏览器内核分类：<br>|浏览器|内核|css 前缀|<br>|–|–|–|<br>|IE|Trident|-ms-|<br>|Firefox|Gecko|-moz-|<br>|Safari/Chrome|webkit|-webkit-|</p>
+<p>Webkit 占比最多。</p>
 <h2 id="浏览器线程"><a href="#浏览器线程" class="headerlink" title="浏览器线程"></a>浏览器线程</h2><ul>
 <li>GUI 渲染线程<br>GUI-图形用户界面，那 GUI 渲染线程也就是负责渲染浏览器界面上显示内容，即负责解析 HTML 标签和 CSS 样式。在浏览器的五个渲染过程中，GUI 渲染线程均参与其中。</li>
 <li>JS 引擎线程<br>负责处理 JavaScript 脚本的线程。单线程，执行栈+任务队列。<br>事件循环机制</li>
@@ -631,7 +626,7 @@
 </li>
 </ol>
 <p>需要注意的是，这种方式加载的<code>JavaScript</code>依然会阻塞<code>load</code>事件。换句话说，<code>async-script</code>可能在<code>DOMContentLoaded</code>触发之前或之后执行，但一定在<code>load</code>触发之前执行。</p>
-<h2 id="回流（reflow）和重绘（repaint）"><a href="#回流（reflow）和重绘（repaint）" class="headerlink" title="回流（reflow）和重绘（repaint）"></a>回流（reflow）和重绘（repaint）</h2><h3 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h3><p>当一个元素的外观发生变化，但没有改变布局，重新把元素的外观绘制出来的过程<br><strong>常见的引起重绘的属性</strong><br>|||||<br>|–|–|–|–|<br>|color|border-style|visibility|background|<br>|text-decoration|background-image|background-position|background-repeat|<br>|outline-color|outline|outline-style|border-radius|<br>|outline-with|box-shadow|background-size||</p>
+<h2 id="回流（reflow）和重绘（repaint）"><a href="#回流（reflow）和重绘（repaint）" class="headerlink" title="回流（reflow）和重绘（repaint）"></a>回流（reflow）和重绘（repaint）</h2><h3 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h3><p>当一个元素的外观发生变化，但没有改变布局，重新把元素的外观绘制出来的过程<br><strong>常见的引起重绘的属性</strong><br>|color|border-style|visibility|background|<br>|–|–|–|–|<br>|text-decoration|background-image|background-position|background-repeat|<br>|outline-color|outline|outline-style|border-radius|<br>|outline-with|box-shadow|background-size||</p>
 <h3 id="回流、重构、重排"><a href="#回流、重构、重排" class="headerlink" title="回流、重构、重排"></a>回流、重构、重排</h3><p>当 DOM 变化影响可元素的几何信息（<code>DOM</code> 对象的位置、尺寸大小、显隐），浏览器需要重新计算元素的几何属性，将其安放在界面的正确位置。<br>每个页面至少需要一次回流，就是页面第一次加载的时候。<br>回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变父节点里的子节点很可能会导致父节点的一系列回流。<br><strong>触发条件</strong></p>
 <ul>
 <li>添加或删除可见的<code>DOM</code>元素</li>
@@ -819,7 +814,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -830,7 +825,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -944,7 +939,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">166.6k</span>
+    <span title="Site words total count">172.3k</span>
   
 </div>
 

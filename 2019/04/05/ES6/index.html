@@ -146,7 +146,7 @@
 <meta property="og:description" content="ES6 ES2015">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://dorisfeng.github.io/2019/04/05/ES6/目录结构.jpg">
-<meta property="og:updated_time" content="2020-08-18T01:54:37.829Z">
+<meta property="og:updated_time" content="2020-12-04T07:22:19.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6">
 <meta name="twitter:description" content="ES6 ES2015">
@@ -454,7 +454,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3k字
+                  3.1k字
                 </span>
               
 
@@ -497,7 +497,7 @@
 <h2 id="所有属性"><a href="#所有属性" class="headerlink" title="所有属性"></a>所有属性</h2><p>详情见 <a href="https://www.jianshu.com/writer#/notebooks/40257545/notes/31568992" target="_blank" rel="noopener">简书 ES6</a></p>
 <h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><ul>
 <li>let const</li>
-<li>=&gt;箭头函数</li>
+<li>=&gt;箭头函数<br>没有 arguments，可以使用扩展运算符(…)传递不定参数<br>不能作为构造函数<br>适应于那些本来就需要匿名函数的地方</li>
 <li>Set,Map</li>
 <li>…</li>
 <li>解构赋值</li>
@@ -628,7 +628,7 @@
 <h2 id="7-使用结构赋值，实现两个变量的值的交换"><a href="#7-使用结构赋值，实现两个变量的值的交换" class="headerlink" title="7.使用结构赋值，实现两个变量的值的交换"></a>7.使用结构赋值，实现两个变量的值的交换</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let a=1,b=2;</span><br><span class="line">[a,b]=[b,a]</span><br></pre></td></tr></table></figure>
 <h2 id="8-设计一个对象，键名的类型至少包含一个-symbol-类型，并且实现遍历所有-key"><a href="#8-设计一个对象，键名的类型至少包含一个-symbol-类型，并且实现遍历所有-key" class="headerlink" title="8.设计一个对象，键名的类型至少包含一个 symbol 类型，并且实现遍历所有 key"></a>8.设计一个对象，键名的类型至少包含一个 symbol 类型，并且实现遍历所有 key</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let obj=&#123;</span><br><span class="line">    name:&apos;Lily&apos;,</span><br><span class="line">    [Symbol(&apos;Lily&apos;)]:&apos;student&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let keys = Reflect.ownKeys(obj);</span><br></pre></td></tr></table></figure>
 <p><a href="https://dorisfeng.github.io/2019/10/11/%E5%AF%B9%E8%B1%A1-%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95/">对象遍历方法</a></p>
-<h2 id="9-set"><a href="#9-set" class="headerlink" title="9.set"></a>9.set</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let s = newSet();</span><br><span class="line">s.add([1]);s.add([1]);</span><br><span class="line">console.log(s.size);//2</span><br></pre></td></tr></table></figure>
+<h2 id="9-set"><a href="#9-set" class="headerlink" title="9.set"></a>9.set</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let s = new Set();</span><br><span class="line">s.add(1);</span><br><span class="line">s.add(2);</span><br><span class="line">let a=&#123;foo:1&#125;</span><br><span class="line">s.add(a)</span><br><span class="line">console.log(s.size);//2</span><br><span class="line">s.has(1) //true</span><br><span class="line">s.delete(1)//true</span><br><span class="line">s.clear()</span><br></pre></td></tr></table></figure>
 <p><strong>注意：数组（对象）是引用类型，所以两个是不相等的。另外在 Set 内部，两个 NaN 是相等</strong></p>
 <h2 id="10-理解-async-await-以及对-Generator-的优势"><a href="#10-理解-async-await-以及对-Generator-的优势" class="headerlink" title="10.理解 async/await 以及对 Generator 的优势"></a>10.理解 async/await 以及对 Generator 的优势</h2><p>async 函数是 Generator 函数的语法糖。<br>当函数执行的时候，一旦遇到 await 就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。可以理解，await 后面的语句是放到 Promise.then()去执行的。<br>async 较 Generator 的优势：<br>（1）内置执行器。Generator 函数的执行必须依靠执行器，而 Aysnc 函数自带执行器，调用方式跟普通函数的调用一样<br>（2）更好的语义。async 和 await 相较于 * 和 yield 更加语义化　　<br>（3）更广的适用性。yield 命令后面只能是 Thunk 函数或 Promise 对象，async 函数的 await 后面可以是 Promise 也可以是原始类型的值<br>（4）返回值是 Promise。async 函数返回的是 Promise 对象，比 Generator 函数返回的 Iterator 对象方便，可以直接使用 then() 方法进行调用</p>
 <h2 id="11-forEach、for-in、for-of-三者区别"><a href="#11-forEach、for-in、for-of-三者区别" class="headerlink" title="11. forEach、for in、for of 三者区别"></a>11. forEach、for in、for of 三者区别</h2><ul>
@@ -777,7 +777,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -788,7 +788,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -902,7 +902,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">166.6k</span>
+    <span title="Site words total count">172.3k</span>
   
 </div>
 

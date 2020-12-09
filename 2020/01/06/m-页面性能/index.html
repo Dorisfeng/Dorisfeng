@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="fdd’Blog">
 <meta property="og:description" content="提升页面性能的方法参考https://juejin.im/post/5b73ef38f265da281e048e51#heading-22">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-24T13:45:47.329Z">
+<meta property="og:updated_time" content="2020-12-09T05:33:09.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="m-页面性能">
 <meta name="twitter:description" content="提升页面性能的方法参考https://juejin.im/post/5b73ef38f265da281e048e51#heading-22">
@@ -454,7 +454,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3k字
+                  3.1k字
                 </span>
               
 
@@ -595,7 +595,7 @@
 <li>如果可以使用缓存，返回 304，不会返回资源的内容，并且不会返回 <code>Last-Modified</code>。</li>
 <li>如果有更新，返回 200，浏览器获取服务器最新资源，和<code>Last-Modified</code></li>
 </ul>
-<p><strong><code>Lat-Modified</code>的弊端</strong></p>
+<p><strong><code>Last-Modified</code>的弊端</strong></p>
 <ul>
 <li>如果本地打开缓存文件，即使没有对文件进行修改，但还是会造成<code>Last-Modified</code> 被修改，服务端不能命中缓存导致发送相同的资源</li>
 <li>因为<code>Last-Modified</code>只能以秒计时，如果在不可感知的时间内修改完成文件，那么服务端会认为资源还是命中了，不会返回正确的资源</li>
@@ -639,11 +639,14 @@
 <h2 id="四、CSS"><a href="#四、CSS" class="headerlink" title="四、CSS"></a>四、CSS</h2><h3 id="1-把样式表放在中"><a href="#1-把样式表放在中" class="headerlink" title="1.把样式表放在中"></a>1.把样式表放在<head><meta name="generator" content="Hexo 3.8.0">中</head></h3><h3 id="2-不要使用-CSS-表达式"><a href="#2-不要使用-CSS-表达式" class="headerlink" title="2.不要使用 CSS 表达式"></a>2.不要使用 CSS 表达式</h3><h3 id="3-使用代替-import"><a href="#3-使用代替-import" class="headerlink" title="3.使用代替@import"></a>3.使用<link>代替@import</h3><h3 id="4-不要使用-filter"><a href="#4-不要使用-filter" class="headerlink" title="4.不要使用 filter"></a>4.不要使用 filter</h3><p>AlphaImageLoader 为 IE5.5-IE8 专有的技术<br>不是 CSS3 filter</p>
 <h2 id="五、JavaScript"><a href="#五、JavaScript" class="headerlink" title="五、JavaScript"></a>五、JavaScript</h2><h3 id="1-把脚本放在页面底部"><a href="#1-把脚本放在页面底部" class="headerlink" title="1.把脚本放在页面底部"></a>1.把脚本放在页面底部</h3><p>浏览器下载脚本，会阻塞其他资源并行下载，即使来自不同域名的资源。<br>最好将脚本放在底部，以提高页面加载速度。<br><strong>非核心代码异步加载</strong></p>
 <ul>
-<li>异步加载的方式<ol>
-<li>动态脚本加载 2. defer 3.async</li>
+<li><p>JS 异步加载的方式</p>
+<ol>
+<li>将 js 脚本放在文档的底部，来使 js 脚本尽可能的在最后来加载执行。</li>
+<li>给 js 脚本添加 defer 属性，让脚本加载与文档解析同步进行，然后解析完成再执行这个脚本，如果设置多个 defer 属性的脚本，按照规范是顺序执行，但是某些浏览可能不是。</li>
+<li>给 js 脚本添加 async 属性，也是让脚本异步加载，不阻塞页面渲染，但是脚本完成加载后会立即执行，如果此时页面文档没有解析同样会阻塞。多个 async 属性的脚本的执行顺序是不可预测的，一般不会按照代码的顺序依次执行。</li>
+<li>动态脚本加载。对文档加载进行事件监听，文档加载完成后再动态创建 script 标签引入 js 脚本。</li>
 </ol>
 </li>
-<li>异步加载的区别<br>defer 是在 html 解析完之后才会执行，如果是多个，按照加载的顺序依次执行<br>async 是在加载完成后立即执行，如果是多个，执行顺序和加载顺序无关</li>
 </ul>
 <h3 id="2-使用外部-JS-和-CSS"><a href="#2-使用外部-JS-和-CSS" class="headerlink" title="2.使用外部 JS 和 CSS"></a>2.使用外部 JS 和 CSS</h3><p>外部 JavaScript 和 CSS 文件可以被浏览器缓存，在不同页面间重用，也能降低页面大小。<br>当然，实际中也需要考虑代码的重用程度。如果仅仅是某个页面使用到的代码，可以考虑内嵌在页面中，减少 HTTP 请求数。另外，可以在首页加载完成以后，预先加载子页面的资源。</p>
 <h3 id="3-压缩-JS-和-CSS"><a href="#3-压缩-JS-和-CSS" class="headerlink" title="3.压缩 JS 和 CSS"></a>3.压缩 JS 和 CSS</h3><p>压缩代码可以移除非功能性的字符（注释、空格、空行等），减少文件大小，提高载入速度。<br>可以使用 Gulp、Webpack 等流行构建工具</p>
@@ -840,7 +843,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -851,7 +854,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -965,7 +968,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">166.6k</span>
+    <span title="Site words total count">172.3k</span>
   
 </div>
 

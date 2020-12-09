@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="fdd’Blog">
 <meta property="og:description" content="DOM Element 对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-25T06:05:41.241Z">
+<meta property="og:updated_time" content="2020-12-04T08:59:12.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DOM操作">
 <meta name="twitter:description" content="DOM Element 对象">
@@ -452,7 +452,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3k字
+                  3.2k字
                 </span>
               
 
@@ -468,7 +468,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  12分
+                  13分
                 </span>
               
             </div>
@@ -654,6 +654,8 @@
 </li>
 </ol>
 <h2 id="事件方法-1"><a href="#事件方法-1" class="headerlink" title="事件方法"></a>事件方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Element.addEventListener()：添加事件的回调函数</span><br><span class="line">Element.removeEventListener()：移除事件监听函数</span><br><span class="line">Element.dispatchEvent()：触发事件</span><br><span class="line"></span><br><span class="line">//ie8</span><br><span class="line">Element.attachEvent(oneventName,listener)</span><br><span class="line">Element.detachEvent(oneventName,listener)</span><br><span class="line"></span><br><span class="line">// event对象</span><br><span class="line">var event = window.event||event;</span><br><span class="line"></span><br><span class="line">// 事件的目标节点</span><br><span class="line">var target = event.target || event.srcElement;</span><br><span class="line"></span><br><span class="line">// 事件代理</span><br><span class="line">ul.addEventListener(&apos;click&apos;, function(event) &#123;</span><br><span class="line">  if (event.target.tagName.toLowerCase() === &apos;li&apos;) &#123;</span><br><span class="line">    console.log(event.target.innerHTML)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>通用事件监听方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">const EventUtils = &#123;</span><br><span class="line">    //添加事件</span><br><span class="line">    addEvent: function (element, type, handler) &#123;</span><br><span class="line">        if (element.addEventListener) &#123;</span><br><span class="line">            element.addEventListener(type, handler, false)</span><br><span class="line">        &#125; else if (element.attachEvent) &#123;</span><br><span class="line">            element.attachEvent(&apos;on&apos; + type, handler)</span><br><span class="line"></span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            element[&apos;on&apos; + type] = handler</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    //移除事件</span><br><span class="line">    removeEvent: function (element, type, handler) &#123;</span><br><span class="line">        if (element.removeEventListener) &#123;</span><br><span class="line">            element.removeEventListener(type, handler)</span><br><span class="line">        &#125; else if (element.detachEvent) &#123;</span><br><span class="line">            element.detachEvent(&apos;on&apos; + type, handler);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            element[&apos;on&apos; + type] = handler</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    //获取事件目标</span><br><span class="line">    getTarget: function (event) &#123;</span><br><span class="line">        return event.target || event.srcElement</span><br><span class="line">    &#125;,</span><br><span class="line">    //获取事件目标</span><br><span class="line">    getEvent: function (event) &#123;</span><br><span class="line">        return event || window.event</span><br><span class="line">    &#125;,</span><br><span class="line">    //阻止事件</span><br><span class="line">    stopPropagation: function (event) &#123;</span><br><span class="line">        if (event.stopPropagation) &#123;</span><br><span class="line">            event.stopPropagation();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            event.cancelBubble = true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    //取消事件的默认行为</span><br><span class="line">    preventDefault: function (event) &#123;</span><br><span class="line">        if (event.preventDefault) &#123;</span><br><span class="line">            event.preventDefault()</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            event.returnValue = false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Element.scrollIntoView() //滚动当前元素，进入浏览器的可见区域</span><br><span class="line"></span><br><span class="line">//解析 HTML 字符串，然后将生成的节点插入 DOM 树的指定位置。</span><br><span class="line">Element.insertAdjacentHTML(where, htmlString);</span><br><span class="line">Element.insertAdjacentHTML(&apos;beforeBegin&apos;, htmlString); // 在该元素前插入</span><br><span class="line">Element.insertAdjacentHTML(&apos;afterBegin&apos;, htmlString); // 在该元素第一个子元素前插入</span><br><span class="line">Element.insertAdjacentHTML(&apos;beforeEnd&apos;, htmlString); // 在该元素最后一个子元素后面插入</span><br><span class="line">Element.insertAdjacentHTML(&apos;afterEnd&apos;, htmlString); // 在该元素后插入</span><br><span class="line"></span><br><span class="line">Element.remove() //用于将当前元素节点从 DOM 中移除</span><br><span class="line">Element.focus() //用于将当前页面的焦点，转移到指定元素上</span><br></pre></td></tr></table></figure>
 <h1 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h1><ol>
 <li><p>直接修改元素的样式</p>
@@ -798,7 +800,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -809,7 +811,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -923,7 +925,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">166.6k</span>
+    <span title="Site words total count">172.3k</span>
   
 </div>
 

@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="fdd’Blog">
 <meta property="og:description" content="总结一些 js 函数原理，手写">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-07T05:26:17.328Z">
+<meta property="og:updated_time" content="2020-12-07T05:35:46.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS-原理">
 <meta name="twitter:description" content="总结一些 js 函数原理，手写">
@@ -452,7 +452,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  710字
+                  1.1k字
                 </span>
               
 
@@ -468,7 +468,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分
+                  5分
                 </span>
               
             </div>
@@ -492,8 +492,7 @@
       
         <p>总结一些 js 函数原理，手写</p>
 <a id="more"></a>
-<p><code>JavaScript</code>是什么？</p>
-<ol>
+<h2 id="JavaScript是什么"><a href="#JavaScript是什么" class="headerlink" title="JavaScript是什么"></a><code>JavaScript</code>是什么</h2><ol>
 <li>脚本编程语言</li>
 <li>弱类型语言<br>变量可以被隐式转换成另一个类型。<ul>
 <li>二元运算<code>+</code>会把两个操作数转换成字符串，除非两个操作数都是数字类型</li>
@@ -503,16 +502,20 @@
 </li>
 <li>动态类型<br>变量可以赋值不同类型的值</li>
 <li>单线程</li>
-<li>解释型语言</li>
-<li><p>具有良好的跨平台性</p>
-<p><strong>组成部分</strong></p>
-<ul>
-<li>ECMAScript<br>JavaScript 的语法和基本对象</li>
+<li>单线程 - JavaScript 需要与用户交互，操作 DOM，如果多线程的话会带来复杂的同步问题。比如一个线程删除节点，一个线程添加内容，浏览器不知道以哪个线程为准。</li>
+<li>解释型语言 - 会将代码一句一句直接运行，不需要像编译型语言（Compiled language）一样，经过编译器先行编译为机器代码，之后再运行。<br>具有良好的跨平台性 - 可以在 Windows、Linux、Android、IOS 等平台运行。</li>
+</ol>
+<h2 id="JavaScript-和-ECMAScript-的区别，以及和-DOM-、BOM-的关系"><a href="#JavaScript-和-ECMAScript-的区别，以及和-DOM-、BOM-的关系" class="headerlink" title="JavaScript 和 ECMAScript 的区别，以及和 DOM 、BOM 的关系"></a>JavaScript 和 ECMAScript 的区别，以及和 DOM 、BOM 的关系</h2><ul>
+<li>ECMAScript<br>JavaScript 的语法和基本对象，是 JavaScript 的规范，</li>
 <li>DOM<br>文档对象模型，提供了与网页内容交互的<code>方法</code>和<code>接口</code></li>
 <li>BOM<br>浏览器对象模型，提供了与浏览器交互的<code>方法</code>和<code>接口</code></li>
 </ul>
-</li>
-</ol>
+<h2 id="为什么函数被称为一等公民"><a href="#为什么函数被称为一等公民" class="headerlink" title="为什么函数被称为一等公民"></a>为什么函数被称为一等公民</h2><p>在 JS 中，函数可以像传统函数一样声明和调用，也可以像简单值一样：</p>
+<ul>
+<li>赋值 var fun=function(){}</li>
+<li>传参 function fun(a,callback){callback()}</li>
+<li>返回 function(){return function(){}}<br>不仅如此，JavaScript 中的函数还充当了类的构造函数的作用，同时又是一个 Function 类的实例(instance)。</li>
+</ul>
 <h2 id="手写-call、apply、bind-函数"><a href="#手写-call、apply、bind-函数" class="headerlink" title="手写 call、apply、bind 函数"></a>手写 call、apply、bind 函数</h2><p>非严格模式：</p>
 <ol>
 <li>不传入第一个参数，上下文默认为<code>window</code></li>
@@ -530,6 +533,8 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.myBind = function (context) &#123;</span><br><span class="line">    //返回一个绑定this的函数，先保存this</span><br><span class="line">    let self = this;</span><br><span class="line">    //保存参数</span><br><span class="line">    let args = [...arguments].slice(1);</span><br><span class="line">    //返回一个函数</span><br><span class="line">    return function () &#123;</span><br><span class="line">        //因为支持柯里化形式传参我们需要再次获取存储参数</span><br><span class="line">        let newArg = [...arguments];</span><br><span class="line">        console.log(newArg);</span><br><span class="line">        // 返回函数绑定this，传入两次保存的参数</span><br><span class="line">        //考虑返回函数有返回值做了return</span><br><span class="line">        return self.apply(context, args.concat(newArg))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> let fn = Person.say.myBind(another, 118)</span><br><span class="line"> fn(18);////I am John,my age is 118.</span><br></pre></td></tr></table></figure>
 <h2 id="instanceof-的原理"><a href="#instanceof-的原理" class="headerlink" title="instanceof 的原理"></a>instanceof 的原理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//判断left是不是right的实例</span><br><span class="line">function myInstanceof(left, right) &#123;</span><br><span class="line">    let prototype = right.prototype;</span><br><span class="line">    left = left.__proto__;</span><br><span class="line">    while (true) &#123;</span><br><span class="line">        if (left === null || left === undefined) &#123;</span><br><span class="line">            return false</span><br><span class="line">        &#125;</span><br><span class="line">        if (prototype === left) &#123;</span><br><span class="line">            return true</span><br><span class="line">        &#125;</span><br><span class="line">        left = left.__proto__;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Object-create-实现原理"><a href="#Object-create-实现原理" class="headerlink" title="Object.create 实现原理"></a>Object.create 实现原理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function create(prototype,props)&#123;</span><br><span class="line">    const tmp=&#123;&#125;</span><br><span class="line">    tmp.__proto__=prototype;</span><br><span class="line">    Object.defineProperties(tmp,props)</span><br><span class="line">    return tmp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实现数组的-Map，filter，reduce-方法"><a href="#实现数组的-Map，filter，reduce-方法" class="headerlink" title="实现数组的 Map，filter，reduce 方法"></a>实现数组的 Map，filter，reduce 方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.myMap = function (fn) &#123;</span><br><span class="line">    let self = this;</span><br><span class="line">    if (self.length === 0 || typeof fn !== &apos;function&apos;) &#123;</span><br><span class="line">        return []</span><br><span class="line">    &#125;</span><br><span class="line">    let result = [];</span><br><span class="line">    for (let i = 0; i &lt; self.length; i++) &#123;</span><br><span class="line">        let res = fn(self[i], i, self);</span><br><span class="line">        result.push(res);</span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line">Array.prototype.myFilter = function (fn) &#123;</span><br><span class="line">    let self = this;</span><br><span class="line">    if (self.length === 0 || typeof fn !== &apos;function&apos;) &#123;</span><br><span class="line">        return []</span><br><span class="line">    &#125;</span><br><span class="line">    let result = [];</span><br><span class="line">    for (let i = 0; i &lt; self.length; i++) &#123;</span><br><span class="line">        let res = fn(self[i], i, self);</span><br><span class="line">        if (res) &#123;</span><br><span class="line">            result.push(self[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line">Array.prototype.myReducer = function (fn, init) &#123;</span><br><span class="line">    let self = this;</span><br><span class="line">    if (self.length === 0 &amp;&amp; !init) &#123;</span><br><span class="line">        return new TypeError(&apos;TypeError: Reduce of empty array with no initial value&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">    let result = init === undefined ? self[0] : init;</span><br><span class="line">    for (let i = init === undefined ? 1 : 0; i &lt; self.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">        result = fn(result, self[i], i, self)</span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -662,7 +667,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -673,7 +678,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -746,7 +751,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#手写-call、apply、bind-函数"><span class="nav-number">1.</span> <span class="nav-text">手写 call、apply、bind 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call"><span class="nav-number">1.1.</span> <span class="nav-text">call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply"><span class="nav-number">1.2.</span> <span class="nav-text">apply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind"><span class="nav-number">1.3.</span> <span class="nav-text">bind</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instanceof-的原理"><span class="nav-number">2.</span> <span class="nav-text">instanceof 的原理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript是什么"><span class="nav-number">1.</span> <span class="nav-text">JavaScript是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-和-ECMAScript-的区别，以及和-DOM-、BOM-的关系"><span class="nav-number">2.</span> <span class="nav-text">JavaScript 和 ECMAScript 的区别，以及和 DOM 、BOM 的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么函数被称为一等公民"><span class="nav-number">3.</span> <span class="nav-text">为什么函数被称为一等公民</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手写-call、apply、bind-函数"><span class="nav-number">4.</span> <span class="nav-text">手写 call、apply、bind 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call"><span class="nav-number">4.1.</span> <span class="nav-text">call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply"><span class="nav-number">4.2.</span> <span class="nav-text">apply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind"><span class="nav-number">4.3.</span> <span class="nav-text">bind</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instanceof-的原理"><span class="nav-number">5.</span> <span class="nav-text">instanceof 的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-create-实现原理"><span class="nav-number">6.</span> <span class="nav-text">Object.create 实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现数组的-Map，filter，reduce-方法"><span class="nav-number">7.</span> <span class="nav-text">实现数组的 Map，filter，reduce 方法</span></a></li></ol></div>
             
 
           </div>
@@ -787,7 +792,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">166.6k</span>
+    <span title="Site words total count">172.3k</span>
   
 </div>
 
