@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="fdd’Blog">
 <meta property="og:description" content="HTML5">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-16T14:24:48.497Z">
+<meta property="og:updated_time" content="2020-12-10T13:16:45.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="m-HTML">
 <meta name="twitter:description" content="HTML5">
@@ -452,7 +452,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  669字
+                  824字
                 </span>
               
 
@@ -468,7 +468,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分
+                  3分
                 </span>
               
             </div>
@@ -517,6 +517,12 @@
 <li>localStorage<br>没有时间限制的数据存储</li>
 <li>sessionStorage<br>针对一个 session 的数据存储, 当用户关闭浏览器窗口后，数据会被删除。</li>
 </ul>
+<h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p><strong>1.统计 HTML 标签中以 b 开头的标签数量</strong></p>
+<p>法一</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const Nodes = document.getElementsByTagName(&apos;*&apos;);</span><br><span class="line">  let result = [...Nodes].filter(ele =&gt; &#123;</span><br><span class="line">      let &#123;</span><br><span class="line">          tagName</span><br><span class="line">      &#125; = ele;</span><br><span class="line">      const reg = /^B/;</span><br><span class="line">      return reg.test(tagName)</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>法二</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const prefixBElements = []</span><br><span class="line">const prefixB = (el) =&gt; &#123;</span><br><span class="line">    console.log(el.tagName.startsWith(&apos;B&apos;));</span><br><span class="line">    if (el.tagName.startsWith(&apos;B&apos;)) &#123;</span><br><span class="line">        prefixBElements.push(el)</span><br><span class="line">    &#125;</span><br><span class="line">    for (const child of el.children) &#123;</span><br><span class="line">        prefixB(child)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">prefixB(document.documentElement)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const nodes = document.getElementsByTagName(&apos;*&apos;);</span><br><span class="line">const map = new Map();</span><br><span class="line">let tag = &apos;&apos;;</span><br><span class="line">let max = 0;</span><br><span class="line">[...nodes].forEach(ele =&gt; &#123;</span><br><span class="line">    let &#123;</span><br><span class="line">        tagName</span><br><span class="line">    &#125; = ele;</span><br><span class="line"></span><br><span class="line">    if (map.has(tagName)) &#123;</span><br><span class="line">        let count = map.get(tagName)</span><br><span class="line">        map.set(tagName, count + 1)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        map.set(tagName, 1)</span><br><span class="line">    &#125;</span><br><span class="line">    if (map.get(tagName) &gt; max) &#123;</span><br><span class="line">        tag = tagName;</span><br><span class="line">        max = map.get(tagName)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -733,7 +739,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#谈谈你对-HTML5-的理解"><span class="nav-number">1.</span> <span class="nav-text">谈谈你对 HTML5 的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-预编译语言"><span class="nav-number">1.1.</span> <span class="nav-text">CSS 预编译语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas-webGL"><span class="nav-number">1.2.</span> <span class="nav-text">canvas/webGL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#history-API"><span class="nav-number">1.3.</span> <span class="nav-text">history API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requestAnimationFrame"><span class="nav-number">1.4.</span> <span class="nav-text">requestAnimationFrame()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地理定位"><span class="nav-number">1.5.</span> <span class="nav-text">地理定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Sockets"><span class="nav-number">1.6.</span> <span class="nav-text">Web Sockets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Storage"><span class="nav-number">1.7.</span> <span class="nav-text">Web Storage</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#谈谈你对-HTML5-的理解"><span class="nav-number">1.</span> <span class="nav-text">谈谈你对 HTML5 的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-预编译语言"><span class="nav-number">1.1.</span> <span class="nav-text">CSS 预编译语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas-webGL"><span class="nav-number">1.2.</span> <span class="nav-text">canvas/webGL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#history-API"><span class="nav-number">1.3.</span> <span class="nav-text">history API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requestAnimationFrame"><span class="nav-number">1.4.</span> <span class="nav-text">requestAnimationFrame()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地理定位"><span class="nav-number">1.5.</span> <span class="nav-text">地理定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Sockets"><span class="nav-number">1.6.</span> <span class="nav-text">Web Sockets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Storage"><span class="nav-number">1.7.</span> <span class="nav-text">Web Storage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题"><span class="nav-number">2.</span> <span class="nav-text">面试题</span></a></li></ol></div>
             
 
           </div>
@@ -774,7 +780,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">172.3k</span>
+    <span title="Site words total count">173.5k</span>
   
 </div>
 

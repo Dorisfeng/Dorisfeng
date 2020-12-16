@@ -144,7 +144,7 @@
 <meta property="og:site_name" content="fdd’Blog">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://dorisfeng.github.io/images/bg8.jpg">
-<meta property="og:updated_time" content="2020-12-09T03:18:06.032Z">
+<meta property="og:updated_time" content="2020-12-15T07:54:12.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-面试">
 <meta name="twitter:image" content="https://dorisfeng.github.io/images/bg8.jpg">
@@ -451,7 +451,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.5k字
+                  2.1k字
                 </span>
               
 
@@ -467,7 +467,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5分
+                  7分
                 </span>
               
             </div>
@@ -506,14 +506,14 @@
 <p>JSX 是一个<code>JavaScript</code>的语法扩展，结构类似 XML。<br>JSX 主要用于声明 React 元素。React 并不强制使用 JSX，JSX 是<code>React.createElement()</code>的语法糖。使用 JSX 的代码更为简洁，结构更为清晰。<br>React 采用了关注点分离的设计原则，关注点的基本单位是组件。<br>首先，对比模板，模板不应该是开发过程的关注点，因为引入模板语法、模板指令等概念。是一种不佳的实现方案。<br>其次，对比模板字符串，模板字符串编写会造成多次内部嵌套，使整个结构变得复杂，并且优化代码提示也会变得困难。<br>最后 JXON，也是因为代码提示困难的原因被放弃。</p>
 <h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><h3 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h3><ul>
 <li><code>constructor</code><br>初始化函数，不属于声明周期，不推荐使用。</li>
-<li><code>getDerivedStateFromProps</code><br>静态方法，在 props 变化的时候更新 state 或直接复制 prop 到 state。父组件传入的 props 发生变化，或者父组件重新渲染，都会执行。<br>使用场景优先不建议使用。</li>
+<li><code>static getDerivedStateFromProps</code><br>静态方法，在 props 变化的时候更新 state 或直接复制 prop 到 state。父组件传入的 props 发生变化，或者父组件重新渲染，都会执行。<br>使用场景优先不建议使用。</li>
 <li><code>UNSAFF_componentWillMount</code><br>已标记废弃，在 React 的异步渲染机制下，可能多次调用。</li>
 <li><code>render</code><br>返回 JSX 结构，用于描述具体的渲染内容。render 函数并没有真正的渲染组件，渲染是依靠 React 操作 JSX 描述结构来完成的。render 应该是个纯函数，不应该产生副作用，比如调用 seState 或绑定事件。<br>调用 setState 会在每次渲染的时候再次触发渲染，导致死循环。<br>绑定事件会被频繁调用注册。</li>
 <li><code>componentDidMount</code><br>主要用于组件加载完成后执行某些操作，发起网络请求或者绑定事件。在 render 函数调用后执行<br>在浏览器端可以认为是真是 DOM 绘制完成后调用的。<br>其他场景尤其是 React Native 场景下，由于机器的性能限制，视图绘制可能还在绘制中。</li>
 </ul>
 <h3 id="更新阶段"><a href="#更新阶段" class="headerlink" title="更新阶段"></a>更新阶段</h3><ul>
 <li><code>UNSAFE_componentWillReceiveProps</code><br>该函数已被标记弃用，因为其功能可被函数 getDerivedStateFromProps 所替代。<br>另外，当 getDerivedStateFromProps 存在时，UNSAFE_componentWillReceiveProps 不会被调用。</li>
-<li><code>getDerivedStateFromProps</code><br>同挂载阶段的表现一致。</li>
+<li><code>static getDerivedStateFromProps</code><br>同挂载阶段的表现一致。</li>
 <li><code>shouldComponentUpdate</code><br>通过返回 true 或 false 来确定是否需要触发渲染。通过添加判断条件来阻止不必要的渲染。<br>React 的 PureComponent 通过实现默认的 shouldComponentUpdate 函数来优化渲染，通过对 props 和 state 的浅比较来决定是否触发更新。</li>
 <li><code>UNSAFE_componentWillUpdate</code><br>同样已废弃，因为后续的 React 异步渲染设计中，可能会出现组件暂停更新渲染的情况。</li>
 <li><code>render</code><br>同挂载阶段一致</li>
@@ -523,7 +523,11 @@
 <h3 id="卸载阶段"><a href="#卸载阶段" class="headerlink" title="卸载阶段"></a>卸载阶段</h3><ul>
 <li><code>componentWillUnmount</code><br>清理定时器，解除事件绑定</li>
 </ul>
-<h3 id="错误边界"><a href="#错误边界" class="headerlink" title="错误边界"></a>错误边界</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class ErrorBoundary extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123; hasError: false &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  static getDerivedStateFromError(error) &#123;</span><br><span class="line">    // 更新 state 使下一次渲染能够显示降级后的 UI</span><br><span class="line">    return &#123; hasError: true &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidCatch(error, errorInfo) &#123;</span><br><span class="line">    // 你同样可以将错误日志上报给服务器</span><br><span class="line">    logErrorToMyService(error, errorInfo);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    if (this.state.hasError) &#123;</span><br><span class="line">      // 你可以自定义降级后的 UI 并渲染</span><br><span class="line">      return &lt;h1&gt;Something went wrong.&lt;/h1&gt;;</span><br><span class="line">    &#125;</span><br><span class="line">    return this.props.children; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="错误边界"><a href="#错误边界" class="headerlink" title="错误边界"></a>错误边界</h3><ul>
+<li><code>static getDerivedStateFromError</code></li>
+<li><code>componentDidCatch</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class ErrorBoundary extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123; hasError: false &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  static getDerivedStateFromError(error) &#123;</span><br><span class="line">    // 更新 state 使下一次渲染能够显示降级后的 UI</span><br><span class="line">    return &#123; hasError: true &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidCatch(error, errorInfo) &#123;</span><br><span class="line">    // 你同样可以将错误日志上报给服务器</span><br><span class="line">    logErrorToMyService(error, errorInfo);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    if (this.state.hasError) &#123;</span><br><span class="line">      // 你可以自定义降级后的 UI 并渲染</span><br><span class="line">      return &lt;h1&gt;Something went wrong.&lt;/h1&gt;;</span><br><span class="line">    &#125;</span><br><span class="line">    return this.props.children; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="容易造成生命周期的坑"><a href="#容易造成生命周期的坑" class="headerlink" title="容易造成生命周期的坑"></a>容易造成生命周期的坑</h3><ol>
 <li><code>getDerivedStateFromProps</code>容易编写反模式代码，是受控组件与非受控组件区分模糊</li>
 <li><code>componentWillMount</code>，已废弃，新的异步更新模式会导致重复渲染</li>
@@ -538,6 +542,67 @@
 <li><code>constructor</code>:可以放，但是设计上不推荐。负责初始化工作，不应该涉及业务逻辑，另外随着类属性的流行，很少使用了。</li>
 <li><code>componentWillMount</code>：已经被标记废弃。在新的异步渲染模式下会导致重复渲染引发 bug，不利于维护</li>
 </ul>
+<h2 id="React-组件设计"><a href="#React-组件设计" class="headerlink" title="React 组件设计"></a>React 组件设计</h2><ol>
+<li>设计分类<ul>
+<li>展示组件 专注于组件本身特性<ul>
+<li>代理组件<br>用于封装属性、减少代码重复，例如对 Antd 的 Button 自己封装一层，可以统一为 Button 添加属性，如果需要替换掉 Antd 也很方便。</li>
+<li>样式组件</li>
+<li>布局组件</li>
+</ul>
+</li>
+<li>灵巧组件 专注于组合组件<ul>
+<li>容器组件 拉取数据与组合组件</li>
+<li>高阶组件<ul>
+<li>逻辑复用</li>
+<li>链式复用</li>
+<li>渲染劫持 super.render</li>
+<li>缺陷<ul>
+<li>丢失静态函数，<code>hoist-non-react-statics</code></li>
+<li>refs 属性不能透传 <code>React.forwardRef</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>工程实践<ul>
+<li>目录结构划分</li>
+<li>引入工程管理</li>
+</ul>
+</li>
+</ol>
+<p><strong>如何在渲染劫持中为原本的渲染结果添加新的样式？</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function withLoading(WrappedComponent) &#123;</span><br><span class="line">    return class extends WrappedComponent &#123;</span><br><span class="line">        render() &#123;</span><br><span class="line">            if(this.props.isLoading) &#123;</span><br><span class="line">                return &lt;Loading /&gt;;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return super.render();//获取原本的渲染结果，修改</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类组件和函数组件"><a href="#类组件和函数组件" class="headerlink" title="类组件和函数组件"></a>类组件和函数组件</h2><ol>
+<li>相同点<ol>
+<li>实现效果一致</li>
+<li>使用方式一致</li>
+</ol>
+</li>
+<li>不同点<ol>
+<li>设计实现和心智模型不同<ol>
+<li>类组件 OOP(面向对象编程)</li>
+<li>函数组件 FP 函数式编程</li>
+</ol>
+</li>
+<li>生命周期<br>类组件通过生命周期包裹业务逻辑，函数组件早期通过高阶函数模拟声明周期，现在使用 Hooks 实现</li>
+<li>设计模式<br>类组件可以实现继承 函数组件不行，但是 React 推荐组合优于继承</li>
+<li>性能优化<ul>
+<li>类组件 <code>PureComponent</code>或<code>shouldComponentUpdate</code></li>
+<li>函数组件 <code>React.memo</code>，<code>useCallback</code></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>未来趋势<br>由于生命周期的复杂度，并且不易于优化，函数组件本身比较轻量且符合 React 的<code>View=fn(state,props)</code>的设计理念，并且 Hooks 提供了比原先更加合理的逻辑处理策略。</li>
+</ol>
+<h2 id="hooks-理解"><a href="#hooks-理解" class="headerlink" title="hooks 理解"></a>hooks 理解</h2><ol>
+<li>useRef，保存 dom 元素，获取<br>保持引用不变，jsx 渲染比 useEffect 早，手动修改 ref.current 不会触发组件的重新渲染</li>
+<li>useMemo 存储一个与渲染无关的需要大量计算的不常改变的值。</li>
+<li>useCallback 保证渲染前后的函数不会重新生成，避免子组件不必要的渲染，必须和 React.memo 配合使用</li>
+</ol>
 
       
     </div>
@@ -754,7 +819,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-相关面试题"><span class="nav-number">1.</span> <span class="nav-text">React 相关面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-React"><span class="nav-number">1.1.</span> <span class="nav-text">什么是 React</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么-React-要用-JSX"><span class="nav-number">1.2.</span> <span class="nav-text">为什么 React 要用 JSX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期"><span class="nav-number">1.3.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载"><span class="nav-number">1.3.1.</span> <span class="nav-text">挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新阶段"><span class="nav-number">1.3.2.</span> <span class="nav-text">更新阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载阶段"><span class="nav-number">1.3.3.</span> <span class="nav-text">卸载阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误边界"><span class="nav-number">1.3.4.</span> <span class="nav-text">错误边界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容易造成生命周期的坑"><span class="nav-number">1.3.5.</span> <span class="nav-text">容易造成生命周期的坑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-的请求应该放在哪里，为什么"><span class="nav-number">1.4.</span> <span class="nav-text">React 的请求应该放在哪里，为什么</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-相关面试题"><span class="nav-number">1.</span> <span class="nav-text">React 相关面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-React"><span class="nav-number">1.1.</span> <span class="nav-text">什么是 React</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么-React-要用-JSX"><span class="nav-number">1.2.</span> <span class="nav-text">为什么 React 要用 JSX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期"><span class="nav-number">1.3.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载"><span class="nav-number">1.3.1.</span> <span class="nav-text">挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新阶段"><span class="nav-number">1.3.2.</span> <span class="nav-text">更新阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载阶段"><span class="nav-number">1.3.3.</span> <span class="nav-text">卸载阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误边界"><span class="nav-number">1.3.4.</span> <span class="nav-text">错误边界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容易造成生命周期的坑"><span class="nav-number">1.3.5.</span> <span class="nav-text">容易造成生命周期的坑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-的请求应该放在哪里，为什么"><span class="nav-number">1.4.</span> <span class="nav-text">React 的请求应该放在哪里，为什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-组件设计"><span class="nav-number">1.5.</span> <span class="nav-text">React 组件设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类组件和函数组件"><span class="nav-number">1.6.</span> <span class="nav-text">类组件和函数组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hooks-理解"><span class="nav-number">1.7.</span> <span class="nav-text">hooks 理解</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -795,7 +860,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">172.3k</span>
+    <span title="Site words total count">173.5k</span>
   
 </div>
 
